@@ -3,4 +3,4 @@
 
 from .proactive_bot import ProactiveBot
 
-__all__ = ["EchoBot"]
+__all__ = ["ProactiveBot"]

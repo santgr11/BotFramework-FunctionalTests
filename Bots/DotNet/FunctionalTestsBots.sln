@@ -14,9 +14,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleHostBot-2.1", "Consumers\CodeFirst\SimpleHostBot-2.1\SimpleHostBot-2.1.csproj", "{0443C38C-A0DF-4A1A-8931-4A4BFFEEB386}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeFirst", "CodeFirst", "{6EF38D8C-7953-4D54-BA31-FFF055B7B217}"
+<<<<<<< HEAD
 	ProjectSection(SolutionItems) = preProject
 		Skills\CodeFirst\TeamsAuthSkillBot\TeamsAuthSkillBot.csproj = Skills\CodeFirst\TeamsAuthSkillBot\TeamsAuthSkillBot.csproj
 	EndProjectSection
+=======
+>>>>>>> main
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardSkillBot", "Skills\CodeFirst\CardSkillBot\CardSkillBot.csproj", "{057D5131-517C-4EBB-BA7B-75E745792DBD}"
 EndProject
@@ -26,6 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EchoSkillBot-2.1", "Skills\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProactiveSkillBot", "Skills\CodeFirst\ProactiveSkillBot\ProactiveSkillBot.csproj", "{5AF618C7-C75B-4F34-A77C-66F3E3B758E2}"
 EndProject
+<<<<<<< HEAD
+=======
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsSkillBot", "Skills\CodeFirst\TeamsSkillBot\TeamsSkillBot.csproj", "{66E3D426-7627-4D6C-9FAA-87618724F326}"
+EndProject
+>>>>>>> main
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherSkillBot", "Skills\CodeFirst\WeatherSkillBot\WeatherSkillBot.csproj", "{C62D367B-BBA3-4F0F-B170-52AE28910F01}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EchoSkillBot", "Skills\CodeFirst\EchoSkillBot\EchoSkillBot.csproj", "{692F26DD-F7BA-49F3-AC6D-73047C1E5D61}"
@@ -58,10 +66,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "settings", "settings", "{95
 		Skills\Composer\EchoComposerSkillBot\settings\appsettings.json = Skills\Composer\EchoComposerSkillBot\settings\appsettings.json
 	EndProjectSection
 EndProject
+<<<<<<< HEAD
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsAuthSkillBot", "Skills\CodeFirst\TeamsAuthSkillBot\TeamsAuthSkillBot.csproj", "{348CFA6C-51B2-4E8D-9669-FE69A243F3E7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthTeamsHostBot", "Consumers\CodeFirst\AuthTeamsHostBot\AuthTeamsHostBot.csproj", "{447B9AC9-F448-441D-B46A-AD6CEDBB6E8E}"
 EndProject
+=======
+>>>>>>> main
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +103,13 @@ Global
 		{5AF618C7-C75B-4F34-A77C-66F3E3B758E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AF618C7-C75B-4F34-A77C-66F3E3B758E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AF618C7-C75B-4F34-A77C-66F3E3B758E2}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+=======
+		{66E3D426-7627-4D6C-9FAA-87618724F326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66E3D426-7627-4D6C-9FAA-87618724F326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66E3D426-7627-4D6C-9FAA-87618724F326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66E3D426-7627-4D6C-9FAA-87618724F326}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> main
 		{C62D367B-BBA3-4F0F-B170-52AE28910F01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C62D367B-BBA3-4F0F-B170-52AE28910F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C62D367B-BBA3-4F0F-B170-52AE28910F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -116,6 +134,7 @@ Global
 		{AE84648F-7558-43A4-8EF2-9F2B3167FD51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE84648F-7558-43A4-8EF2-9F2B3167FD51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE84648F-7558-43A4-8EF2-9F2B3167FD51}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{348CFA6C-51B2-4E8D-9669-FE69A243F3E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{348CFA6C-51B2-4E8D-9669-FE69A243F3E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{348CFA6C-51B2-4E8D-9669-FE69A243F3E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -124,6 +143,8 @@ Global
 		{447B9AC9-F448-441D-B46A-AD6CEDBB6E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{447B9AC9-F448-441D-B46A-AD6CEDBB6E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{447B9AC9-F448-441D-B46A-AD6CEDBB6E8E}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+>>>>>>> main
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +158,10 @@ Global
 		{64524883-7455-4A7E-AD72-D5D77288D373} = {6EF38D8C-7953-4D54-BA31-FFF055B7B217}
 		{56864219-785B-4600-9849-43CAF90F37E9} = {6EF38D8C-7953-4D54-BA31-FFF055B7B217}
 		{5AF618C7-C75B-4F34-A77C-66F3E3B758E2} = {6EF38D8C-7953-4D54-BA31-FFF055B7B217}
+<<<<<<< HEAD
+=======
+		{66E3D426-7627-4D6C-9FAA-87618724F326} = {6EF38D8C-7953-4D54-BA31-FFF055B7B217}
+>>>>>>> main
 		{C62D367B-BBA3-4F0F-B170-52AE28910F01} = {6EF38D8C-7953-4D54-BA31-FFF055B7B217}
 		{692F26DD-F7BA-49F3-AC6D-73047C1E5D61} = {6EF38D8C-7953-4D54-BA31-FFF055B7B217}
 		{33FA275E-9E5D-4582-BFF7-24B2C5DB2962} = {12088D79-235C-4387-9DA8-69AB93D52A8E}
@@ -150,8 +175,11 @@ Global
 		{F5187871-1120-4D76-B3B6-53D2F93E3071} = {23CD821E-D287-4B8A-8174-15C081B566DA}
 		{9FF1FC77-3EBE-4001-864B-59DC0BF5ADDE} = {33E2281F-C6A7-40EC-961A-FF9FF254FDDC}
 		{95708A0E-37E4-4EC0-B381-DC2C440F1A1D} = {9FF1FC77-3EBE-4001-864B-59DC0BF5ADDE}
+<<<<<<< HEAD
 		{348CFA6C-51B2-4E8D-9669-FE69A243F3E7} = {6EF38D8C-7953-4D54-BA31-FFF055B7B217}
 		{447B9AC9-F448-441D-B46A-AD6CEDBB6E8E} = {C7A60083-78C8-4CEF-A358-4E53CBF0D12A}
+=======
+>>>>>>> main
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B77A921-EEA6-4006-ABD2-159C92F9F874}

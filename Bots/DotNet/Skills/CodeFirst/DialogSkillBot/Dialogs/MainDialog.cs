@@ -23,7 +23,13 @@ namespace Microsoft.BotFrameworkFunctionalTests.DialogSkillBot
     /// </summary>
     public class MainDialog : ComponentDialog
     {
+        public static readonly string ActiveSkillPropertyName = $"{typeof(MainDialog).FullName}.ActiveSkillProperty";
+
+        private const string JustForwardTheActivity = "JustForwardTurnContext.Activity";
+
         private readonly IStatePropertyAccessor<BotFrameworkSkill> _activeSkillProperty;
+
+        private readonly string _selectedSkillKey = $"{typeof(MainDialog).FullName}.SelectedSkillKey";
 
         // Dependency injection uses this constructor to instantiate MainDialog.
         public MainDialog(ConversationState conversationState, IConfiguration configuration, IHttpClientFactory clientFactory)

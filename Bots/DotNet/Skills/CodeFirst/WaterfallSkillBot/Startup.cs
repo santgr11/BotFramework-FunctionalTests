@@ -9,13 +9,13 @@ using Microsoft.Bot.Builder.BotFramework;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
 using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Bot.Schema;
-using Microsoft.BotFrameworkFunctionalTests.DialogSkillBot.Authentication;
-using Microsoft.BotFrameworkFunctionalTests.DialogSkillBot.Bots;
+using Microsoft.BotFrameworkFunctionalTests.WaterfallSkillBot.Authentication;
+using Microsoft.BotFrameworkFunctionalTests.WaterfallSkillBot.Bots;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Microsoft.BotFrameworkFunctionalTests.DialogSkillBot
+namespace Microsoft.BotFrameworkFunctionalTests.WaterfallSkillBot
 {
     public class Startup
     {

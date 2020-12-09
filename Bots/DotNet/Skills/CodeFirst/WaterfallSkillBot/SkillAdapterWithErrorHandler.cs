@@ -11,7 +11,7 @@ using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Microsoft.BotFrameworkFunctionalTests.DialogSkillBot
+namespace Microsoft.BotFrameworkFunctionalTests.WaterfallSkillBot
 {
     public class SkillAdapterWithErrorHandler : BotFrameworkHttpAdapter
     {

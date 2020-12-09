@@ -12,7 +12,7 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Newtonsoft.Json;
 
-namespace Microsoft.BotFrameworkFunctionalTests.DialogSkillBot.Bots
+namespace Microsoft.BotFrameworkFunctionalTests.WaterfallSkillBot.Bots
 {
     public class SkillBot<T> : ActivityHandler
         where T : Dialog

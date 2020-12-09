@@ -4,7 +4,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Microsoft.BotFrameworkFunctionalTests.DialogSkillBot
+namespace Microsoft.BotFrameworkFunctionalTests.WaterfallSkillBot
 {
     public class Program
     {

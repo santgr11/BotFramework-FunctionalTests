@@ -4,7 +4,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:35420/",
+      "applicationUrl": "http://localhost:39783/",
       "sslPort": 0
     }
   },
@@ -19,7 +19,7 @@
     "DialogSkillBotDotNet": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:35420/",
+      "applicationUrl": "http://localhost:39783/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

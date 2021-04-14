@@ -13,10 +13,14 @@ variables:
   BuildConfiguration: "Debug"
   BuildPlatform: "AnyCPU"
   InternalAppInsightsName: "bffnappinsights$($env:ResourceSuffix)"
-  InternalAppServicePlanLinuxName: $[coalesce(variables["AppServicePlanNameLinux"], "bffnbotsappservicelinux$($env:ResourceSuffix)")]
-  InternalAppServicePlanLinuxResourceGroupName: $[coalesce(variables["AppServicePlanGroupLinux"], "bffnshared-linux")]
-  InternalAppServicePlanWindowsName: $[coalesce(variables["AppServicePlanName"], "bffnbotsappservicewin$($env:ResourceSuffix)")]
-  InternalAppServicePlanWindowsResourceGroup: $[coalesce(variables["AppServicePlanGroup"], "bffnshared")]
+  AppServicePlanLinux: "bffnbotsappservicelinux$($env:ResourceSuffix)"
+  InternalAppServicePlanLinuxName: $[coalesce(variables["AppServicePlanNameLinux"], variables["AppServicePlanLinux"]")]
+  AppServicePlanLinuxResourceGroup: "bffnshared-linux"
+  InternalAppServicePlanLinuxResourceGroupName: $[coalesce(variables["AppServicePlanGroupLinux"], variables["AppServicePlanLinuxResourceGroup"])]
+  AppServicePlanWindows: "bffnbotsappservicewin$($env:ResourceSuffix)"
+  InternalAppServicePlanWindowsName: $[coalesce(variables["AppServicePlanName"], variables["AppServicePlanWindows"]")]
+  AppServicePlanWindowsResourceGroup: "bffnshared"
+  InternalAppServicePlanWindowsResourceGroup: $[coalesce(variables["AppServicePlanGroup"], variables["AppServicePlanWindowsResourceGroup"])]
   InternalKeyVaultName: "bffnbotkeyvault$($env:ResourceSuffix)"
   InternalResourceGroupName: $[coalesce(variables["ResourceGroup"], "bffnbots")]
   # AzureSubscription: define in Azure

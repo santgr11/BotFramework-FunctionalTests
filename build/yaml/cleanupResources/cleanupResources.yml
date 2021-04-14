@@ -12,7 +12,8 @@ variables:
   InternalAppServicePlanWindowsName: "bffnbotsappservicewin$($env:ResourceSuffix)"
   InternalCosmosDBName: "bffnbotstatedb$($env:ResourceSuffix)"
   InternalKeyVaultName: "bffnbotkeyvault$($env:ResourceSuffix)"
-  InternalBotResourceGroupName: $[coalesce(variables["DeployResourceGroup"], "bffnbots")]
+  BotResourceGroup: "bffnbots$($env:ResourceSuffix)"
+  InternalBotResourceGroupName: $[coalesce(variables["DeployResourceGroup"], variables["BotResourceGroup"])]
   InternalSharedResourceGroupName: $[coalesce(variables["SharedResourceGroup"], "bffnshared")]
   # AzureSubscription: define in Azure
   # DeployResourceGroup: (optional) define in Azure

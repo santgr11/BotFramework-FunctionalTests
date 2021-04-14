@@ -110,7 +110,7 @@ stages:
           scriptType: pscore
           scriptLocation: inlineScript
           inlineScript: |
-            $appServicePlanPricingTier = if($env:AppServicePlanPricingTier) { "newAppServicePlanSku=$env:AppServicePlanPricingTier" };
+            $appServicePlanPricingTier = if ($env:AppServicePlanPricingTier) { "newAppServicePlanSku=$env:AppServicePlanPricingTier" }
             
             az deployment group create --name "$(InternalAppServicePlanWindowsName)" --resource-group "$(InternalResourceGroupName)" --template-file build/templates/template-service-plan-windows-resources.json --parameters $appServicePlanPricingTier newAppServicePlanName="$(InternalAppServicePlanWindowsName)"
 
@@ -128,7 +128,7 @@ stages:
           scriptType: pscore
           scriptLocation: inlineScript
           inlineScript: |
-            $appServicePlanPricingTier = if($env:AppServicePlanPricingTier) { "newAppServicePlanSku=$env:AppServicePlanPricingTier" };
+            $appServicePlanPricingTier = if ($env:AppServicePlanPricingTier) { "newAppServicePlanSku=$env:AppServicePlanPricingTier" }
 
             az deployment group create --name "$(InternalAppServicePlanLinuxName)" --resource-group "$(InternalResourceGroupName)-linux" --template-file build/templates/template-service-plan-linux-resources.json --parameters $appServicePlanPricingTier newAppServicePlanName="$(InternalAppServicePlanLinuxName)"
 

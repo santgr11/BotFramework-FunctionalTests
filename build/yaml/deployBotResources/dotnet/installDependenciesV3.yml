@@ -9,11 +9,11 @@ steps:
       $version = ""
       $source = ""
 
-      if(-not ([string]::IsNullOrEmpty("${{ parameters.version }}"))){
+      if (-not ([string]::IsNullOrEmpty("${{ parameters.version }}"))) {
         $version = "-Version ""${{ parameters.version }}"""
       }
 
-      if(-not ([string]::IsNullOrEmpty("${{ parameters.source }}"))){
+      if (-not ([string]::IsNullOrEmpty("${{ parameters.source }}"))) {
         $source = "-Source ""${{ parameters.source }}"""
       }
 

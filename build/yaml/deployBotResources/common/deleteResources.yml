@@ -10,20 +10,18 @@ steps:
       scriptType: pscore
       scriptLocation: inlineScript
       inlineScript: |
-        Write-Host "Looking for ${{ parameters.resourceGroup }}...";
-        if ((az group exists -n "${{ parameters.resourceGroup }}") -eq "true")
-        {
-            Write-Host "Found pre-existing resource group ${{ parameters.resourceGroup }}.";
-            Write-Host "Starting resource cleanup...";
+        Write-Host "Looking for ${{ parameters.resourceGroup }}..."
+        if ((az group exists -n "${{ parameters.resourceGroup }}") -eq "true") {
+            Write-Host "Found pre-existing resource group ${{ parameters.resourceGroup }}."
+            Write-Host "Starting resource cleanup..."
 
             Write-Host ("Deleting '" + "${{ parameters.resourceName }}$($env:ResourceSuffix)-$(Build.BuildId)" + "'...")
             az webapp delete --name "${{ parameters.resourceName }}$($env:ResourceSuffix)-$(Build.BuildId)" --resource-group ${{ parameters.resourceGroup }} --keep-empty-plan
             az bot delete --name "${{ parameters.resourceName }}$($env:ResourceSuffix)-$(Build.BuildId)" --resource-group ${{ parameters.resourceGroup }}
 
             Write-Host "Pre-existing bot resources for ${{ parameters.resourceName }}$($env:ResourceSuffix)-$(Build.BuildId) deleted."
-        }
-        else {
+        } else {
             Write-Host "Resource group not found."
             Write-Host "##vso[task.complete result=Failed;]"
-            return;
+            return
         }

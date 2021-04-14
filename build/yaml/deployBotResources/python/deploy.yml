@@ -44,7 +44,7 @@ stages:
                       if ($line.Trim().Length -gt 0 -and -not $line.Trim().ToLower().StartsWith("skill_")) {
                         $line
                       }
-                    } | Set-Content $file;
+                    } | Set-Content $file
 
           # Evaluate dependencies source and version
           - template: evaluateDependenciesVariables.yml

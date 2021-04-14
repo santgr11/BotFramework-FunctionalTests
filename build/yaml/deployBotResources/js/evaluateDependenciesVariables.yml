@@ -40,12 +40,12 @@ steps:
         }
         STABLE { 
           if ("${{ parameters.botType }}" -in "Host", "Skill") {
-            $PackageList = npm show botbuilder@* version | Out-String;
+            $PackageList = npm show botbuilder@* version | Out-String
+          } elseif ("${{ parameters.botType }}" -in "SkillV3") {
+            $PackageList = npm show botbuilder@3.* version | Out-String
           }
-          elseif ("${{ parameters.botType }}" -in "SkillV3") {
-            $PackageList = npm show botbuilder@3.* version | Out-String;
-          }
-          $versionNumber = ($PackageList.Split(" ")[-1]).Trim().TrimStart("'").TrimEnd("'");
+
+          $versionNumber = ($PackageList.Split(" ")[-1]).Trim().TrimStart("'").TrimEnd("'")
         }
         default { $versionNumber = "${{ parameters.version }}" }
       }

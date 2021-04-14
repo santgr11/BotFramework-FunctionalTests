@@ -61,13 +61,13 @@ stages:
             scriptType: pscore
             scriptLocation: inlineScript
             inlineScript: |
-              Write-Host "Looking for $(InternalAppServicePlanWindowsName)...";
+              Write-Host "Looking for $(InternalAppServicePlanWindowsName)..."
               $exists = az appservice plan show --name "$(InternalAppServicePlanWindowsName)" --resource-group "$(InternalSharedResourceGroupName)"
               if ($exists) {
-                Write-Host "Deleting $(InternalAppServicePlanWindowsName)...";
+                Write-Host "Deleting $(InternalAppServicePlanWindowsName)..."
                 az appservice plan delete --name "$(InternalAppServicePlanWindowsName)" --resource-group "$(InternalSharedResourceGroupName)" --yes
               } else {
-                Write-Host "No pre-existing $(InternalAppServicePlanWindowsName) resource found.";
+                Write-Host "No pre-existing $(InternalAppServicePlanWindowsName) resource found."
               }
 
 - stage: "Delete_Python_Resource_Group"
@@ -96,13 +96,13 @@ stages:
             scriptType: pscore
             scriptLocation: inlineScript
             inlineScript: |
-              Write-Host "Looking for $(InternalAppServicePlanLinuxName)...";
+              Write-Host "Looking for $(InternalAppServicePlanLinuxName)..."
               $exists = az appservice plan show --name "$(InternalAppServicePlanLinuxName)" --resource-group "$(InternalSharedResourceGroupName)-linux"
               if ($exists) {
-                Write-Host "Deleting $(InternalAppServicePlanLinuxName)...";
+                Write-Host "Deleting $(InternalAppServicePlanLinuxName)..."
                 az appservice plan delete --name "$(InternalAppServicePlanLinuxName)" --resource-group "$(InternalSharedResourceGroupName)-linux" --yes
               } else {
-                Write-Host "No pre-existing $(InternalAppServicePlanLinuxName) resource found.";
+                Write-Host "No pre-existing $(InternalAppServicePlanLinuxName) resource found."
               }
 
 - stage: "Delete_App_Insights"
@@ -121,17 +121,17 @@ stages:
             inlineScript: |
               az config set extension.use_dynamic_install=yes_without_prompt
               az feature register --name AIWorkspacePreview --namespace microsoft.insights
-              Write-Host "Looking for $(InternalAppInsightsName)...";
+              Write-Host "Looking for $(InternalAppInsightsName)..."
               if ((az group exists -n "$(InternalSharedResourceGroupName)") -eq "true") {
                 $exists = az monitor app-insights component show --app "$(InternalAppInsightsName)" --resource-group "$(InternalSharedResourceGroupName)"
                 if ($exists) {
-                  Write-Host "Deleting $(InternalAppInsightsName)...";
+                  Write-Host "Deleting $(InternalAppInsightsName)..."
                   az monitor app-insights component delete --app "$(InternalAppInsightsName)" --resource-group "$(InternalSharedResourceGroupName)"
                 } else {
-                  Write-Host "No pre-existing $(InternalAppInsightsName) resource found.";
+                  Write-Host "No pre-existing $(InternalAppInsightsName) resource found."
                 }
               } else {
-                Write-Host "No pre-existing $(InternalSharedResourceGroupName) group found.";
+                Write-Host "No pre-existing $(InternalSharedResourceGroupName) group found."
               }
 
 - stage: "Delete_CosmosDB"
@@ -148,13 +148,13 @@ stages:
             scriptType: pscore
             scriptLocation: inlineScript
             inlineScript: |
-              Write-Host "Looking for $(InternalCosmosDBName)...";
+              Write-Host "Looking for $(InternalCosmosDBName)..."
               $exists = az cosmosdb check-name-exists --name "$(InternalCosmosDBName)"
               if ($exists -eq $true) {
-                Write-Host "Deleting $(InternalCosmosDBName)...";
+                Write-Host "Deleting $(InternalCosmosDBName)..."
                 az cosmosdb delete --name "$(InternalCosmosDBName)" --resource-group "$(InternalSharedResourceGroupName)" --yes
               } else {
-                Write-Host "No pre-existing $(InternalCosmosDBName) resource found.";
+                Write-Host "No pre-existing $(InternalCosmosDBName) resource found."
               }
 
 - stage: "Delete_App_Registrations"
@@ -184,14 +184,14 @@ stages:
             scriptType: pscore
             scriptLocation: inlineScript
             inlineScript: |
-              Write-Host "Looking for $(InternalKeyVaultName)...";
+              Write-Host "Looking for $(InternalKeyVaultName)..."
               $exists = az keyvault list --resource-group "$(InternalSharedResourceGroupName)" --query "[?name == "$(InternalKeyVaultName)"]" | ConvertFrom-Json
               if ($exists) {
-                Write-Host "Deleting $(InternalKeyVaultName)...";
+                Write-Host "Deleting $(InternalKeyVaultName)..."
                 az keyvault delete --name "$(InternalKeyVaultName)" --resource-group "$(InternalSharedResourceGroupName)"
                 az keyvault purge --name "$(InternalKeyVaultName)"
               } else {
-                Write-Host "No pre-existing $(InternalKeyVaultName) resource found.";
+                Write-Host "No pre-existing $(InternalKeyVaultName) resource found."
               }
 
 - stage: "Delete_Resource_Group_Windows"

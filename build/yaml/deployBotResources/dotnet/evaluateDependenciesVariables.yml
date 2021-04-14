@@ -40,8 +40,7 @@ steps:
           if ("${{ parameters.botType }}" -in "Host", "Skill") {
             $PackageList = nuget list Microsoft.Bot.Builder.Integration.AspNet.Core -Source "$source" -PreRelease
             $versionNumber = $PackageList.Split(" ")[-1]
-          }
-          elseif ("${{ parameters.botType }}" -in "SkillV3") {
+          } elseif ("${{ parameters.botType }}" -in "SkillV3") {
             $versionNumber = ""
           }
         }

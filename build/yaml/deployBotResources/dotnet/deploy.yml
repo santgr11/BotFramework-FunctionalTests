@@ -46,9 +46,9 @@ stages:
           - ${{ if eq(bot.type, "Host") }}:
             - powershell: |
                 $file = "${{ bot.project.directory }}/appsettings.json"
-                $content = Get-Content -Raw $file | ConvertFrom-Json;
-                $content.BotFrameworkSkills = @();
-                $content | ConvertTo-Json | Set-Content $file;
+                $content = Get-Content -Raw $file | ConvertFrom-Json
+                $content.BotFrameworkSkills = @()
+                $content | ConvertTo-Json | Set-Content $file
               displayName: "Prepare App Settings"
 
           # Run NuGet restore SkillV3
@@ -97,9 +97,9 @@ stages:
 
             # Get BotBuilder package version
             - powershell: |
-                [XML]$data = Get-Content "${{ bot.project.directory }}/${{ bot.project.name }}";
-                $package = $data.Project.ItemGroup.PackageReference | Where-Object { $_.Include -eq "Microsoft.Bot.Builder.Integration.AspNet.Core" };
-                Write-Host "##vso[task.setvariable variable=BotBuilderVersionNumber]$($package.version)";
+                [XML]$data = Get-Content "${{ bot.project.directory }}/${{ bot.project.name }}"
+                $package = $data.Project.ItemGroup.PackageReference | Where-Object { $_.Include -eq "Microsoft.Bot.Builder.Integration.AspNet.Core" }
+                Write-Host "##vso[task.setvariable variable=BotBuilderVersionNumber]$($package.version)"
               displayName: "Get BotBuilder Version"
 
           # End of DotNet Install & Build
@@ -130,7 +130,7 @@ stages:
             - powershell: |
                 $result = @(Get-ChildItem "$(SolutionDir)packages\Microsoft.Bot.Builder.[0-9]*" -directory | Sort LastWriteTime -Descending)
                 $version = $result[0].Name.Replace("Microsoft.Bot.Builder.", "")
-                Write-Host "##vso[task.setvariable variable=BotBuilderVersionNumber]$($version)";
+                Write-Host "##vso[task.setvariable variable=BotBuilderVersionNumber]$($version)"
               displayName: "Get BotBuilder Version"
 
             # Zip bot

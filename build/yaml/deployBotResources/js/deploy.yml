@@ -2,6 +2,13 @@ parameters:
   dependsOn: ''
   resourceGroup: ''
   bots: []
+  botPricingTier: ""
+  resourceSuffix: ""
+  appServicePlan: ""
+  appServicePlanRG: ""
+  appInsight: ""
+  connectionName: ""
+  keyVault: ""
 
 stages:
 - ${{ each bot in parameters.bots }}:
@@ -20,13 +27,15 @@ stages:
             parameters:
               resourceGroup: '${{ parameters.resourceGroup }}'
               resourceName: '${{ bot.name }}'
-              
+              resourceSuffix: "${{ parameters.resourceSuffix }}"
+
           # Gets Bot App Registration credentials from KeyVault or Pipeline Variables
           - template: ../common/getAppRegistration.yml
             parameters:
               appId: ${{ bot.appId }}
               appSecret: ${{ bot.appSecret }}
               botName: '${{ bot.name }}'
+              keyVault: "${{ parameters.keyVault }}"
 
           # Prepare .env file, deleting all the declared skills, so it uses only the settings define in Azure
           - ${{ if eq(bot.type, 'Host') }}:
@@ -44,15 +53,8 @@ stages:
           # Evaluate dependencies source and version
           - template: evaluateDependenciesVariables.yml
             parameters:
-              ${{ if eq(bot.type, 'Host') }}:
-                registry: "$env:DependenciesRegistryHosts"
-                version: "$env:DependenciesVersionHosts"
-              ${{ if eq(bot.type, 'Skill') }}:
-                registry: "$env:DependenciesRegistrySkills"
-                version: "$env:DependenciesVersionSkills"
-              ${{ if eq(bot.type, 'SkillV3') }}:
-                registry: "$env:DependenciesRegistrySkillsV3"
-                version: "$env:DependenciesVersionSkillsV3"
+              registry: "${{ bot.dependenciesRegistry }}"
+              version: "${{ bot.dependenciesVersion }}"
               botType: '${{ bot.type }}'
 
           # Tag BotBuilder version
@@ -94,6 +96,11 @@ stages:
               appSecret:  $(AppSecret)
               botName: '${{ bot.name }}'
               botGroup: '${{ parameters.resourceGroup }}'
+              botPricingTier: "${{ parameters.botPricingTier }}"
+              resourceSuffix: "${{ parameters.resourceSuffix }}"
+              appServicePlan: "${{ parameters.appServicePlan }}"
+              appServicePlanRG: "${{ parameters.appServicePlanRG }}"
+              appInsight: "${{ parameters.appInsight }}"
 
           # Configure OAuth
           - ${{ if eq(bot.type, 'Skill') }}:
@@ -103,6 +110,8 @@ stages:
                 appSecret:  $(AppSecret)
                 botName: '${{ bot.name }}'
                 botGroup: '${{ parameters.resourceGroup }}'
+                connectionName: "${{ parameters.connectionName }}"
+                resourceSuffix: "${{ parameters.resourceSuffix }}"
 
           # Deploy bot
           - template: ../common/zipDeploy.yml
@@ -110,6 +119,7 @@ stages:
               botName: '${{ bot.name }}'
               botGroup: '${{ parameters.resourceGroup }}'
               source: '$(System.DefaultWorkingDirectory)/${{ bot.name }}.zip'
+              resourceSuffix: "${{ parameters.resourceSuffix }}"
 
           # Create DirectLine Channel Hosts
           - ${{ if eq(bot.type, 'Host') }}:
@@ -117,3 +127,4 @@ stages:
               parameters:
                 botName: '${{ bot.name }}'
                 botGroup: '${{ parameters.resourceGroup }}'
+                resourceSuffix: "${{ parameters.resourceSuffix }}"

@@ -223,6 +223,13 @@ stages:
     parameters:
       dependsOn: "Prepare_JSGroup"
       resourceGroup: "$(InternalResourceGroupName)-JS"
+      botPricingTier: "$(BotPricingTier)"
+      resourceSuffix: "$(ResourceSuffix)"
+      appServicePlan: "$(InternalAppServicePlanWindowsName)"
+      appServicePlanRG: "$(InternalAppServicePlanWindowsResourceGroup)"
+      appInsight: "$(InternalAppInsightsName)"
+      connectionName: "$(ConnectionName)"
+      keyVault: "$(InternalKeyVaultName)"
       bots:
         - name: bffnsimplehostbotjs
           type: 'Host'
@@ -231,6 +238,8 @@ stages:
           appSecret: $(BffnSimpleHostBotJSAppSecret)
           project:
             directory: 'Bots/JavaScript/Consumers/CodeFirst/SimpleHostBot'
+          dependenciesRegistry: "$(DependenciesRegistryHosts)"
+          dependenciesVersion: "$(DependenciesVersionHosts)"
 
         - name: bffnechoskillbotjs
           type: 'Skill'
@@ -239,6 +248,8 @@ stages:
           appSecret: $(BffnEchoSkillBotJSAppSecret)
           project: 
             directory: 'Bots/JavaScript/Skills/CodeFirst/EchoSkillBot'
+          dependenciesRegistry: "$(DependenciesRegistrySkills)"
+          dependenciesVersion: "$(DependenciesVersionSkills)"
 
         - name: bffnechoskillbotjsv3
           type: 'SkillV3'
@@ -247,6 +258,8 @@ stages:
           appSecret: $(BffnEchoSkillBotJSV3AppSecret)
           project:
             directory: 'Bots/JavaScript/Skills/CodeFirst/EchoSkillBot-v3'
+          dependenciesRegistry: "$(DependenciesRegistrySkillsV3)"
+          dependenciesVersion: "$(DependenciesVersionSkillsV3)"
 
         - name: bffnwaterfallhostbotjs
           type: 'Host'
@@ -255,6 +268,8 @@ stages:
           appSecret: $(BffnWaterfallHostBotJSAppSecret)
           project:
             directory: 'Bots/JavaScript/Consumers/CodeFirst/WaterfallHostBot'
+          dependenciesRegistry: "$(DependenciesRegistryHosts)"
+          dependenciesVersion: "$(DependenciesVersionHosts)"
 
         - name: bffnwaterfallskillbotjs
           type: 'Skill'
@@ -263,6 +278,8 @@ stages:
           appSecret: $(BffnWaterfallSkillBotJSAppSecret)
           project: 
             directory: 'Bots/JavaScript/Skills/CodeFirst/WaterfallSkillBot'
+          dependenciesRegistry: "$(DependenciesRegistrySkills)"
+          dependenciesVersion: "$(DependenciesVersionSkills)"
 
 # Python
   - template: python/deploy.yml

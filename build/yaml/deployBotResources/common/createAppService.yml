@@ -1,14 +1,14 @@
 parameters:
-  appId: ''
-  appSecret: ''
-  botName: ''
-  botGroup: ''
+  appId: ""
+  appSecret: ""
+  botName: ""
+  botGroup: ""
 
 steps:
   - task: AzureCLI@2
-    displayName: 'Create resources'
+    displayName: "Create resources"
     inputs:
-      azureSubscription: $(AzureSubscription)
+      azureSubscription: "$(AzureSubscription)"
       scriptType: pscore
       scriptLocation: inlineScript
       inlineScript: |

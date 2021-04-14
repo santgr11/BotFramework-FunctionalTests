@@ -1,13 +1,13 @@
 parameters:
-  appId: ''
-  appSecret: ''
-  botName: ''
+  appId: ""
+  appSecret: ""
+  botName: ""
 
 steps:
   - task: AzureCLI@2
-    displayName: 'Get AppId & AppSecret'
+    displayName: "Get AppId & AppSecret"
     inputs:
-      azureSubscription: $(AzureSubscription)
+      azureSubscription: "$(AzureSubscription)"
       scriptType: pscore
       failOnStandardError: true
       scriptLocation: inlineScript

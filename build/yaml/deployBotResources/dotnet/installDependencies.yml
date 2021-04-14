@@ -1,13 +1,13 @@
 parameters:
-  version: ''
-  source: ''
+  version: ""
+  source: ""
   project: {}
   packages: []
 
 steps:
   - powershell: |
-      $version = ''
-      $source = ''
+      $version = ""
+      $source = ""
 
       if(-not ([string]::IsNullOrEmpty("${{ parameters.version }}"))){
         $version = "--version ""${{ parameters.version }}"""
@@ -35,4 +35,4 @@ steps:
       foreach ($package in "${{ parameters.packages }}".Split()) {
         write-host "  - $package"
       }
-    displayName: 'Install dependencies for ${{ parameters.project.name }}' 
+    displayName: "Install dependencies for ${{ parameters.project.name }}" 

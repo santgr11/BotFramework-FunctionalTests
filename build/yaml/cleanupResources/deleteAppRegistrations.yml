@@ -1,12 +1,12 @@
 parameters:
-  keyVault: ''
-  resourceGroup: ''
+  keyVault: ""
+  resourceGroup: ""
 
 steps:
   - task: AzureCLI@2
-    displayName: 'Delete Bots App Registrations'
+    displayName: "Delete Bots App Registrations"
     inputs:
-      azureSubscription: $(AzureSubscription)
+      azureSubscription: "$(AzureSubscription)"
       addSpnToEnvironment: true
       scriptType: pscore
       scriptLocation: inlineScript
@@ -36,18 +36,18 @@ steps:
           Invoke-WebRequest -Uri "https://graph.microsoft.com/v1.0/applications/$objectId" -Method "DELETE" -Headers $headers | ConvertFrom-Json;
         }
 
-        Write-Host "Looking for '${{ parameters.keyVault }}'...";
-        $exists = az keyvault list --resource-group "${{ parameters.resourceGroup }}" --query "[?name == '${{ parameters.keyVault }}']" | ConvertFrom-Json
+        Write-Host "Looking for ${{ parameters.keyVault }}...";
+        $exists = az keyvault list --resource-group "${{ parameters.resourceGroup }}" --query "[?name == "${{ parameters.keyVault }}"]" | ConvertFrom-Json
         if ($exists) {
-          $entries = az keyvault secret list --vault-name "${{ parameters.keyVault }}" --query "[?ends_with(name, 'AppObjectId')]"  | ConvertFrom-Json
+          $entries = az keyvault secret list --vault-name "${{ parameters.keyVault }}" --query "[?ends_with(name, "AppObjectId")]"  | ConvertFrom-Json
           $token = GetToken
 
           foreach ($entry in $entries) {
             $name = $entry.name -replace "AppObjectId";
-            Write-Host "Deleting '$name' secrets...";
+            Write-Host "Deleting $name secrets...";
             $secretVault = az keyvault secret show --id $entry.id | ConvertFrom-Json;
             DeleteAppRegistration $token $secretVault.value
           }
         } else {
-          Write-Host "No pre-existing '${{ parameters.keyVault }}' resource found.";
+          Write-Host "No pre-existing ${{ parameters.keyVault }} resource found.";
         }

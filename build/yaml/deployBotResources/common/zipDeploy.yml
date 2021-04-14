@@ -1,13 +1,13 @@
 parameters:
-  botName: ''
-  botGroup: ''
-  source: ''
+  botName: ""
+  botGroup: ""
+  source: ""
 
 steps:
   - task: AzureCLI@2
-    displayName: 'Deploy'
+    displayName: "Deploy"
     inputs:
-      azureSubscription: $(AzureSubscription)
+      azureSubscription: "$(AzureSubscription)"
       scriptType: pscore
       scriptLocation: inlineScript
       inlineScript: |

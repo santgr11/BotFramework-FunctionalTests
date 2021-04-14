@@ -1,14 +1,14 @@
 parameters:
-  appId: ''
-  appSecret: ''
-  botName: ''
-  botGroup: ''
+  appId: ""
+  appSecret: ""
+  botName: ""
+  botGroup: ""
 
 steps:
   - task: AzureCLI@2
-    displayName: 'Configure OAuth connection'
+    displayName: "Configure OAuth connection"
     inputs:
-      azureSubscription: $(AzureSubscription)
+      azureSubscription: "$(AzureSubscription)"
       scriptType: pscore
       scriptLocation: inlineScript
       inlineScript: |

@@ -1,39 +1,39 @@
 parameters:
-  dependsOn: ''
-  resourceGroup: ''
+  dependsOn: ""
+  resourceGroup: ""
   bots: []
 
 stages:
 - ${{ each bot in parameters.bots }}:
-  - stage: 'Deploy_${{ bot.name }}'
-    ${{ if eq(bot.displayName, '') }}:
-      displayName: '${{ bot.name }}'
-    ${{ if ne(bot.displayName, '') }}:
-      displayName: '${{ bot.displayName }}'
-    dependsOn: '${{ parameters.dependsOn }}'
+  - stage: "Deploy_${{ bot.name }}"
+    ${{ if eq(bot.displayName, "") }}:
+      displayName: "${{ bot.name }}"
+    ${{ if ne(bot.displayName, "") }}:
+      displayName: "${{ bot.displayName }}"
+    dependsOn: "${{ parameters.dependsOn }}"
     jobs:
-      - job: 'Deploy'
+      - job: "Deploy"
         pool:
-          vmImage: 'ubuntu-latest'
-        displayName: 'Deploy steps'
+          vmImage: "ubuntu-latest"
+        displayName: "Deploy steps"
         steps:
           # Delete Bot Resources
           - template: ../common/deleteResources.yml
             parameters:
-              resourceGroup: '${{ parameters.resourceGroup }}'
-              resourceName: '${{ bot.name }}'
+              resourceGroup: "${{ parameters.resourceGroup }}"
+              resourceName: "${{ bot.name }}"
 
           # Gets Bot App Registration credentials from KeyVault or Pipeline Variables
           - template: ../common/getAppRegistration.yml
             parameters:
               appId: ${{ bot.appId }}
               appSecret: ${{ bot.appSecret }}
-              botName: '${{ bot.name }}'
+              botName: "${{ bot.name }}"
 
           # Prepare .env file, deleting all the declared skills, so it uses only the settings define in Azure
-          - ${{ if eq(bot.type, 'Host') }}:
+          - ${{ if eq(bot.type, "Host") }}:
               - task: PowerShell@2
-                displayName: 'Prepare .env file'
+                displayName: "Prepare .env file"
                 inputs:
                   targetType: inline
                   script: |
@@ -41,7 +41,7 @@ stages:
                     $content = Get-Content $file
                     $content | ForEach-Object {
                       $line = $_
-                      if ($line.Trim().Length -gt 0 -and -not $line.Trim().ToLower().StartsWith('skill_')) {
+                      if ($line.Trim().Length -gt 0 -and -not $line.Trim().ToLower().StartsWith("skill_")) {
                         $line
                       }
                     } | Set-Content $file;
@@ -49,22 +49,22 @@ stages:
           # Evaluate dependencies source and version
           - template: evaluateDependenciesVariables.yml
             parameters:
-              ${{ if eq(bot.type, 'Host') }}:
+              ${{ if eq(bot.type, "Host") }}:
                 registry: "$env:DependenciesRegistryHosts"
                 version: "$env:DependenciesVersionHosts"
-              ${{ if eq(bot.type, 'Skill') }}:
+              ${{ if eq(bot.type, "Skill") }}:
                 registry: "$env:DependenciesRegistrySkills"
                 version: "$env:DependenciesVersionSkills"
-              botType: '${{ bot.type }}'
-              project: '${{ bot.project }}'
+              botType: "${{ bot.type }}"
+              project: "${{ bot.project }}"
 
           # Tag BotBuilder package version
           - template: ../common/tagBotBuilderVersion.yml
             parameters:
-              ${{ if eq(bot.displayName, '') }}:
-                botName: '${{ bot.name }}'
-              ${{ if ne(bot.displayName, '') }}:
-                botName: '${{ bot.displayName }}'
+              ${{ if eq(bot.displayName, "") }}:
+                botName: "${{ bot.name }}"
+              ${{ if ne(bot.displayName, "") }}:
+                botName: "${{ bot.displayName }}"
               version: "$(DependenciesVersionNumber)"
                     
           # Create App Service and Bot Channel Registration
@@ -72,23 +72,23 @@ stages:
             parameters:
               appId: $(AppId)
               appSecret:  $(AppSecret)
-              botName: '${{ bot.name }}'
-              botGroup: '${{ parameters.resourceGroup }}'
+              botName: "${{ bot.name }}"
+              botGroup: "${{ parameters.resourceGroup }}"
 
           # Configure OAuth
-          - ${{ if eq(bot.type, 'Skill') }}:
+          - ${{ if eq(bot.type, "Skill") }}:
             - template: ../common/configureOAuth.yml
               parameters:
-                appId: $(AppId)
-                appSecret:  $(AppSecret)
-                botName: '${{ bot.name }}'
-                botGroup: '${{ parameters.resourceGroup }}'
+                appId: "$(AppId)"
+                appSecret:  "$(AppSecret)"
+                botName: "${{ bot.name }}"
+                botGroup: "${{ parameters.resourceGroup }}"
 
           # Set Python version
           - task: UsePythonVersion@0
-            displayName: Set python version to 3.8.x
+            displayName: "Set python version to 3.8.x"
             inputs:
-              versionSpec: '3.8.x'
+              versionSpec: "3.8.x"
 
           # Build Python app (linux only)
           - script: |
@@ -101,36 +101,36 @@ stages:
 
           # Zip bot
           - task: ArchiveFiles@2
-            displayName: 'Zip bot'
+            displayName: "Zip bot"
             inputs:
-              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/${{ bot.project.directory }}'
+              rootFolderOrFile: "$(System.DefaultWorkingDirectory)/${{ bot.project.directory }}"
               includeRootFolder: false
-              archiveType: 'zip'
-              archiveFile: '$(System.DefaultWorkingDirectory)/build/${{ bot.name }}.zip'
+              archiveType: "zip"
+              archiveFile: "$(System.DefaultWorkingDirectory)/build/${{ bot.name }}.zip"
               replaceExistingArchive: true
               verbose: true
 
           # Upload zip to artifacts in case we want to debug it
           - task: PublishBuildArtifacts@1
-            displayName: 'Publish zip package'
+            displayName: "Publish zip package"
             inputs:
-              pathToPublish: '$(System.DefaultWorkingDirectory)/build/${{ bot.name }}.zip'
+              pathToPublish: "$(System.DefaultWorkingDirectory)/build/${{ bot.name }}.zip"
               artifactName: python-$(Build.BuildId)
             
           # Deploy bot
           - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : ${{ bot.name }}-$(Build.BuildId)'
+            displayName: "Deploy Azure Web App : ${{ bot.name }}-$(Build.BuildId)"
             inputs:
-              azureSubscription: $(AzureSubscription)
-              appName: '${{ bot.name }}-$(Build.BuildId)'
+              azureSubscription: "$(AzureSubscription)"
+              appName: "${{ bot.name }}-$(Build.BuildId)"
               appType: webAppLinux
-              resourceGroupName: '${{ parameters.resourceGroup }}'
-              package: '$(System.DefaultWorkingDirectory)/build/${{ bot.name }}.zip'
+              resourceGroupName: "${{ parameters.resourceGroup }}"
+              package: "$(System.DefaultWorkingDirectory)/build/${{ bot.name }}.zip"
               deploymentMethod: runFromPackage
 
           # Create DirectLine Channel Hosts
-          - ${{ if eq(bot.type, 'Host') }}:
+          - ${{ if eq(bot.type, "Host") }}:
             - template: ../common/createDirectLine.yml
               parameters:
-                botName: '${{ bot.name }}'
-                botGroup: '${{ parameters.resourceGroup }}'
+                botName: "${{ bot.name }}"
+                botGroup: "${{ parameters.resourceGroup }}"

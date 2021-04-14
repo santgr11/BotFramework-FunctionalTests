@@ -2,23 +2,23 @@
 # Deploys the bot resources needed for the Skills Functional Tests.
 #
 
-name: $(Build.BuildId)
+name: "$(Build.BuildId)"
 trigger: none
 pr: none
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: "windows-2019"
 
 variables:
-  BuildConfiguration: 'Debug'
-  BuildPlatform: 'AnyCPU'
-  InternalAppInsightsName: 'bffnappinsights$($env:ResourceSuffix)'
-  InternalAppServicePlanLinuxName: $[coalesce(variables['AppServicePlanNameLinux'], 'bffnbotsappservicelinux$($env:ResourceSuffix)')]
-  InternalAppServicePlanLinuxResourceGroupName: $[coalesce(variables['AppServicePlanGroupLinux'], 'bffnshared-linux')]
-  InternalAppServicePlanWindowsName: $[coalesce(variables['AppServicePlanName'], 'bffnbotsappservicewin$($env:ResourceSuffix)')]
-  InternalAppServicePlanWindowsResourceGroup: $[coalesce(variables['AppServicePlanGroup'], 'bffnshared')]
-  InternalKeyVaultName: 'bffnbotkeyvault$($env:ResourceSuffix)'
-  InternalResourceGroupName: $[coalesce(variables['ResourceGroup'], 'bffnbots')]
+  BuildConfiguration: "Debug"
+  BuildPlatform: "AnyCPU"
+  InternalAppInsightsName: "bffnappinsights$($env:ResourceSuffix)"
+  InternalAppServicePlanLinuxName: $[coalesce(variables["AppServicePlanNameLinux"], "bffnbotsappservicelinux$($env:ResourceSuffix)")]
+  InternalAppServicePlanLinuxResourceGroupName: $[coalesce(variables["AppServicePlanGroupLinux"], "bffnshared-linux")]
+  InternalAppServicePlanWindowsName: $[coalesce(variables["AppServicePlanName"], "bffnbotsappservicewin$($env:ResourceSuffix)")]
+  InternalAppServicePlanWindowsResourceGroup: $[coalesce(variables["AppServicePlanGroup"], "bffnshared")]
+  InternalKeyVaultName: "bffnbotkeyvault$($env:ResourceSuffix)"
+  InternalResourceGroupName: $[coalesce(variables["ResourceGroup"], "bffnbots")]
   # AzureSubscription: define in Azure
   # AppServicePlanGroup: (optional) define in Azure
   # AppServicePlanGroupLinux: (optional) define in Azure
@@ -76,15 +76,15 @@ stages:
   - template: common/prepareResources.yml
     parameters:
       resourceGroups: 
-        - id: 'Prepare_DotNetGroup'
+        - id: "Prepare_DotNetGroup"
           name: "$(InternalResourceGroupName)-DotNet"
           displayName: "Prepare DotNet's Resource Group"
 
-        - id: 'Prepare_JSGroup'
+        - id: "Prepare_JSGroup"
           name: "$(InternalResourceGroupName)-JS"
           displayName: "Prepare JS's Resource Group"
 
-        - id: 'Prepare_PythonGroup'
+        - id: "Prepare_PythonGroup"
           name: "$(InternalResourceGroupName)-Python"
           displayName: "Prepare Python's Resource Group"
 
@@ -94,74 +94,74 @@ stages:
       dependsOn: "Prepare_DotNetGroup"
       resourceGroup: "$(InternalResourceGroupName)-DotNet"
       bots:
-        - name: bffnsimplehostbotdotnet
-          type: 'Host'
-          displayName: 'DotNet Simple Host Bot'
-          appId: $(BffnSimpleHostBotDotNetAppId)
-          appSecret: $(BffnSimpleHostBotDotNetAppSecret)
+        - name: "bffnsimplehostbotdotnet"
+          type: "Host"
+          displayName: "DotNet Simple Host Bot"
+          appId: "$(BffnSimpleHostBotDotNetAppId)"
+          appSecret: "$(BffnSimpleHostBotDotNetAppSecret)"
           project:
-            directory: 'Bots/DotNet/Consumers/CodeFirst/SimpleHostBot'
-            name: 'SimpleHostBot.csproj'
-            netCoreVersion: '3.1.x'
+            directory: "Bots/DotNet/Consumers/CodeFirst/SimpleHostBot"
+            name: "SimpleHostBot.csproj"
+            netCoreVersion: "3.1.x"
 
-        - name: bffnsimplehostbotdotnet21
-          type: 'Host'
-          displayName: 'DotNet Simple Host Bot 2.1'
-          appId: $(BffnSimpleHostBotDotNet21AppId)
-          appSecret: $(BffnSimpleHostBotDotNet21AppSecret)
+        - name: "bffnsimplehostbotdotnet21"
+          type: "Host"
+          displayName: "DotNet Simple Host Bot 2.1"
+          appId: "$(BffnSimpleHostBotDotNet21AppId)"
+          appSecret: "$(BffnSimpleHostBotDotNet21AppSecret)"
           project: 
-            directory: 'Bots/DotNet/Consumers/CodeFirst/SimpleHostBot-2.1'
-            name: 'SimpleHostBot-2.1.csproj'
-            netCoreVersion: '2.1.x'
+            directory: "Bots/DotNet/Consumers/CodeFirst/SimpleHostBot-2.1"
+            name: "SimpleHostBot-2.1.csproj"
+            netCoreVersion: "2.1.x"
 
-        - name: bffnechoskillbotdotnet
-          type: 'Skill'
-          displayName: 'DotNet Echo Skill Bot'
-          appId: $(BffnEchoSkillBotDotNetAppId)
-          appSecret: $(BffnEchoSkillBotDotNetAppSecret)
+        - name: "bffnechoskillbotdotnet"
+          type: "Skill"
+          displayName: "DotNet Echo Skill Bot"
+          appId: "$(BffnEchoSkillBotDotNetAppId)"
+          appSecret: "$(BffnEchoSkillBotDotNetAppSecret)"
           project: 
-            directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot'
-            name: 'EchoSkillBot.csproj'
-            netCoreVersion: '3.1.x'
+            directory: "Bots/DotNet/Skills/CodeFirst/EchoSkillBot"
+            name: "EchoSkillBot.csproj"
+            netCoreVersion: "3.1.x"
 
-        - name: bffnechoskillbotdotnet21
-          type: 'Skill'
-          displayName: 'DotNet Echo Skill Bot 2.1'
-          appId: $(BffnEchoSkillBotDotNet21AppId)
-          appSecret: $(BffnEchoSkillBotDotNet21AppSecret)
+        - name: "bffnechoskillbotdotnet21"
+          type: "Skill"
+          displayName: "DotNet Echo Skill Bot 2.1"
+          appId: "$(BffnEchoSkillBotDotNet21AppId)"
+          appSecret: "$(BffnEchoSkillBotDotNet21AppSecret)"
           project: 
-            directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot-2.1'
-            name: 'EchoSkillBot-2.1.csproj'
-            netCoreVersion: '2.1.x'
+            directory: "Bots/DotNet/Skills/CodeFirst/EchoSkillBot-2.1"
+            name: "EchoSkillBot-2.1.csproj"
+            netCoreVersion: "2.1.x"
 
-        - name: bffnechoskillbotdotnetv3
-          type: 'SkillV3'
-          displayName: 'DotNet Echo Skill Bot v3'
-          appId: $(BffnEchoSkillBotDotNetV3AppId)
-          appSecret: $(BffnEchoSkillBotDotNetV3AppSecret)
+        - name: "bffnechoskillbotdotnetv3"
+          type: "SkillV3"
+          displayName: "DotNet Echo Skill Bot v3"
+          appId: "$(BffnEchoSkillBotDotNetV3AppId)"
+          appSecret: "$(BffnEchoSkillBotDotNetV3AppSecret)"
           project:
-            directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot-v3'
-            name: 'EchoSkillBot-v3.csproj'
+            directory: "Bots/DotNet/Skills/CodeFirst/EchoSkillBot-v3"
+            name: "EchoSkillBot-v3.csproj"
 
-        - name: bffnwaterfallhostbotdotnet
-          type: 'Host'
-          displayName: 'DotNet Waterfall Host Bot'
-          appId: $(BffnWaterfallHostBotDotNetAppId)
-          appSecret: $(BffnWaterfallHostBotDotNetAppSecret)
+        - name: "bffnwaterfallhostbotdotnet"
+          type: "Host"
+          displayName: "DotNet Waterfall Host Bot"
+          appId: "$(BffnWaterfallHostBotDotNetAppId)"
+          appSecret: "$(BffnWaterfallHostBotDotNetAppSecret)"
           project:
-            directory: 'Bots/DotNet/Consumers/CodeFirst/WaterfallHostBot'
-            name: 'WaterfallHostBot.csproj'
-            netCoreVersion: '3.1.x'
+            directory: "Bots/DotNet/Consumers/CodeFirst/WaterfallHostBot"
+            name: "WaterfallHostBot.csproj"
+            netCoreVersion: "3.1.x"
 
-        - name: bffnwaterfallskillbotdotnet
-          type: 'Skill'
-          displayName: 'DotNet Waterfall Skill Bot'
-          appId: $(BffnWaterfallSkillBotDotNetAppId)
-          appSecret: $(BffnWaterfallSkillBotDotNetAppSecret)
+        - name: "bffnwaterfallskillbotdotnet"
+          type: "Skill"
+          displayName: "DotNet Waterfall Skill Bot"
+          appId: "$(BffnWaterfallSkillBotDotNetAppId)"
+          appSecret: "$(BffnWaterfallSkillBotDotNetAppSecret)"
           project: 
-            directory: 'Bots/DotNet/Skills/CodeFirst/WaterfallSkillBot'
-            name: 'WaterfallSkillBot.csproj'
-            netCoreVersion: '3.1.x'
+            directory: "Bots/DotNet/Skills/CodeFirst/WaterfallSkillBot"
+            name: "WaterfallSkillBot.csproj"
+            netCoreVersion: "3.1.x"
 
 # DotNet Composer
   - template: dotnet/deployComposer.yml
@@ -169,23 +169,23 @@ stages:
       dependsOn: "Prepare_DotNetGroup"
       resourceGroup: "$(InternalResourceGroupName)-DotNet"
       bots:
-        - name: bffnsimplehostbotcomposerdotnet
-          type: 'Host'
-          displayName: 'DotNet Simple Composer Host Bot'
-          appId: $(BffnSimpleHostBotComposerDotNetAppId)
-          appSecret: $(BffnSimpleHostBotComposerDotNetAppSecret)
+        - name: "bffnsimplehostbotcomposerdotnet"
+          type: "Host"
+          displayName: "DotNet Simple Composer Host Bot"
+          appId: "$(BffnSimpleHostBotComposerDotNetAppId)"
+          appSecret: "$(BffnSimpleHostBotComposerDotNetAppSecret)"
           project: 
-            directory: 'Bots/DotNet/Consumers/Composer/SimpleHostBotComposer'
-            netCoreVersion: '3.1.x'
+            directory: "Bots/DotNet/Consumers/Composer/SimpleHostBotComposer"
+            netCoreVersion: "3.1.x"
 
-        - name: bffnechoskillbotcomposerdotnet
-          type: 'Skill'
-          displayName: 'DotNet Echo Composer Skill Bot'
-          appId: $(BffnEchoSkillBotComposerDotNetAppId)
-          appSecret: $(BffnEchoSkillBotComposerDotNetAppSecret)
+        - name: "bffnechoskillbotcomposerdotnet"
+          type: "Skill"
+          displayName: "DotNet Echo Composer Skill Bot"
+          appId: "$(BffnEchoSkillBotComposerDotNetAppId)"
+          appSecret: "$(BffnEchoSkillBotComposerDotNetAppSecret)"
           project: 
-            directory: 'Bots/DotNet/Skills/Composer/EchoSkillBotComposer'
-            netCoreVersion: '3.1.x'
+            directory: "Bots/DotNet/Skills/Composer/EchoSkillBotComposer"
+            netCoreVersion: "3.1.x"
 
 # JS
   - template: js/deploy.yml
@@ -193,45 +193,45 @@ stages:
       dependsOn: "Prepare_JSGroup"
       resourceGroup: "$(InternalResourceGroupName)-JS"
       bots:
-        - name: bffnsimplehostbotjs
-          type: 'Host'
-          displayName: 'JS Simple Host Bot'
-          appId: $(BffnSimpleHostBotJSAppId)
-          appSecret: $(BffnSimpleHostBotJSAppSecret)
+        - name: "bffnsimplehostbotjs"
+          type: "Host"
+          displayName: "JS Simple Host Bot"
+          appId: "$(BffnSimpleHostBotJSAppId)"
+          appSecret: "$(BffnSimpleHostBotJSAppSecret)"
           project:
-            directory: 'Bots/JavaScript/Consumers/CodeFirst/SimpleHostBot'
+            directory: "Bots/JavaScript/Consumers/CodeFirst/SimpleHostBot"
 
-        - name: bffnechoskillbotjs
-          type: 'Skill'
-          displayName: 'JS Echo Skill Bot'
-          appId: $(BffnEchoSkillBotJSAppId)
-          appSecret: $(BffnEchoSkillBotJSAppSecret)
+        - name: "bffnechoskillbotjs"
+          type: "Skill"
+          displayName: "JS Echo Skill Bot"
+          appId: "$(BffnEchoSkillBotJSAppId)"
+          appSecret: "$(BffnEchoSkillBotJSAppSecret)"
           project: 
-            directory: 'Bots/JavaScript/Skills/CodeFirst/EchoSkillBot'
+            directory: "Bots/JavaScript/Skills/CodeFirst/EchoSkillBot"
 
-        - name: bffnechoskillbotjsv3
-          type: 'SkillV3'
-          displayName: 'JS Echo Skill Bot v3'
-          appId: $(BffnEchoSkillBotJSV3AppId)
-          appSecret: $(BffnEchoSkillBotJSV3AppSecret)
+        - name: "bffnechoskillbotjsv3"
+          type: "SkillV3"
+          displayName: "JS Echo Skill Bot v3"
+          appId: "$(BffnEchoSkillBotJSV3AppId)"
+          appSecret: "$(BffnEchoSkillBotJSV3AppSecret)"
           project:
-            directory: 'Bots/JavaScript/Skills/CodeFirst/EchoSkillBot-v3'
+            directory: "Bots/JavaScript/Skills/CodeFirst/EchoSkillBot-v3"
 
-        - name: bffnwaterfallhostbotjs
-          type: 'Host'
-          displayName: 'JS Waterfall Host Bot'
-          appId: $(BffnWaterfallHostBotJSAppId)
-          appSecret: $(BffnWaterfallHostBotJSAppSecret)
+        - name: "bffnwaterfallhostbotjs"
+          type: "Host"
+          displayName: "JS Waterfall Host Bot"
+          appId: "$(BffnWaterfallHostBotJSAppId)"
+          appSecret: "$(BffnWaterfallHostBotJSAppSecret)"
           project:
-            directory: 'Bots/JavaScript/Consumers/CodeFirst/WaterfallHostBot'
+            directory: "Bots/JavaScript/Consumers/CodeFirst/WaterfallHostBot"
 
-        - name: bffnwaterfallskillbotjs
-          type: 'Skill'
-          displayName: 'JS Waterfall Skill Bot'
-          appId: $(BffnWaterfallSkillBotJSAppId)
-          appSecret: $(BffnWaterfallSkillBotJSAppSecret)
+        - name: "bffnwaterfallskillbotjs"
+          type: "Skill"
+          displayName: "JS Waterfall Skill Bot"
+          appId: "$(BffnWaterfallSkillBotJSAppId)"
+          appSecret: "$(BffnWaterfallSkillBotJSAppSecret)"
           project: 
-            directory: 'Bots/JavaScript/Skills/CodeFirst/WaterfallSkillBot'
+            directory: "Bots/JavaScript/Skills/CodeFirst/WaterfallSkillBot"
 
 # Python
   - template: python/deploy.yml
@@ -239,45 +239,45 @@ stages:
       dependsOn: "Prepare_PythonGroup"
       resourceGroup: "$(InternalResourceGroupName)-Python"
       bots:
-        - name: bffnsimplehostbotpython
-          type: 'Host'
-          displayName: 'Python Simple Host Bot'
-          appId: $(BffnSimpleHostBotPythonAppId)
-          appSecret: $(BffnSimpleHostBotPythonAppSecret)
+        - name: "bffnsimplehostbotpython"
+          type: "Host"
+          displayName: "Python Simple Host Bot"
+          appId: "$(BffnSimpleHostBotPythonAppId)"
+          appSecret: "$(BffnSimpleHostBotPythonAppSecret)"
           project:
-            directory: 'Bots/Python/Consumers/CodeFirst/SimpleHostBot'
+            directory: "Bots/Python/Consumers/CodeFirst/SimpleHostBot"
 
-        - name: bffnechoskillbotpython
-          type: 'Skill'
-          displayName: 'Python Echo Skill Bot'
-          appId: $(BffnEchoSkillBotPythonAppId)
-          appSecret: $(BffnEchoSkillBotPythonAppSecret)
+        - name: "bffnechoskillbotpython"
+          type: "Skill"
+          displayName: "Python Echo Skill Bot"
+          appId: "$(BffnEchoSkillBotPythonAppId)"
+          appSecret: "$(BffnEchoSkillBotPythonAppSecret)"
           project: 
-            directory: 'Bots/Python/Skills/CodeFirst/EchoSkillBot'
+            directory: "Bots/Python/Skills/CodeFirst/EchoSkillBot"
 
-        - name: bffnwaterfallhostbotpython
-          type: 'Host'
-          displayName: 'Python Waterfall Host Bot'
-          appId: $(BffnWaterfallHostBotPythonAppId)
-          appSecret: $(BffnWaterfallHostBotPythonAppSecret)
+        - name: "bffnwaterfallhostbotpython"
+          type: "Host"
+          displayName: "Python Waterfall Host Bot"
+          appId: "$(BffnWaterfallHostBotPythonAppId)"
+          appSecret: "$(BffnWaterfallHostBotPythonAppSecret)"
           project:
-            directory: 'Bots/Python/Consumers/CodeFirst/WaterfallHostBot'
+            directory: "Bots/Python/Consumers/CodeFirst/WaterfallHostBot"
 
-        - name: bffnwaterfallskillbotpython
-          type: 'Skill'
-          displayName: 'Python Waterfall Skill Bot'
-          appId: $(BffnWaterfallSkillBotPythonAppId)
-          appSecret: $(BffnWaterfallSkillBotPythonAppSecret)
+        - name: "bffnwaterfallskillbotpython"
+          type: "Skill"
+          displayName: "Python Waterfall Skill Bot"
+          appId: "$(BffnWaterfallSkillBotPythonAppId)"
+          appSecret: "$(BffnWaterfallSkillBotPythonAppSecret)"
           project: 
-            directory: 'Bots/Python/Skills/CodeFirst/WaterfallSkillBot'
+            directory: "Bots/Python/Skills/CodeFirst/WaterfallSkillBot"
 
 # Publish variables
-  - stage: 'Publish_Variables'
-    displayName: 'Publish Variables'
+  - stage: "Publish_Variables"
+    displayName: "Publish Variables"
     dependsOn: []
     jobs:
-      - job: 'Publish_Variables'
-        displayName: 'Publish Variables'
+      - job: "Publish_Variables"
+        displayName: "Publish Variables"
         steps:
           - powershell: |
               $variables = @{
@@ -286,10 +286,10 @@ stages:
               Write-Host $variables
               New-Item -Path "$(System.DefaultWorkingDirectory)" -Name "variables" -ItemType "directory"
               $variables | ConvertTo-Json | Out-File "$(System.DefaultWorkingDirectory)/Variables/variables.json"
-            displayName: 'Create Variables file'
+            displayName: "Create Variables file"
 
           - task: PublishPipelineArtifact@1
-            displayName: 'Publish Variables as artifact'
+            displayName: "Publish Variables as artifact"
             inputs:
-              targetPath: $(System.DefaultWorkingDirectory)/variables
+              targetPath: "$(System.DefaultWorkingDirectory)/variables"
               artifactName: Variables

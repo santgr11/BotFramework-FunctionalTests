@@ -1,11 +1,11 @@
 parameters:
-  keyVault: ''
+  keyVault: ""
 
 steps:
   - task: AzureCLI@2
-    displayName: 'Create App Registrations & Store into KeyVault'
+    displayName: "Create App Registrations & Store into KeyVault"
     inputs:
-      azureSubscription: $(AzureSubscription)
+      azureSubscription: "$(AzureSubscription)"
       addSpnToEnvironment: true
       failOnStandardError: true
       scriptType: pscore

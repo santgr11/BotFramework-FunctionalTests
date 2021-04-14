@@ -3,6 +3,7 @@ parameters:
   appSecret: ''
   botName: ''
   keyVault: ""
+  resourceSuffix: ""
 
 steps:
   - task: AzureCLI@2
@@ -17,8 +18,8 @@ steps:
         $source = "";
 
         if ([string]::IsNullOrEmpty("${{ parameters.appId }}")) {
-          $source = "KeyVault '${{ parameters.keyVault }}'";
-          $entries = az keyvault secret list --vault-name "${{ parameters.keyVault }}" | ConvertFrom-Json | Where-Object {$_.name -like "${{ parameters.botName }}*"};
+          $source = "KeyVault ${{ parameters.keyVault }}${{ parameters.resourceSuffix }}";
+          $entries = az keyvault secret list --vault-name "${{ parameters.keyVault }}""${{ parameters.resourceSuffix }}" | ConvertFrom-Json | Where-Object {$_.name -like "${{ parameters.botName }}*"};
 
           foreach ($entry in $entries) {
             $secretVault = az keyvault secret show --id $entry.id | ConvertFrom-Json;

@@ -98,7 +98,7 @@ stages:
       appServicePlan: "$(InternalAppServicePlanWindowsName)"
       appServicePlanRG: "$(InternalAppServicePlanWindowsResourceGroup)"
       appInsight: "$(InternalAppInsightsName)"
-      connectionName: "$(ConnectionName)"
+      connectionName: "$[variables.ConnectionName]"
       keyVault: "$(InternalKeyVaultName)"
       bots:
         - name: bffnsimplehostbotdotnet
@@ -228,7 +228,7 @@ stages:
       appServicePlan: "$(InternalAppServicePlanWindowsName)"
       appServicePlanRG: "$(InternalAppServicePlanWindowsResourceGroup)"
       appInsight: "$(InternalAppInsightsName)"
-      connectionName: "$(ConnectionName)"
+      connectionName: "$[variables.ConnectionName]"
       keyVault: "$(InternalKeyVaultName)"
       bots:
         - name: bffnsimplehostbotjs
@@ -290,7 +290,7 @@ stages:
       resourceSuffix: "$(ResourceSuffix)"
       appServicePlan: "$(InternalAppServicePlanLinuxName)"
       appServicePlanRG: "$(InternalAppServicePlanLinuxResourceGroup)"
-      connectionName: "$(ConnectionName)"
+      connectionName: "$[variables.ConnectionName]"
       keyVault: "$(InternalKeyVaultName)"
       bots:
         - name: bffnsimplehostbotpython

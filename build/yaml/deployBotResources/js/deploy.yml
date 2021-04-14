@@ -101,6 +101,7 @@ stages:
               appServicePlan: "${{ parameters.appServicePlan }}"
               appServicePlanRG: "${{ parameters.appServicePlanRG }}"
               appInsight: "${{ parameters.appInsight }}"
+              templateFile: "build/templates/template-bot-resources.json"
 
           # Configure OAuth
           - ${{ if eq(bot.type, 'Skill') }}:

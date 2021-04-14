@@ -2,6 +2,12 @@ parameters:
   dependsOn: ''
   resourceGroup: ''
   bots: []
+  botPricingTier: ""
+  resourceSuffix: ""
+  appServicePlan: ""
+  appServicePlanRG: ""
+  connectionName: ""
+  keyVault: ""
 
 stages:
 - ${{ each bot in parameters.bots }}:
@@ -22,6 +28,7 @@ stages:
             parameters:
               resourceGroup: '${{ parameters.resourceGroup }}'
               resourceName: '${{ bot.name }}'
+              resourceSuffix: "${{ parameters.resourceSuffix }}"
 
           # Gets Bot App Registration credentials from KeyVault or Pipeline Variables
           - template: ../common/getAppRegistration.yml
@@ -29,6 +36,7 @@ stages:
               appId: ${{ bot.appId }}
               appSecret: ${{ bot.appSecret }}
               botName: '${{ bot.name }}'
+              keyVault: "${{ parameters.keyVault }}"
 
           # Prepare .env file, deleting all the declared skills, so it uses only the settings define in Azure
           - ${{ if eq(bot.type, 'Host') }}:
@@ -49,12 +57,8 @@ stages:
           # Evaluate dependencies source and version
           - template: evaluateDependenciesVariables.yml
             parameters:
-              ${{ if eq(bot.type, 'Host') }}:
-                registry: "$env:DependenciesRegistryHosts"
-                version: "$env:DependenciesVersionHosts"
-              ${{ if eq(bot.type, 'Skill') }}:
-                registry: "$env:DependenciesRegistrySkills"
-                version: "$env:DependenciesVersionSkills"
+              registry: "${{ bot.dependenciesRegistry }}"
+              version: "${{ bot.dependenciesVersion }}"
               botType: '${{ bot.type }}'
               project: '${{ bot.project }}'
 
@@ -66,14 +70,19 @@ stages:
               ${{ if ne(bot.displayName, '') }}:
                 botName: '${{ bot.displayName }}'
               version: "$(DependenciesVersionNumber)"
-                    
+
           # Create App Service and Bot Channel Registration
-          - template: createAppService.yml
+          - template: ../common/createAppService.yml
             parameters:
               appId: $(AppId)
               appSecret:  $(AppSecret)
               botName: '${{ bot.name }}'
               botGroup: '${{ parameters.resourceGroup }}'
+              botPricingTier: "${{ parameters.botPricingTier }}"
+              resourceSuffix: "${{ parameters.resourceSuffix }}"
+              appServicePlan: "${{ parameters.appServicePlan }}"
+              appServicePlanRG: "${{ parameters.appServicePlanRG }}"
+              templateFile: "build/templates/template-python-bot-resources.json"
 
           # Configure OAuth
           - ${{ if eq(bot.type, 'Skill') }}:
@@ -83,6 +92,8 @@ stages:
                 appSecret:  $(AppSecret)
                 botName: '${{ bot.name }}'
                 botGroup: '${{ parameters.resourceGroup }}'
+                connectionName: "${{ parameters.connectionName }}"
+                resourceSuffix: "${{ parameters.resourceSuffix }}"
 
           # Set Python version
           - task: UsePythonVersion@0
@@ -134,3 +145,4 @@ stages:
               parameters:
                 botName: '${{ bot.name }}'
                 botGroup: '${{ parameters.resourceGroup }}'
+                resourceSuffix: "${{ parameters.resourceSuffix }}"

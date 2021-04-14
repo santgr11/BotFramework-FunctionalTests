@@ -2,7 +2,6 @@ parameters:
   dependsOn: ''
   resourceGroup: ''
   resourceSuffix: ""
-  keyVault: ""
   bots: []
   output:
     path: 'build-composer'

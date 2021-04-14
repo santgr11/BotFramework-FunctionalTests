@@ -286,6 +286,12 @@ stages:
     parameters:
       dependsOn: "Prepare_PythonGroup"
       resourceGroup: "$(InternalResourceGroupName)-Python"
+      botPricingTier: "$(BotPricingTier)"
+      resourceSuffix: "$(ResourceSuffix)"
+      appServicePlan: "$(InternalAppServicePlanLinuxName)"
+      appServicePlanRG: "$(InternalAppServicePlanLinuxResourceGroup)"
+      connectionName: "$(ConnectionName)"
+      keyVault: "$(InternalKeyVaultName)"
       bots:
         - name: bffnsimplehostbotpython
           type: 'Host'
@@ -294,6 +300,8 @@ stages:
           appSecret: $(BffnSimpleHostBotPythonAppSecret)
           project:
             directory: 'Bots/Python/Consumers/CodeFirst/SimpleHostBot'
+          dependenciesRegistry: "$(DependenciesRegistryHosts)"
+          dependenciesVersion: "$(DependenciesVersionHosts)"
 
         - name: bffnechoskillbotpython
           type: 'Skill'
@@ -302,6 +310,8 @@ stages:
           appSecret: $(BffnEchoSkillBotPythonAppSecret)
           project: 
             directory: 'Bots/Python/Skills/CodeFirst/EchoSkillBot'
+          dependenciesRegistry: "$(DependenciesRegistrySkills)"
+          dependenciesVersion: "$(DependenciesVersionSkills)"
 
         - name: bffnwaterfallhostbotpython
           type: 'Host'
@@ -310,6 +320,8 @@ stages:
           appSecret: $(BffnWaterfallHostBotPythonAppSecret)
           project:
             directory: 'Bots/Python/Consumers/CodeFirst/WaterfallHostBot'
+          dependenciesRegistry: "$(DependenciesRegistryHosts)"
+          dependenciesVersion: "$(DependenciesVersionHosts)"
 
         - name: bffnwaterfallskillbotpython
           type: 'Skill'
@@ -318,6 +330,8 @@ stages:
           appSecret: $(BffnWaterfallSkillBotPythonAppSecret)
           project: 
             directory: 'Bots/Python/Skills/CodeFirst/WaterfallSkillBot'
+          dependenciesRegistry: "$(DependenciesRegistrySkills)"
+          dependenciesVersion: "$(DependenciesVersionSkills)"
 
 # Publish variables
   - stage: 'Publish_Variables'

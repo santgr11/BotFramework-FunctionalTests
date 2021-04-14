@@ -1,10 +1,17 @@
 parameters:
   dependsOn: ''
   resourceGroup: ''
+  resourceSuffix: ""
+  keyVault: ""
   bots: []
   output:
     path: 'build-composer'
     zip: 'build'
+  botPricingTier: ""
+  appServicePlan: ""
+  appServicePlanRG: ""
+  appInsight: ""
+  keyVault: ""
 
 stages:
 - ${{ each bot in parameters.bots }}:
@@ -23,6 +30,7 @@ stages:
             parameters:
               resourceGroup: '${{ parameters.resourceGroup }}'
               resourceName: '${{ bot.name }}'
+              resourceSuffix: "${{ parameters.resourceSuffix }}"
 
           # Gets Bot App Registration credentials from KeyVault or Pipeline Variables
           - template: ../common/getAppRegistration.yml
@@ -30,6 +38,7 @@ stages:
               appId: ${{ bot.appId }}
               appSecret: ${{ bot.appSecret }}
               botName: '${{ bot.name }}'
+              keyVault: "${{ parameters.keyVault }}"
 
           # Use Net Core version
           - ${{ if ne(bot.project.netCoreVersion, '') }}:
@@ -41,12 +50,8 @@ stages:
           # Evaluate dependencies source and version
           - template: evaluateDependenciesVariables.yml
             parameters:
-              ${{ if eq(bot.type, 'Host') }}:
-                registry: "$env:DependenciesRegistryHosts"
-                version: "$env:DependenciesVersionHosts"
-              ${{ if eq(bot.type, 'Skill') }}:
-                registry: "$env:DependenciesRegistrySkills"
-                version: "$env:DependenciesVersionSkills"
+              registry: "${{ bot.dependenciesRegistry }}"
+              version: "${{ bot.dependenciesVersion }}"
               botType: '${{ bot.type }}'
 
           # Install dependencies in Microsoft.BotFramework.Composer.WebApp
@@ -166,6 +171,11 @@ stages:
               appSecret:  $(AppSecret)
               botName: '${{ bot.name }}'
               botGroup: '${{ parameters.resourceGroup }}'
+              botPricingTier: "${{ parameters.botPricingTier }}"
+              resourceSuffix: "${{ parameters.resourceSuffix }}"
+              appServicePlan: "${{ parameters.appServicePlan }}"
+              appServicePlanRG: "${{ parameters.appServicePlanRG }}"
+              appInsight: "${{ parameters.appInsight }}"
 
           # Deploy bot
           - template: ../common/zipDeploy.yml
@@ -173,6 +183,7 @@ stages:
               botName: '${{ bot.name }}'
               botGroup: '${{ parameters.resourceGroup }}'
               source: "${{ parameters.output.path }}/${{ parameters.output.zip }}.zip"
+              resourceSuffix: "${{ parameters.resourceSuffix }}"
 
           # Create DirectLine Channel Hosts
           - ${{ if eq(bot.type, 'Host') }}:
@@ -180,3 +191,4 @@ stages:
               parameters:
                 botName: '${{ bot.name }}'
                 botGroup: '${{ parameters.resourceGroup }}'
+                resourceSuffix: "${{ parameters.resourceSuffix }}"

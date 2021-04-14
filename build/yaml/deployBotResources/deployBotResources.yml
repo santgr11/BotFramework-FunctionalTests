@@ -93,6 +93,13 @@ stages:
     parameters:
       dependsOn: "Prepare_DotNetGroup"
       resourceGroup: "$(InternalResourceGroupName)-DotNet"
+      botPricingTier: "$(BotPricingTier)"
+      resourceSuffix: "$(ResourceSuffix)"
+      appServicePlan: "$(InternalAppServicePlanWindowsName)"
+      appServicePlanRG: "$(InternalAppServicePlanWindowsResourceGroup)"
+      appInsight: "$(InternalAppInsightsName)"
+      connectionName: "$(ConnectionName)"
+      keyVault: "$(InternalKeyVaultName)"
       bots:
         - name: bffnsimplehostbotdotnet
           type: 'Host'
@@ -103,6 +110,8 @@ stages:
             directory: 'Bots/DotNet/Consumers/CodeFirst/SimpleHostBot'
             name: 'SimpleHostBot.csproj'
             netCoreVersion: '3.1.x'
+          dependenciesRegistry: "$(DependenciesRegistryHosts)"
+          dependenciesVersion: "$(DependenciesVersionHosts)"
 
         - name: bffnsimplehostbotdotnet21
           type: 'Host'
@@ -113,6 +122,8 @@ stages:
             directory: 'Bots/DotNet/Consumers/CodeFirst/SimpleHostBot-2.1'
             name: 'SimpleHostBot-2.1.csproj'
             netCoreVersion: '2.1.x'
+          dependenciesRegistry: "$(DependenciesRegistryHosts)"
+          dependenciesVersion: "$(DependenciesVersionHosts)"
 
         - name: bffnechoskillbotdotnet
           type: 'Skill'
@@ -123,6 +134,8 @@ stages:
             directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot'
             name: 'EchoSkillBot.csproj'
             netCoreVersion: '3.1.x'
+          dependenciesRegistry: "$(DependenciesRegistrySkills)"
+          dependenciesVersion: "$(DependenciesVersionSkills)"
 
         - name: bffnechoskillbotdotnet21
           type: 'Skill'
@@ -133,6 +146,8 @@ stages:
             directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot-2.1'
             name: 'EchoSkillBot-2.1.csproj'
             netCoreVersion: '2.1.x'
+          dependenciesRegistry: "$(DependenciesRegistrySkills)"
+          dependenciesVersion: "$(DependenciesVersionSkills)"
 
         - name: bffnechoskillbotdotnetv3
           type: 'SkillV3'
@@ -142,6 +157,8 @@ stages:
           project:
             directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot-v3'
             name: 'EchoSkillBot-v3.csproj'
+          dependenciesRegistry: "$(DependenciesRegistrySkillsV3)"
+          dependenciesVersion: "$(DependenciesVersionSkillsV3)"
 
         - name: bffnwaterfallhostbotdotnet
           type: 'Host'
@@ -152,6 +169,8 @@ stages:
             directory: 'Bots/DotNet/Consumers/CodeFirst/WaterfallHostBot'
             name: 'WaterfallHostBot.csproj'
             netCoreVersion: '3.1.x'
+          dependenciesRegistry: "$(DependenciesRegistryHosts)"
+          dependenciesVersion: "$(DependenciesVersionHosts)"
 
         - name: bffnwaterfallskillbotdotnet
           type: 'Skill'
@@ -162,12 +181,20 @@ stages:
             directory: 'Bots/DotNet/Skills/CodeFirst/WaterfallSkillBot'
             name: 'WaterfallSkillBot.csproj'
             netCoreVersion: '3.1.x'
+          dependenciesRegistry: "$(DependenciesRegistrySkills)"
+          dependenciesVersion: "$(DependenciesVersionSkills)"
 
 # DotNet Composer
   - template: dotnet/deployComposer.yml
     parameters:
       dependsOn: "Prepare_DotNetGroup"
       resourceGroup: "$(InternalResourceGroupName)-DotNet"
+      botPricingTier: "$(BotPricingTier)"
+      resourceSuffix: "$(ResourceSuffix)"
+      appServicePlan: "$(InternalAppServicePlanWindowsName)"
+      appServicePlanRG: "$(InternalAppServicePlanWindowsResourceGroup)"
+      appInsight: "$(InternalAppInsightsName)"
+      keyVault: "$(InternalKeyVaultName)"
       bots:
         - name: bffnsimplehostbotcomposerdotnet
           type: 'Host'
@@ -177,6 +204,8 @@ stages:
           project: 
             directory: 'Bots/DotNet/Consumers/Composer/SimpleHostBotComposer'
             netCoreVersion: '3.1.x'
+          dependenciesRegistry: "$(DependenciesRegistryHosts)"
+          dependenciesVersion: "$(DependenciesVersionHosts)"
 
         - name: bffnechoskillbotcomposerdotnet
           type: 'Skill'
@@ -186,6 +215,8 @@ stages:
           project: 
             directory: 'Bots/DotNet/Skills/Composer/EchoSkillBotComposer'
             netCoreVersion: '3.1.x'
+          dependenciesRegistry: "$(DependenciesRegistrySkills)"
+          dependenciesVersion: "$(DependenciesVersionSkills)"
 
 # JS
   - template: js/deploy.yml

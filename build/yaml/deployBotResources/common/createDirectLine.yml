@@ -1,6 +1,7 @@
 parameters:
   botName: ''
   botGroup: ''
+  resourceSuffix: ""
 
 steps:
 - task: AzureCLI@2
@@ -10,4 +11,4 @@ steps:
     scriptType: pscore
     scriptLocation: inlineScript
     inlineScript: |
-      az bot directline create -n "${{ parameters.botName }}$($env:ResourceSuffix)-$(Build.BuildId)" -g "${{ parameters.botGroup }}"
+      az bot directline create -n "${{ parameters.botName }}${{ parameters.resourceSuffix }}-$(Build.BuildId)" -g "${{ parameters.botGroup }}"

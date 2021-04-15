@@ -62,9 +62,6 @@ variables:
   # BffnWaterfallSkillBotPythonAppSecret: (optional) define in Azure
   # BotPricingTier: (optional) define in Azure
   # ConnectionName: (optional) define in Azure
-  # DependenciesVersionHosts: (optional) define in Azure
-  # DependenciesVersionSkills: (optional) define in Azure
-  # DependenciesVersionSkillsV3: (optional) define in Azure
   # DependenciesVersionDotNetHosts: (optional) define in Azure
   # DependenciesVersionDotNetSkills: (optional) define in Azure
   # DependenciesVersionDotNetSkillsV3: (optional) define in Azure

@@ -68,15 +68,13 @@ variables:
   # DependenciesVersionSkills: (optional) define in Azure
   # DependenciesVersionSkillsV3: (optional) define in Azure
   ## Internal variables
-  InternalResourceSuffix: $[coalesce(variables['ResourceSuffix'], '')]
-  InternalConnectionName: $[coalesce(variables['ConnectionName'], '')]
   InternalBotPricingTier: $[coalesce(variables['BotPricingTier'], '')]
-  InternalAppInsightsName: 'bffnappinsights$(InternalResourceSuffix)'
-  InternalAppServicePlanLinuxName: $[coalesce(variables['AppServicePlanNameLinux'], 'bffnbotsappservicelinux$(InternalResourceSuffix)')]
+  InternalAppInsightsName: 'bffnappinsights$env:ResourceSuffix'
+  InternalAppServicePlanLinuxName: $[coalesce(variables['AppServicePlanNameLinux'], 'bffnbotsappservicelinux$env:ResourceSuffix')]
   InternalAppServicePlanLinuxResourceGroup: $[coalesce(variables['AppServicePlanGroupLinux'], 'bffnshared-linux')]
-  InternalAppServicePlanWindowsName: $[coalesce(variables['AppServicePlanName'], 'bffnbotsappservicewin$(InternalResourceSuffix)')]
+  InternalAppServicePlanWindowsName: $[coalesce(variables['AppServicePlanName'], 'bffnbotsappservicewin$env:ResourceSuffix')]
   InternalAppServicePlanWindowsResourceGroup: $[coalesce(variables['AppServicePlanGroup'], 'bffnshared')]
-  InternalKeyVaultName: 'bffnbotkeyvault$(InternalResourceSuffix)'
+  InternalKeyVaultName: 'bffnbotkeyvault$env:ResourceSuffix'
   InternalResourceGroupName: $[coalesce(variables['ResourceGroup'], 'bffnbots')]
 
 
@@ -102,12 +100,12 @@ stages:
     parameters:
       dependsOn: "Prepare_DotNetGroup"
       resourceGroup: "$(InternalResourceGroupName)-DotNet"
-      botPricingTier: "$(InternalBotPricingTier)"
-      resourceSuffix: "$(InternalResourceSuffix)"
+      botPricingTier: $env:BotPricingTier
+      resourceSuffix: $env:ResourceSuffix
       appServicePlan: "$(InternalAppServicePlanWindowsName)"
       appServicePlanRG: "$(InternalAppServicePlanWindowsResourceGroup)"
       appInsight: "$(InternalAppInsightsName)"
-      connectionName: "$(InternalConnectionName)"
+      connectionName: $env:ConnectionName
       keyVault: "$(InternalKeyVaultName)"
       bots:
         - name: bffnsimplehostbotdotnet
@@ -198,8 +196,8 @@ stages:
     parameters:
       dependsOn: "Prepare_DotNetGroup"
       resourceGroup: "$(InternalResourceGroupName)-DotNet"
-      botPricingTier: "$(InternalBotPricingTier)"
-      resourceSuffix: "$(InternalResourceSuffix)"
+      botPricingTier: $env:BotPricingTier
+      resourceSuffix: $env:ResourceSuffix
       appServicePlan: "$(InternalAppServicePlanWindowsName)"
       appServicePlanRG: "$(InternalAppServicePlanWindowsResourceGroup)"
       appInsight: "$(InternalAppInsightsName)"
@@ -232,12 +230,12 @@ stages:
     parameters:
       dependsOn: "Prepare_JSGroup"
       resourceGroup: "$(InternalResourceGroupName)-JS"
-      botPricingTier: "$(InternalBotPricingTier)"
-      resourceSuffix: "$(InternalResourceSuffix)"
+      botPricingTier: $env:BotPricingTier
+      resourceSuffix: $env:ResourceSuffix
       appServicePlan: "$(InternalAppServicePlanWindowsName)"
       appServicePlanRG: "$(InternalAppServicePlanWindowsResourceGroup)"
       appInsight: "$(InternalAppInsightsName)"
-      connectionName: "$(InternalConnectionName)"
+      connectionName: $env:ConnectionName
       keyVault: "$(InternalKeyVaultName)"
       bots:
         - name: bffnsimplehostbotjs
@@ -295,11 +293,11 @@ stages:
     parameters:
       dependsOn: "Prepare_PythonGroup"
       resourceGroup: "$(InternalResourceGroupName)-Python"
-      botPricingTier: "$(InternalBotPricingTier)"
-      resourceSuffix: "$(InternalResourceSuffix)"
+      botPricingTier: $env:BOTPRICINGTIER
+      resourceSuffix: $env:RESOURCESUFFIX
       appServicePlan: "$(InternalAppServicePlanLinuxName)"
       appServicePlanRG: "$(InternalAppServicePlanLinuxResourceGroup)"
-      connectionName: "$(InternalConnectionName)"
+      connectionName: $env:CONNECTIONNAME
       keyVault: "$(InternalKeyVaultName)"
       bots:
         - name: bffnsimplehostbotpython

@@ -304,8 +304,8 @@ stages:
           appId: $(BffnSimpleHostBotPythonAppId)
           appSecret: $(BffnSimpleHostBotPythonAppSecret)
           dependency:
-            registry: $env:DEPENDENCIESREGISTRYPYTHONSKILLS
-            version: $env:DEPENDENCIESVERSIONPYTHONSKILLS
+            registry: $env:DEPENDENCIESREGISTRYPYTHONHOSTS
+            version: $env:DEPENDENCIESVERSIONPYTHONHOSTS
           project:
             directory: 'Bots/Python/Consumers/CodeFirst/SimpleHostBot'
 
@@ -315,8 +315,8 @@ stages:
           appId: $(BffnEchoSkillBotPythonAppId)
           appSecret: $(BffnEchoSkillBotPythonAppSecret)
           dependency:
-            registry: '%DEPENDENCIESREGISTRYPYTHONSKILLS%'
-            version: '%DEPENDENCIESVERSIONPYTHONSKILLS%'
+            registry: $env:DEPENDENCIESREGISTRYPYTHONSKILLS
+            version: $env:DEPENDENCIESVERSIONPYTHONSKILLS
           project: 
             directory: 'Bots/Python/Skills/CodeFirst/EchoSkillBot'
 
@@ -326,8 +326,8 @@ stages:
           appId: $(BffnWaterfallHostBotPythonAppId)
           appSecret: $(BffnWaterfallHostBotPythonAppSecret)
           dependency:
-            registry: $env:DependenciesRegistryPythonHosts
-            version: $env:DependenciesVersionPythonHosts
+            registry: $env:DEPENDENCIESREGISTRYPYTHONHOSTS
+            version: $env:DEPENDENCIESVERSIONPYTHONHOSTS
           project:
             directory: 'Bots/Python/Consumers/CodeFirst/WaterfallHostBot'
 
@@ -337,8 +337,8 @@ stages:
           appId: $(BffnWaterfallSkillBotPythonAppId)
           appSecret: $(BffnWaterfallSkillBotPythonAppSecret)
           dependency:
-            registry: $env:DependenciesRegistryPythonSkills
-            version: $env:DependenciesVersionPythonSkills
+            registry: $env:DEPENDENCIESREGISTRYPYTHONSKILLS
+            version: $env:DEPENDENCIESVERSIONPYTHONSKILLS
           project: 
             directory: 'Bots/Python/Skills/CodeFirst/WaterfallSkillBot'
 

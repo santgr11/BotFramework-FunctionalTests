@@ -84,8 +84,6 @@ variables:
   # DependenciesRegistryPythonSkills: (optional) define in Azure
   # DependenciesVersionPythonHosts: (optional) define in Azure
   # DependenciesVersionPythonSkills: (optional) define in Azure
-  InternalDependenciesRegistryPythonSkills: $[coalesce(variables['DependenciesRegistryPythonSkills'], 'bffnbots')]
-  InternalDependenciesVersionPythonSkills: $[coalesce(variables['DependenciesVersionPythonSkills'], 'bffnbots')]
 
   # ResourceGroup: (optional) define in Azure
   # ResourceSuffix: (optional) define in Azure
@@ -306,8 +304,8 @@ stages:
           appId: $(BffnSimpleHostBotPythonAppId)
           appSecret: $(BffnSimpleHostBotPythonAppSecret)
           dependency:
-            registry: variables['DependenciesRegistryPythonHosts']
-            version: variables['DependenciesVersionPythonHosts']
+            registry: $env:DEPENDENCIESREGISTRYPYTHONSKILLS
+            version: $env:DEPENDENCIESVERSIONPYTHONSKILLS
           project:
             directory: 'Bots/Python/Consumers/CodeFirst/SimpleHostBot'
 
@@ -317,8 +315,8 @@ stages:
           appId: $(BffnEchoSkillBotPythonAppId)
           appSecret: $(BffnEchoSkillBotPythonAppSecret)
           dependency:
-            registry: $(InternalDependenciesRegistryPythonSkills)
-            version: $(InternalDependenciesVersionPythonSkills)
+            registry: '%DEPENDENCIESREGISTRYPYTHONSKILLS%'
+            version: '%DEPENDENCIESVERSIONPYTHONSKILLS%'
           project: 
             directory: 'Bots/Python/Skills/CodeFirst/EchoSkillBot'
 

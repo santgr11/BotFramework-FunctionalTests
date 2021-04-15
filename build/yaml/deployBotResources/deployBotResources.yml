@@ -304,8 +304,8 @@ stages:
           appId: $(BffnSimpleHostBotPythonAppId)
           appSecret: $(BffnSimpleHostBotPythonAppSecret)
           dependency:
-            registry: $DependenciesRegistryPythonHosts
-            version: $DependenciesVersionPythonHosts
+            registry: $env:DEPENDENCIESREGISTRYPYTHONSKILLS
+            version: $env:DEPENDENCIESVERSIONPYTHONSKILLS
           project:
             directory: 'Bots/Python/Consumers/CodeFirst/SimpleHostBot'
 
@@ -315,8 +315,8 @@ stages:
           appId: $(BffnEchoSkillBotPythonAppId)
           appSecret: $(BffnEchoSkillBotPythonAppSecret)
           dependency:
-            registry: $DEPENDENCIESREGISTRYPYTHONSKILLS
-            version: $DEPENDENCIESVERSIONPYTHONSKILLS
+            registry: '%DEPENDENCIESREGISTRYPYTHONSKILLS%'
+            version: '%DEPENDENCIESVERSIONPYTHONSKILLS%'
           project: 
             directory: 'Bots/Python/Skills/CodeFirst/EchoSkillBot'
 

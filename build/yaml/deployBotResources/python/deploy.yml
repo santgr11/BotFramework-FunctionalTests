@@ -51,10 +51,10 @@ stages:
             parameters:
               ${{ if eq(bot.type, 'Host') }}:
                 registry: "$env:DependenciesRegistryHosts"
-                version: "$env:DependenciesVersionHosts"
+                version: '{{ bot.dependencyVersion }}'
               ${{ if eq(bot.type, 'Skill') }}:
                 registry: "$env:DependenciesRegistrySkills"
-                version: "$env:DependenciesVersionSkills"
+                version: '{{ bot.dependencyVersion }}'
               botType: '${{ bot.type }}'
               project: '${{ bot.project }}'
 

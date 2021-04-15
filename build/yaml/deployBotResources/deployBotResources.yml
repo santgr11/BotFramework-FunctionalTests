@@ -19,6 +19,8 @@ variables:
   InternalAppServicePlanWindowsResourceGroup: $[coalesce(variables['AppServicePlanGroup'], 'bffnshared')]
   InternalKeyVaultName: 'bffnbotkeyvault$($env:ResourceSuffix)'
   InternalResourceGroupName: $[coalesce(variables['ResourceGroup'], 'bffnbots')]
+  InternalDependenciesVersionPythonHosts: $[coalesce(variables['DependenciesVersionPythonHosts'], variables['DependenciesVersionHosts'])]
+  InternalDependenciesVersionPythonSkills: $[coalesce(variables['DependenciesVersionPythonSkills'], variables['DependenciesVersionSkills'])]
   # AzureSubscription: define in Azure
   # AppServicePlanGroup: (optional) define in Azure
   # AppServicePlanGroupLinux: (optional) define in Azure
@@ -68,6 +70,14 @@ variables:
   # DependenciesVersionHosts: (optional) define in Azure
   # DependenciesVersionSkills: (optional) define in Azure
   # DependenciesVersionSkillsV3: (optional) define in Azure
+  # DependenciesVersionDotNetHosts: (optional) define in Azure
+  # DependenciesVersionDotNetSkills: (optional) define in Azure
+  # DependenciesVersionJSHosts: (optional) define in Azure
+  # DependenciesVersionJSSkills: (optional) define in Azure
+  # DependenciesVersionPythonHosts: (optional) define in Azure
+  # DependenciesVersionPythonSkills: (optional) define in Azure
+  # DependenciesVersionDotNetSkillsV3: (optional) define in Azure
+  # DependenciesVersionJSSkillsV3: (optional) define in Azure
   # ResourceGroup: (optional) define in Azure
   # ResourceSuffix: (optional) define in Azure
 
@@ -244,6 +254,7 @@ stages:
           displayName: 'Python Simple Host Bot'
           appId: $(BffnSimpleHostBotPythonAppId)
           appSecret: $(BffnSimpleHostBotPythonAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionPythonHosts)
           project:
             directory: 'Bots/Python/Consumers/CodeFirst/SimpleHostBot'
 
@@ -252,6 +263,7 @@ stages:
           displayName: 'Python Echo Skill Bot'
           appId: $(BffnEchoSkillBotPythonAppId)
           appSecret: $(BffnEchoSkillBotPythonAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionPythonSkills)
           project: 
             directory: 'Bots/Python/Skills/CodeFirst/EchoSkillBot'
 
@@ -260,6 +272,7 @@ stages:
           displayName: 'Python Waterfall Host Bot'
           appId: $(BffnWaterfallHostBotPythonAppId)
           appSecret: $(BffnWaterfallHostBotPythonAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionPythonHosts)
           project:
             directory: 'Bots/Python/Consumers/CodeFirst/WaterfallHostBot'
 
@@ -268,6 +281,7 @@ stages:
           displayName: 'Python Waterfall Skill Bot'
           appId: $(BffnWaterfallSkillBotPythonAppId)
           appSecret: $(BffnWaterfallSkillBotPythonAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionPythonSkills)
           project: 
             directory: 'Bots/Python/Skills/CodeFirst/WaterfallSkillBot'
 

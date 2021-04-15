@@ -25,48 +25,50 @@ variables:
   ## Bots Configuration (Define these variables in Azure)
   # BffnEchoSkillBotComposerDotNetAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
   # BffnEchoSkillBotComposerDotNetAppSecret: (optional) App Secret for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotDotNet21AppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotDotNet21AppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotDotNetAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotDotNetAppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotDotNetV3AppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotDotNetV3AppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotJSAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotJSAppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotJSV3AppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotJSV3AppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotPythonAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotPythonAppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnSimpleHostBotComposerDotNetAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnSimpleHostBotComposerDotNetAppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnSimpleHostBotDotNet21AppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnSimpleHostBotDotNet21AppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnSimpleHostBotDotNetAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnSimpleHostBotDotNetAppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnSimpleHostBotJSAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnSimpleHostBotJSAppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnSimpleHostBotPythonAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnSimpleHostBotPythonAppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnWaterfallHostBotDotNetAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnWaterfallHostBotDotNetAppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnWaterfallSkillBotDotNetAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnWaterfallSkillBotDotNetAppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnWaterfallHostBotJSAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnWaterfallHostBotJSAppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnWaterfallSkillBotJSAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnWaterfallSkillBotJSAppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnWaterfallHostBotPythonAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnWaterfallHostBotPythonAppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnWaterfallSkillBotPythonAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnWaterfallSkillBotPythonAppSecret: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # ConnectionName: (optional) define in Azure
-  ## Package Dependencies variables
-  # DependenciesRegistryHosts: (optional) define in Azure
-  # DependenciesRegistrySkills: (optional) define in Azure
-  # DependenciesRegistrySkillsV3: (optional) define in Azure
-  # DependenciesVersionHosts: (optional) define in Azure
-  # DependenciesVersionSkills: (optional) define in Azure
-  # DependenciesVersionSkillsV3: (optional) define in Azure
+  # BffnEchoSkillBotDotNet21AppId: (optional) App Id for BffnEchoSkillBotDotNet21 bot.
+  # BffnEchoSkillBotDotNet21AppSecret: (optional) App Secret for BffnEchoSkillBotDotNet21 bot.
+  # BffnEchoSkillBotDotNetAppId: (optional) App Id for BffnEchoSkillBotDotNet bot.
+  # BffnEchoSkillBotDotNetAppSecret: (optional) App Secret for BffnEchoSkillBotDotNet bot.
+  # BffnEchoSkillBotDotNetV3AppId: (optional) App Id for BffnEchoSkillBotDotNetV3 bot.
+  # BffnEchoSkillBotDotNetV3AppSecret: (optional) App Secret for BffnEchoSkillBotDotNetV3 bot.
+  # BffnEchoSkillBotJSAppId: (optional) App Id for BffnEchoSkillBotJS bot.
+  # BffnEchoSkillBotJSAppSecret: (optional) App Secret for BffnEchoSkillBotJS bot.
+  # BffnEchoSkillBotJSV3AppId: (optional) App Id for BffnEchoSkillBotJSV3 bot.
+  # BffnEchoSkillBotJSV3AppSecret: (optional) App Secret for BffnEchoSkillBotJSV3 bot.
+  # BffnEchoSkillBotPythonAppId: (optional) App Id for BffnEchoSkillBotPython bot.
+  # BffnEchoSkillBotPythonAppSecret: (optional) App Secret for BffnEchoSkillBotPython bot.
+  # BffnSimpleHostBotComposerDotNetAppId: (optional) App Id for BffnSimpleHostBotComposerDotNet bot.
+  # BffnSimpleHostBotComposerDotNetAppSecret: (optional) App Secret for BffnSimpleHostBotComposerDotNet bot.
+  # BffnSimpleHostBotDotNet21AppId: (optional) App Id for BffnSimpleHostBotDotNet21 bot.
+  # BffnSimpleHostBotDotNet21AppSecret: (optional) App Secret for BffnSimpleHostBotDotNet21 bot.
+  # BffnSimpleHostBotDotNetAppId: (optional) App Id for BffnSimpleHostBotDotNet bot.
+  # BffnSimpleHostBotDotNetAppSecret: (optional) App Secret for BffnSimpleHostBotDotNet bot.
+  # BffnSimpleHostBotJSAppId: (optional) App Id for BffnSimpleHostBotJS bot.
+  # BffnSimpleHostBotJSAppSecret: (optional) App Secret for BffnSimpleHostBotJS bot.
+  # BffnSimpleHostBotPythonAppId: (optional) App Id for BffnSimpleHostBotPython bot.
+  # BffnSimpleHostBotPythonAppSecret: (optional) App Secret for BffnSimpleHostBotPython bot.
+  # BffnWaterfallHostBotDotNetAppId: (optional) App Id for BffnWaterfallHostBotDotNet bot.
+  # BffnWaterfallHostBotDotNetAppSecret: (optional) App Secret for BffnWaterfallHostBotDotNet bot.
+  # BffnWaterfallSkillBotDotNetAppId: (optional) App Id for BffnWaterfallSkillBotDotNet bot.
+  # BffnWaterfallSkillBotDotNetAppSecret: (optional) App Secret for BffnWaterfallSkillBotDotNet bot.
+  # BffnWaterfallHostBotJSAppId: (optional) App Id for BffnWaterfallHostBotJS bot.
+  # BffnWaterfallHostBotJSAppSecret: (optional) App Secret for BffnWaterfallHostBotJS bot.
+  # BffnWaterfallSkillBotJSAppId: (optional) App Id for BffnWaterfallSkillBotJS bot.
+  # BffnWaterfallSkillBotJSAppSecret: (optional) App Secret for BffnWaterfallSkillBotJS bot.
+  # BffnWaterfallHostBotPythonAppId: (optional) App Id for BffnWaterfallHostBotPython bot.
+  # BffnWaterfallHostBotPythonAppSecret: (optional) App Secret for BffnWaterfallHostBotPython bot.
+  # BffnWaterfallSkillBotPythonAppId: (optional) App Id for BffnWaterfallSkillBotPython bot.
+  # BffnWaterfallSkillBotPythonAppSecret: (optional) App Secret for BffnWaterfallSkillBotPython bot.
+  # ConnectionName: (optional) Name for the OAuth connection to use in the skill bots.
+
+  ## Package Dependencies (define in Azure)
+  # DependenciesRegistryHosts: (optional) Registry to download the dependency packages for the host bots.
+  # DependenciesRegistrySkills: (optional) Registry to download the dependency packages for the skill bots.
+  # DependenciesRegistrySkillsV3: (optional) Registry to download the dependency packages for the skill v3 bots.
+  # DependenciesVersionHosts: (optional) Version of the dependency packages for the host bots.
+  # DependenciesVersionSkills: (optional) Version of the dependency packages for the host bots.
+  # DependenciesVersionSkillsV3: (optional) Version of the dependency packages for the host bots.
+
   ## Internal variables
   InternalResourceSuffix: $[coalesce(variables['ResourceSuffix'], '')]
   InternalAppInsightsName: 'bffnappinsights$(InternalResourceSuffix)'
@@ -294,7 +296,7 @@ stages:
       dependsOn: "Prepare_PythonGroup"
       resourceGroup: "$(InternalResourceGroupName)-Python"
       botPricingTier: $env:BOTPRICINGTIER
-      resourceSuffix: $env:RESOURCESUFFIX
+      resourceSuffix: "$(InternalResourceSuffix)"
       appServicePlan: "$(InternalAppServicePlanLinuxName)"
       appServicePlanRG: "$(InternalAppServicePlanLinuxResourceGroup)"
       connectionName: $env:CONNECTIONNAME

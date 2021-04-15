@@ -12,21 +12,16 @@ pool:
 variables:
   BuildConfiguration: 'Debug'
   BuildPlatform: 'AnyCPU'
-  InternalResourceSuffix: $[coalesce(variables['ResourceSuffix'], '')]
-  InternalConnectionName: $[coalesce(variables['ConnectionName'], '')]
-  InternalBotPricingTier: $[coalesce(variables['BotPricingTier'], '')]
-  InternalAppInsightsName: 'bffnappinsights$(InternalResourceSuffix)'
-  InternalAppServicePlanLinuxName: $[coalesce(variables['AppServicePlanNameLinux'], 'bffnbotsappservicelinux$(InternalResourceSuffix)')]
-  InternalAppServicePlanLinuxResourceGroup: $[coalesce(variables['AppServicePlanGroupLinux'], 'bffnshared-linux')]
-  InternalAppServicePlanWindowsName: $[coalesce(variables['AppServicePlanName'], 'bffnbotsappservicewin$(InternalResourceSuffix)')]
-  InternalAppServicePlanWindowsResourceGroup: $[coalesce(variables['AppServicePlanGroup'], 'bffnshared')]
-  InternalKeyVaultName: 'bffnbotkeyvault'
-  InternalResourceGroupName: $[coalesce(variables['ResourceGroup'], 'bffnbots')]
-  # AzureSubscription: define in Azure
-  # AppServicePlanGroup: (optional) define in Azure
-  # AppServicePlanGroupLinux: (optional) define in Azure
-  # AppServicePlanName: (optional) define in Azure
-  # AppServicePlanNameLinux: (optional) define in Azure
+  ## Azure Resources (Define these variables in Azure)
+  # AzureSubscription: Service Connection Name to Manage Azure resources.
+  # AppServicePlanGroup: (optional) Name of the Resource Group where the Windows App Service Plan is located.
+  # AppServicePlanGroupLinux: (optional) Name of the Resource Group where the Linux App Service Plan is located.
+  # AppServicePlanName: (optional) Name of the Windows App Service Plan.
+  # AppServicePlanNameLinux: (optional) Name of the Linux App Service Plan.
+  # BotPricingTier: (optional) Pricing Tier for the bots, default F0.
+  # ResourceGroup: (optional) define in Azure
+  # ResourceSuffix: (optional) define in Azure
+  ## App Registrations variables
   # BffnEchoSkillBotComposerDotNetAppId: (optional) define in Azure
   # BffnEchoSkillBotComposerDotNetAppSecret: (optional) define in Azure
   # BffnEchoSkillBotDotNet21AppId: (optional) define in Azure
@@ -63,16 +58,26 @@ variables:
   # BffnWaterfallHostBotPythonAppSecret: (optional) define in Azure
   # BffnWaterfallSkillBotPythonAppId: (optional) define in Azure
   # BffnWaterfallSkillBotPythonAppSecret: (optional) define in Azure
-  # BotPricingTier: (optional) define in Azure
   # ConnectionName: (optional) define in Azure
+  ## Package Dependencies variables
   # DependenciesRegistryHosts: (optional) define in Azure
   # DependenciesRegistrySkills: (optional) define in Azure
   # DependenciesRegistrySkillsV3: (optional) define in Azure
   # DependenciesVersionHosts: (optional) define in Azure
   # DependenciesVersionSkills: (optional) define in Azure
   # DependenciesVersionSkillsV3: (optional) define in Azure
-  # ResourceGroup: (optional) define in Azure
-  # ResourceSuffix: (optional) define in Azure
+  ## Internal variables
+  InternalResourceSuffix: $[coalesce(variables['ResourceSuffix'], '')]
+  InternalConnectionName: $[coalesce(variables['ConnectionName'], '')]
+  InternalBotPricingTier: $[coalesce(variables['BotPricingTier'], '')]
+  InternalAppInsightsName: 'bffnappinsights$(InternalResourceSuffix)'
+  InternalAppServicePlanLinuxName: $[coalesce(variables['AppServicePlanNameLinux'], 'bffnbotsappservicelinux$(InternalResourceSuffix)')]
+  InternalAppServicePlanLinuxResourceGroup: $[coalesce(variables['AppServicePlanGroupLinux'], 'bffnshared-linux')]
+  InternalAppServicePlanWindowsName: $[coalesce(variables['AppServicePlanName'], 'bffnbotsappservicewin$(InternalResourceSuffix)')]
+  InternalAppServicePlanWindowsResourceGroup: $[coalesce(variables['AppServicePlanGroup'], 'bffnshared')]
+  InternalKeyVaultName: 'bffnbotkeyvault$(InternalResourceSuffix)'
+  InternalResourceGroupName: $[coalesce(variables['ResourceGroup'], 'bffnbots')]
+
 
 stages:
 # Resource Groups

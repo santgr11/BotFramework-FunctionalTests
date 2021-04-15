@@ -36,7 +36,6 @@ stages:
               appSecret: ${{ bot.appSecret }}
               botName: '${{ bot.name }}'
               keyVault: "${{ parameters.keyVault }}"
-              resourceSuffix: "${{ parameters.resourceSuffix }}"
 
           # Prepare .env file, deleting all the declared skills, so it uses only the settings define in Azure
           - ${{ if eq(bot.type, 'Host') }}:

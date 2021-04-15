@@ -62,13 +62,8 @@ stages:
           # Evaluate dependencies source and version
           - template: evaluateDependenciesVariables.yml
             parameters:
-              ${{ if eq(bot.type, 'Host') }}:
-                registry: "$env:DependenciesRegistryHosts"
-              ${{ if eq(bot.type, 'Skill') }}:
-                registry: "$env:DependenciesRegistrySkills"
-              ${{ if eq(bot.type, 'SkillV3') }}:
-                registry: "$env:DependenciesRegistrySkillsV3"
-              version: '${{ bot.dependencyVersion }}'
+              registry: '${{ bot.dependency.registry }}'
+              version: '${{ bot.dependency.version }}'
               botType: '${{ bot.type }}'
 
           # Start of DotNet Install & Build

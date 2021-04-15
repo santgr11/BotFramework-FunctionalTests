@@ -62,14 +62,29 @@ variables:
   # BffnWaterfallSkillBotPythonAppSecret: (optional) define in Azure
   # BotPricingTier: (optional) define in Azure
   # ConnectionName: (optional) define in Azure
+
+  ## Dependency Variables DotNet
+  # DependenciesRegistryDotNetHosts: (optional) define in Azure
+  # DependenciesRegistryDotNetSkills: (optional) define in Azure
+  # DependenciesRegistryDotNetSkillsV3: (optional) define in Azure
   # DependenciesVersionDotNetHosts: (optional) define in Azure
   # DependenciesVersionDotNetSkills: (optional) define in Azure
   # DependenciesVersionDotNetSkillsV3: (optional) define in Azure
+
+  ## Dependency Variables JS
+  # DependenciesRegistryJSHosts: (optional) define in Azure
+  # DependenciesRegistryJSSkills: (optional) define in Azure
+  # DependenciesRegistryJSSkillsV3: (optional) define in Azure
   # DependenciesVersionJSHosts: (optional) define in Azure
   # DependenciesVersionJSSkills: (optional) define in Azure
   # DependenciesVersionJSSkillsV3: (optional) define in Azure
+
+  ## Dependency Variables Python
+  # DependenciesRegistryPythonHosts: (optional) define in Azure
+  # DependenciesRegistryPythonSkills: (optional) define in Azure
   # DependenciesVersionPythonHosts: (optional) define in Azure
   # DependenciesVersionPythonSkills: (optional) define in Azure
+
   # ResourceGroup: (optional) define in Azure
   # ResourceSuffix: (optional) define in Azure
 
@@ -101,7 +116,9 @@ stages:
           displayName: 'DotNet Simple Host Bot'
           appId: $(BffnSimpleHostBotDotNetAppId)
           appSecret: $(BffnSimpleHostBotDotNetAppSecret)
-          dependencyVersion: $env:DependenciesVersionDotNetHosts
+          dependency:
+            registry: $env:DependenciesRegistryDotNetHosts
+            version: $env:DependenciesVersionDotNetHosts
           project:
             directory: 'Bots/DotNet/Consumers/CodeFirst/SimpleHostBot'
             name: 'SimpleHostBot.csproj'
@@ -112,7 +129,9 @@ stages:
           displayName: 'DotNet Simple Host Bot 2.1'
           appId: $(BffnSimpleHostBotDotNet21AppId)
           appSecret: $(BffnSimpleHostBotDotNet21AppSecret)
-          dependencyVersion: $env:DependenciesVersionDotNetHosts
+          dependency:
+            registry: $env:DependenciesRegistryDotNetHosts
+            version: $env:DependenciesVersionDotNetHosts
           project: 
             directory: 'Bots/DotNet/Consumers/CodeFirst/SimpleHostBot-2.1'
             name: 'SimpleHostBot-2.1.csproj'
@@ -123,7 +142,9 @@ stages:
           displayName: 'DotNet Echo Skill Bot'
           appId: $(BffnEchoSkillBotDotNetAppId)
           appSecret: $(BffnEchoSkillBotDotNetAppSecret)
-          dependencyVersion: $Env:DependenciesVersionDotNetSkills
+          dependency:
+            registry: $env:DependenciesRegistryDotNetSkills
+            version: $env:DependenciesVersionDotNetSkills
           project: 
             directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot'
             name: 'EchoSkillBot.csproj'
@@ -134,7 +155,9 @@ stages:
           displayName: 'DotNet Echo Skill Bot 2.1'
           appId: $(BffnEchoSkillBotDotNet21AppId)
           appSecret: $(BffnEchoSkillBotDotNet21AppSecret)
-          dependencyVersion: $env:DependenciesVersionDotNetSkills
+          dependency:
+            registry: $env:DependenciesRegistryDotNetSkills
+            version: $env:DependenciesVersionDotNetSkills
           project: 
             directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot-2.1'
             name: 'EchoSkillBot-2.1.csproj'
@@ -145,7 +168,9 @@ stages:
           displayName: 'DotNet Echo Skill Bot v3'
           appId: $(BffnEchoSkillBotDotNetV3AppId)
           appSecret: $(BffnEchoSkillBotDotNetV3AppSecret)
-          dependencyVersion: $env:DependenciesVersionDotNetSkillsV3
+          dependency:
+            registry: $env:DependenciesRegistryDotNetSkillsV3
+            version: $env:DependenciesVersionDotNetSkillsV3
           project:
             directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot-v3'
             name: 'EchoSkillBot-v3.csproj'
@@ -155,7 +180,9 @@ stages:
           displayName: 'DotNet Waterfall Host Bot'
           appId: $(BffnWaterfallHostBotDotNetAppId)
           appSecret: $(BffnWaterfallHostBotDotNetAppSecret)
-          dependencyVersion: $env:DependenciesVersionDotNetHosts
+          dependency:
+            registry: $env:DependenciesRegistryDotNetHosts
+            version: $env:DependenciesVersionDotNetHosts
           project:
             directory: 'Bots/DotNet/Consumers/CodeFirst/WaterfallHostBot'
             name: 'WaterfallHostBot.csproj'
@@ -166,7 +193,9 @@ stages:
           displayName: 'DotNet Waterfall Skill Bot'
           appId: $(BffnWaterfallSkillBotDotNetAppId)
           appSecret: $(BffnWaterfallSkillBotDotNetAppSecret)
-          dependencyVersion: $env:DependenciesVersionDotNetSkills
+          dependency:
+            registry: $env:DependenciesRegistryDotNetSkills
+            version: $env:DependenciesVersionDotNetSkills
           project: 
             directory: 'Bots/DotNet/Skills/CodeFirst/WaterfallSkillBot'
             name: 'WaterfallSkillBot.csproj'
@@ -183,7 +212,9 @@ stages:
           displayName: 'DotNet Simple Composer Host Bot'
           appId: $(BffnSimpleHostBotComposerDotNetAppId)
           appSecret: $(BffnSimpleHostBotComposerDotNetAppSecret)
-          dependencyVersion: $env:DependenciesVersionDotNetHosts
+          dependency:
+            registry: $env:DependenciesRegistryDotNetHosts
+            version: $env:DependenciesVersionDotNetHosts
           project: 
             directory: 'Bots/DotNet/Consumers/Composer/SimpleHostBotComposer'
             netCoreVersion: '3.1.x'
@@ -193,7 +224,9 @@ stages:
           displayName: 'DotNet Echo Composer Skill Bot'
           appId: $(BffnEchoSkillBotComposerDotNetAppId)
           appSecret: $(BffnEchoSkillBotComposerDotNetAppSecret)
-          dependencyVersion: $env:DependenciesVersionDotNetSkills
+          dependency:
+            registry: $env:DependenciesRegistryDotNetSkills
+            version: $env:DependenciesVersionDotNetSkills
           project: 
             directory: 'Bots/DotNet/Skills/Composer/EchoSkillBotComposer'
             netCoreVersion: '3.1.x'
@@ -209,7 +242,9 @@ stages:
           displayName: 'JS Simple Host Bot'
           appId: $(BffnSimpleHostBotJSAppId)
           appSecret: $(BffnSimpleHostBotJSAppSecret)
-          dependencyVersion: $env:DependenciesVersionJSHosts
+          dependency:
+            registry: $env:DependenciesRegistryJSHosts
+            version: $env:DependenciesVersionJSSHosts
           project:
             directory: 'Bots/JavaScript/Consumers/CodeFirst/SimpleHostBot'
 
@@ -218,7 +253,9 @@ stages:
           displayName: 'JS Echo Skill Bot'
           appId: $(BffnEchoSkillBotJSAppId)
           appSecret: $(BffnEchoSkillBotJSAppSecret)
-          dependencyVersion: $env:DependenciesVersionJSSkills
+          dependency:
+            registry: $env:DependenciesRegistryJSSkills
+            version: $env:DependenciesVersionJSSkills
           project: 
             directory: 'Bots/JavaScript/Skills/CodeFirst/EchoSkillBot'
 
@@ -227,7 +264,9 @@ stages:
           displayName: 'JS Echo Skill Bot v3'
           appId: $(BffnEchoSkillBotJSV3AppId)
           appSecret: $(BffnEchoSkillBotJSV3AppSecret)
-          dependencyVersion: $env:DependenciesVersionJSSkillsV3
+          dependency:
+            registry: $env:DependenciesRegistryJSSkillsV3
+            version: $env:DependenciesVersionJSSkillsV3
           project:
             directory: 'Bots/JavaScript/Skills/CodeFirst/EchoSkillBot-v3'
 
@@ -236,7 +275,9 @@ stages:
           displayName: 'JS Waterfall Host Bot'
           appId: $(BffnWaterfallHostBotJSAppId)
           appSecret: $(BffnWaterfallHostBotJSAppSecret)
-          dependencyVersion: $env:DependenciesVersionJSHosts
+          dependency:
+            registry: $env:DependenciesRegistryJSHosts
+            version: $env:DependenciesVersionJSSHosts
           project:
             directory: 'Bots/JavaScript/Consumers/CodeFirst/WaterfallHostBot'
 
@@ -245,7 +286,9 @@ stages:
           displayName: 'JS Waterfall Skill Bot'
           appId: $(BffnWaterfallSkillBotJSAppId)
           appSecret: $(BffnWaterfallSkillBotJSAppSecret)
-          dependencyVersion: $env:DependenciesVersionJSSkills
+          dependency:
+            registry: $env:DependenciesRegistryJSSkills
+            version: $env:DependenciesVersionJSSkills
           project: 
             directory: 'Bots/JavaScript/Skills/CodeFirst/WaterfallSkillBot'
 
@@ -260,7 +303,9 @@ stages:
           displayName: 'Python Simple Host Bot'
           appId: $(BffnSimpleHostBotPythonAppId)
           appSecret: $(BffnSimpleHostBotPythonAppSecret)
-          dependencyVersion: $env:DependenciesVersionPythonHosts
+          dependency:
+            registry: $env:DependenciesRegistryPythonHosts
+            version: $env:DependenciesVersionPythonHosts
           project:
             directory: 'Bots/Python/Consumers/CodeFirst/SimpleHostBot'
 
@@ -269,7 +314,9 @@ stages:
           displayName: 'Python Echo Skill Bot'
           appId: $(BffnEchoSkillBotPythonAppId)
           appSecret: $(BffnEchoSkillBotPythonAppSecret)
-          dependencyVersion: $env:DependenciesVersionPythonSkills
+          dependency:
+            registry: $env:DependenciesRegistryPythonSkills
+            version: $env:DependenciesVersionPythonSkills
           project: 
             directory: 'Bots/Python/Skills/CodeFirst/EchoSkillBot'
 
@@ -278,7 +325,9 @@ stages:
           displayName: 'Python Waterfall Host Bot'
           appId: $(BffnWaterfallHostBotPythonAppId)
           appSecret: $(BffnWaterfallHostBotPythonAppSecret)
-          dependencyVersion: $env:DependenciesVersionPythonHosts
+          dependency:
+            registry: $env:DependenciesRegistryPythonHosts
+            version: $env:DependenciesVersionPythonHosts
           project:
             directory: 'Bots/Python/Consumers/CodeFirst/WaterfallHostBot'
 
@@ -287,7 +336,9 @@ stages:
           displayName: 'Python Waterfall Skill Bot'
           appId: $(BffnWaterfallSkillBotPythonAppId)
           appSecret: $(BffnWaterfallSkillBotPythonAppSecret)
-          dependencyVersion: $env:DependenciesVersionPythonSkills
+          dependency:
+            registry: $env:DependenciesRegistryPythonSkills
+            version: $env:DependenciesVersionPythonSkills
           project: 
             directory: 'Bots/Python/Skills/CodeFirst/WaterfallSkillBot'
 

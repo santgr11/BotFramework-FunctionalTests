@@ -14,7 +14,7 @@ steps:
       scriptType: pscore
       scriptLocation: inlineScript
       inlineScript: |
-        $connectionName = if([string]::IsNullOrEmpty(${{ parameters.connectionName }})) { "TestOAuthProvider" } Else { ${{ parameters.connectionName }} };
+        $connectionName = if([string]::IsNullOrEmpty("${{ parameters.connectionName }}")) { "TestOAuthProvider" } Else { "${{ parameters.connectionName }}" };
 
         # Create OAuth Connection.
         az bot show -g "${{ parameters.botGroup }}" -n "${{ parameters.botName }}${{ parameters.resourceSuffix }}-$(Build.BuildId)"

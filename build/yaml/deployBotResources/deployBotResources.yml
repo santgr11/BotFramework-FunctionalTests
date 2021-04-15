@@ -19,6 +19,12 @@ variables:
   InternalAppServicePlanWindowsResourceGroup: $[coalesce(variables['AppServicePlanGroup'], 'bffnshared')]
   InternalKeyVaultName: 'bffnbotkeyvault$($env:ResourceSuffix)'
   InternalResourceGroupName: $[coalesce(variables['ResourceGroup'], 'bffnbots')]
+  InternalDependenciesVersionDotNetHosts: $[coalesce(variables['DependenciesVersionDotNetHosts'], variables['DependenciesVersionHosts'])]
+  InternalDependenciesVersionDotNetSkills: $[coalesce(variables['DependenciesVersionDotNetSkills'], variables['DependenciesVersionSkills'])]
+  InternalDependenciesVersionDotNetSkills: $[coalesce(variables['DependenciesVersionDotNetSkillsV3'], variables['DependenciesVersionSkillsV3'])]
+  InternalDependenciesVersionJSHosts: $[coalesce(variables['DependenciesVersionJSHosts'], variables['DependenciesVersionHosts'])]
+  InternalDependenciesVersionJSSkills: $[coalesce(variables['DependenciesVersionJSSkills'], variables['DependenciesVersionSkills'])]
+  InternalDependenciesVersionJSSkillsV3: $[coalesce(variables['DependenciesVersionJSSkillsV3'], variables['DependenciesVersionSkillsV3'])]
   InternalDependenciesVersionPythonHosts: $[coalesce(variables['DependenciesVersionPythonHosts'], variables['DependenciesVersionHosts'])]
   InternalDependenciesVersionPythonSkills: $[coalesce(variables['DependenciesVersionPythonSkills'], variables['DependenciesVersionSkills'])]
   # AzureSubscription: define in Azure
@@ -72,12 +78,12 @@ variables:
   # DependenciesVersionSkillsV3: (optional) define in Azure
   # DependenciesVersionDotNetHosts: (optional) define in Azure
   # DependenciesVersionDotNetSkills: (optional) define in Azure
+  # DependenciesVersionDotNetSkillsV3: (optional) define in Azure
   # DependenciesVersionJSHosts: (optional) define in Azure
   # DependenciesVersionJSSkills: (optional) define in Azure
+  # DependenciesVersionJSSkillsV3: (optional) define in Azure
   # DependenciesVersionPythonHosts: (optional) define in Azure
   # DependenciesVersionPythonSkills: (optional) define in Azure
-  # DependenciesVersionDotNetSkillsV3: (optional) define in Azure
-  # DependenciesVersionJSSkillsV3: (optional) define in Azure
   # ResourceGroup: (optional) define in Azure
   # ResourceSuffix: (optional) define in Azure
 
@@ -208,6 +214,7 @@ stages:
           displayName: 'JS Simple Host Bot'
           appId: $(BffnSimpleHostBotJSAppId)
           appSecret: $(BffnSimpleHostBotJSAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionJSHosts)
           project:
             directory: 'Bots/JavaScript/Consumers/CodeFirst/SimpleHostBot'
 
@@ -216,6 +223,7 @@ stages:
           displayName: 'JS Echo Skill Bot'
           appId: $(BffnEchoSkillBotJSAppId)
           appSecret: $(BffnEchoSkillBotJSAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionJSSkills)
           project: 
             directory: 'Bots/JavaScript/Skills/CodeFirst/EchoSkillBot'
 
@@ -232,6 +240,7 @@ stages:
           displayName: 'JS Waterfall Host Bot'
           appId: $(BffnWaterfallHostBotJSAppId)
           appSecret: $(BffnWaterfallHostBotJSAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionJSHosts)
           project:
             directory: 'Bots/JavaScript/Consumers/CodeFirst/WaterfallHostBot'
 
@@ -240,6 +249,7 @@ stages:
           displayName: 'JS Waterfall Skill Bot'
           appId: $(BffnWaterfallSkillBotJSAppId)
           appSecret: $(BffnWaterfallSkillBotJSAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionJSSkills)
           project: 
             directory: 'Bots/JavaScript/Skills/CodeFirst/WaterfallSkillBot'
 

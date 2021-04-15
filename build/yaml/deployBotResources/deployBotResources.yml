@@ -21,7 +21,7 @@ variables:
   InternalResourceGroupName: $[coalesce(variables['ResourceGroup'], 'bffnbots')]
   InternalDependenciesVersionDotNetHosts: $[coalesce(variables['DependenciesVersionDotNetHosts'], variables['DependenciesVersionHosts'])]
   InternalDependenciesVersionDotNetSkills: $[coalesce(variables['DependenciesVersionDotNetSkills'], variables['DependenciesVersionSkills'])]
-  InternalDependenciesVersionDotNetSkills: $[coalesce(variables['DependenciesVersionDotNetSkillsV3'], variables['DependenciesVersionSkillsV3'])]
+  InternalDependenciesVersionDotNetSkillsV3: $[coalesce(variables['DependenciesVersionDotNetSkillsV3'], variables['DependenciesVersionSkillsV3'])]
   InternalDependenciesVersionJSHosts: $[coalesce(variables['DependenciesVersionJSHosts'], variables['DependenciesVersionHosts'])]
   InternalDependenciesVersionJSSkills: $[coalesce(variables['DependenciesVersionJSSkills'], variables['DependenciesVersionSkills'])]
   InternalDependenciesVersionJSSkillsV3: $[coalesce(variables['DependenciesVersionJSSkillsV3'], variables['DependenciesVersionSkillsV3'])]

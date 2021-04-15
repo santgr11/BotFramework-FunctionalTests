@@ -115,6 +115,7 @@ stages:
           displayName: 'DotNet Simple Host Bot'
           appId: $(BffnSimpleHostBotDotNetAppId)
           appSecret: $(BffnSimpleHostBotDotNetAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionDotNetHosts)
           project:
             directory: 'Bots/DotNet/Consumers/CodeFirst/SimpleHostBot'
             name: 'SimpleHostBot.csproj'
@@ -125,6 +126,7 @@ stages:
           displayName: 'DotNet Simple Host Bot 2.1'
           appId: $(BffnSimpleHostBotDotNet21AppId)
           appSecret: $(BffnSimpleHostBotDotNet21AppSecret)
+          dependencyVersion: $(InternalDependenciesVersionDotNetHosts)
           project: 
             directory: 'Bots/DotNet/Consumers/CodeFirst/SimpleHostBot-2.1'
             name: 'SimpleHostBot-2.1.csproj'
@@ -135,6 +137,7 @@ stages:
           displayName: 'DotNet Echo Skill Bot'
           appId: $(BffnEchoSkillBotDotNetAppId)
           appSecret: $(BffnEchoSkillBotDotNetAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionDotNetSkills)
           project: 
             directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot'
             name: 'EchoSkillBot.csproj'
@@ -145,6 +148,7 @@ stages:
           displayName: 'DotNet Echo Skill Bot 2.1'
           appId: $(BffnEchoSkillBotDotNet21AppId)
           appSecret: $(BffnEchoSkillBotDotNet21AppSecret)
+          dependencyVersion: $(InternalDependenciesVersionDotNetSkills)
           project: 
             directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot-2.1'
             name: 'EchoSkillBot-2.1.csproj'
@@ -155,6 +159,7 @@ stages:
           displayName: 'DotNet Echo Skill Bot v3'
           appId: $(BffnEchoSkillBotDotNetV3AppId)
           appSecret: $(BffnEchoSkillBotDotNetV3AppSecret)
+          dependencyVersion: $(InternalDependenciesVersionDotNetSkillsV3)
           project:
             directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot-v3'
             name: 'EchoSkillBot-v3.csproj'
@@ -164,6 +169,7 @@ stages:
           displayName: 'DotNet Waterfall Host Bot'
           appId: $(BffnWaterfallHostBotDotNetAppId)
           appSecret: $(BffnWaterfallHostBotDotNetAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionDotNetHosts)
           project:
             directory: 'Bots/DotNet/Consumers/CodeFirst/WaterfallHostBot'
             name: 'WaterfallHostBot.csproj'
@@ -174,6 +180,7 @@ stages:
           displayName: 'DotNet Waterfall Skill Bot'
           appId: $(BffnWaterfallSkillBotDotNetAppId)
           appSecret: $(BffnWaterfallSkillBotDotNetAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionDotNetSkills)
           project: 
             directory: 'Bots/DotNet/Skills/CodeFirst/WaterfallSkillBot'
             name: 'WaterfallSkillBot.csproj'
@@ -190,6 +197,7 @@ stages:
           displayName: 'DotNet Simple Composer Host Bot'
           appId: $(BffnSimpleHostBotComposerDotNetAppId)
           appSecret: $(BffnSimpleHostBotComposerDotNetAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionDotNetHosts)
           project: 
             directory: 'Bots/DotNet/Consumers/Composer/SimpleHostBotComposer'
             netCoreVersion: '3.1.x'
@@ -199,6 +207,7 @@ stages:
           displayName: 'DotNet Echo Composer Skill Bot'
           appId: $(BffnEchoSkillBotComposerDotNetAppId)
           appSecret: $(BffnEchoSkillBotComposerDotNetAppSecret)
+          dependencyVersion: $(InternalDependenciesVersionDotNetSkills)
           project: 
             directory: 'Bots/DotNet/Skills/Composer/EchoSkillBotComposer'
             netCoreVersion: '3.1.x'
@@ -232,6 +241,7 @@ stages:
           displayName: 'JS Echo Skill Bot v3'
           appId: $(BffnEchoSkillBotJSV3AppId)
           appSecret: $(BffnEchoSkillBotJSV3AppSecret)
+          dependencyVersion: $(InternalDependenciesVersionJSSkillsV3)
           project:
             directory: 'Bots/JavaScript/Skills/CodeFirst/EchoSkillBot-v3'
 

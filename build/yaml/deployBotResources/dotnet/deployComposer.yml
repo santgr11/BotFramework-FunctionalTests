@@ -175,6 +175,7 @@ stages:
               appServicePlan: "${{ parameters.appServicePlan }}"
               appServicePlanRG: "${{ parameters.appServicePlanRG }}"
               appInsight: "${{ parameters.appInsight }}"
+              templateFile: "build/templates/template-bot-resources.json"
 
           # Deploy bot
           - template: ../common/zipDeploy.yml

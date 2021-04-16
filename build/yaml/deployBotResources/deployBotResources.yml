@@ -12,12 +12,12 @@ pool:
 variables:
   BuildConfiguration: 'Debug'
   BuildPlatform: 'AnyCPU'
-  InternalAppInsightsName: 'bffnappinsights$($env:ResourceSuffix)'
-  InternalAppServicePlanLinuxName: $[coalesce(variables['AppServicePlanNameLinux'], 'bffnbotsappservicelinux$($env:ResourceSuffix)')]
+  InternalAppInsightsName: 'bffnappinsights'
+  InternalAppServicePlanLinuxName: $[coalesce(variables['AppServicePlanNameLinux'], 'bffnbotsappservicelinux')]
   InternalAppServicePlanLinuxResourceGroupName: $[coalesce(variables['AppServicePlanGroupLinux'], 'bffnshared-linux')]
-  InternalAppServicePlanWindowsName: $[coalesce(variables['AppServicePlanName'], 'bffnbotsappservicewin$($env:ResourceSuffix)')]
+  InternalAppServicePlanWindowsName: $[coalesce(variables['AppServicePlanName'], 'bffnbotsappservicewin')]
   InternalAppServicePlanWindowsResourceGroup: $[coalesce(variables['AppServicePlanGroup'], 'bffnshared')]
-  InternalKeyVaultName: 'bffnbotkeyvault$($env:ResourceSuffix)'
+  InternalKeyVaultName: 'bffnbotkeyvault'
   InternalResourceGroupName: $[coalesce(variables['ResourceGroup'], 'bffnbots')]
   # AzureSubscription: define in Azure
   # AppServicePlanGroup: (optional) define in Azure
@@ -69,7 +69,6 @@ variables:
   # DependenciesVersionSkills: (optional) define in Azure
   # DependenciesVersionSkillsV3: (optional) define in Azure
   # ResourceGroup: (optional) define in Azure
-  # ResourceSuffix: (optional) define in Azure
 
 stages:
 # Resource Groups

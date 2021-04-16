@@ -1,11 +1,11 @@
 parameters:
-  botName: ''
-  botGroup: ''
+  botName: ""
+  botGroup: ""
   resourceSuffix: ""
 
 steps:
 - task: AzureCLI@2
-  displayName: 'Create DirectLine Channel'
+  displayName: "Create DirectLine Channel"
   inputs:
     azureSubscription: $(AzureSubscription)
     scriptType: pscore

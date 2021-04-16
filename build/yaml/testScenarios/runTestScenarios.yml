@@ -8,11 +8,11 @@ trigger: none
 pr: none
 
 variables:
-  BuildConfiguration: 'Debug'
-  BuildPlatform: 'any cpu'
-  InternalKeyVaultName: 'bffnbotkeyvault$($env:ResourceSuffix)'
+  BuildConfiguration: "Debug"
+  BuildPlatform: "any cpu"
+  InternalKeyVaultName: "bffnbotkeyvault$($env:ResourceSuffix)"
   InternalResourceGroupName: $[coalesce(variables['ResourceGroup'], 'bffnbots')]
-  DeployBotResourcesDefaultGuid: '02 - Deploy Bot Resources'
+  DeployBotResourcesDefaultGuid: "02 - Deploy Bot Resources"
   # AzureSubscription: define in Azure
   # BffnEchoSkillBotComposerDotnetAppId: (optional) define in Azure
   # BffnEchoSkillBotDotNet21AppId: (optional) define in Azure
@@ -29,38 +29,38 @@ variables:
   # ResourceSuffix: (optional) define in Azure
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: "windows-2019"
 
 stages:
-  - stage: 'Download_Variables'
-    displayName: 'Download Variables'
+  - stage: "Download_Variables"
+    displayName: "Download Variables"
     jobs:
-      - job: 'Download_Variables'
-        displayName: 'Download Variables'
+      - job: "Download_Variables"
+        displayName: "Download Variables"
         steps:
           - powershell: |
               $pipelineGuid = if ([string]::IsNullOrEmpty("$env:DeployBotResourcesGuid")) { "$(DeployBotResourcesDefaultGuid)" } else { "$(DeployBotResourcesGuid)" }
               Write-Host "Deploy Bot Resources Pipeline GUID: " $pipelineGuid
               Write-Host "##vso[task.setvariable variable=PipelineGuid]$pipelineGuid"
-            displayName: 'Set Deploy Bot Resources GUID'
+            displayName: "Set Deploy Bot Resources GUID"
 
           - task: DownloadPipelineArtifact@2
-            displayName: 'Download Variables artifact'
+            displayName: "Download Variables artifact"
             inputs:
-              source: 'specific'
-              project: '$(System.TeamProject)'
-              pipeline: '$(PipelineGuid)'
+              source: "specific"
+              project: "$(System.TeamProject)"
+              pipeline: "$(PipelineGuid)"
               allowPartiallySucceededBuilds: true
               allowFailedBuilds: true
-              artifact: 'Variables'
-              path: '$(System.DefaultWorkingDirectory)/Variables/'
+              artifact: "Variables"
+              path: "$(System.DefaultWorkingDirectory)/Variables/"
 
           - powershell: |
               $deploymentBuildSuffix = (Get-Content -Path "$(System.DefaultWorkingDirectory)/Variables/variables.json" | ConvertFrom-Json).deploymentBuildSuffix
               Write-Host "Deployment Build Suffix: " $deploymentBuildSuffix
               Write-Host "##vso[task.setvariable variable=DeploymentBuildSuffix;isOutput=true]$deploymentBuildSuffix"
-            displayName: 'Set variables'
-            name: 'Set_Variables'
+            displayName: "Set variables"
+            name: "Set_Variables"
 
   - template: runScenario.yml
     parameters:

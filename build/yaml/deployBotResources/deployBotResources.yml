@@ -2,16 +2,16 @@
 # Deploys the bot resources needed for the Skills Functional Tests.
 #
 
-name: $(Build.BuildId)
+name: "$(Build.BuildId)"
 trigger: none
 pr: none
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: "windows-2019"
 
 variables:
-  BuildConfiguration: 'Debug'
-  BuildPlatform: 'AnyCPU'
+  BuildConfiguration: "Debug"
+  BuildPlatform: "AnyCPU"
   ## Azure Resources (Define these variables in Azure)
   # AzureSubscription: Service Connection Name to Manage Azure resources.
   # AppServicePlanGroup: (optional) Name of the Resource Group where the Windows App Service Plan is located.
@@ -75,7 +75,6 @@ variables:
   InternalAppServicePlanLinuxName: $[coalesce(variables['AppServicePlanNameLinux'], 'bffnbotsappservicelinux$(InternalResourceSuffix)')]
   InternalAppServicePlanLinuxResourceGroup: $[coalesce(variables['AppServicePlanGroupLinux'], 'bffnshared-linux')]
   InternalAppServicePlanWindowsName: $[coalesce(variables['AppServicePlanName'], 'bffnbotsappservicewin$(InternalResourceSuffix)')]
-  InternalAppServicePlanWindowsResourceGroup: $[coalesce(variables['AppServicePlanGroup'], 'bffnshared')]
   InternalKeyVaultName: 'bffnbotkeyvault-ceci$(InternalResourceSuffix)'
   InternalResourceGroupName: $[coalesce(variables['ResourceGroup'], 'bffnbots')]
 
@@ -85,15 +84,15 @@ stages:
   - template: common/prepareResources.yml
     parameters:
       resourceGroups: 
-        - id: 'Prepare_DotNetGroup'
+        - id: "Prepare_DotNetGroup"
           name: "$(InternalResourceGroupName)-DotNet"
           displayName: "Prepare DotNet's Resource Group"
 
-        - id: 'Prepare_JSGroup'
+        - id: "Prepare_JSGroup"
           name: "$(InternalResourceGroupName)-JS"
           displayName: "Prepare JS's Resource Group"
 
-        - id: 'Prepare_PythonGroup'
+        - id: "Prepare_PythonGroup"
           name: "$(InternalResourceGroupName)-Python"
           displayName: "Prepare Python's Resource Group"
 
@@ -110,86 +109,86 @@ stages:
       connectionName: $env:ConnectionName
       keyVault: "$(InternalKeyVaultName)"
       bots:
-        - name: bffnsimplehostbotdotnet
-          type: 'Host'
-          displayName: 'DotNet Simple Host Bot'
+        - name: "bffnsimplehostbotdotnet"
+          type: "Host"
+          displayName: "DotNet Simple Host Bot"
           appId: $(BffnSimpleHostBotDotNetAppId)
           appSecret: $(BffnSimpleHostBotDotNetAppSecret)
           project:
             directory: 'Bots/DotNet/Consumers/CodeFirst/SimpleHostBot'
-            name: 'SimpleHostBot.csproj'
-            netCoreVersion: '3.1.x'
+            name: "SimpleHostBot.csproj"
+            netCoreVersion: "3.1.x"
           dependenciesRegistry: "$($env:DependenciesRegistryHosts)"
           dependenciesVersion: "$($env:DependenciesVersionHosts)"
 
-        - name: bffnsimplehostbotdotnet21
-          type: 'Host'
-          displayName: 'DotNet Simple Host Bot 2.1'
+        - name: "bffnsimplehostbotdotnet21"
+          type: "Host"
+          displayName: "DotNet Simple Host Bot 2.1"
           appId: $(BffnSimpleHostBotDotNet21AppId)
           appSecret: $(BffnSimpleHostBotDotNet21AppSecret)
           project: 
             directory: 'Bots/DotNet/Consumers/CodeFirst/SimpleHostBot-2.1'
-            name: 'SimpleHostBot-2.1.csproj'
-            netCoreVersion: '2.1.x'
+            name: "SimpleHostBot-2.1.csproj"
+            netCoreVersion: "2.1.x"
           dependenciesRegistry: "$($env:DependenciesRegistryHosts)"
           dependenciesVersion: "$($env:DependenciesVersionHosts)"
 
-        - name: bffnechoskillbotdotnet
-          type: 'Skill'
-          displayName: 'DotNet Echo Skill Bot'
+        - name: "bffnechoskillbotdotnet"
+          type: "Skill"
+          displayName: "DotNet Echo Skill Bot"
           appId: $(BffnEchoSkillBotDotNetAppId)
           appSecret: $(BffnEchoSkillBotDotNetAppSecret)
           project: 
             directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot'
-            name: 'EchoSkillBot.csproj'
-            netCoreVersion: '3.1.x'
+            name: "EchoSkillBot.csproj"
+            netCoreVersion: "3.1.x"
           dependenciesRegistry: "$($env:DependenciesRegistrySkills)"
           dependenciesVersion: "$($env:DependenciesVersionSkills)"
 
-        - name: bffnechoskillbotdotnet21
-          type: 'Skill'
-          displayName: 'DotNet Echo Skill Bot 2.1'
+        - name: "bffnechoskillbotdotnet21"
+          type: "Skill"
+          displayName: "DotNet Echo Skill Bot 2.1"
           appId: $(BffnEchoSkillBotDotNet21AppId)
           appSecret: $(BffnEchoSkillBotDotNet21AppSecret)
           project: 
             directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot-2.1'
-            name: 'EchoSkillBot-2.1.csproj'
-            netCoreVersion: '2.1.x'
+            name: "EchoSkillBot-2.1.csproj"
+            netCoreVersion: "2.1.x"
           dependenciesRegistry: "$($env:DependenciesRegistrySkills)"
           dependenciesVersion: "$($env:DependenciesVersionSkills)"
 
-        - name: bffnechoskillbotdotnetv3
-          type: 'SkillV3'
-          displayName: 'DotNet Echo Skill Bot v3'
+        - name: "bffnechoskillbotdotnetv3"
+          type: "SkillV3"
+          displayName: "DotNet Echo Skill Bot v3"
           appId: $(BffnEchoSkillBotDotNetV3AppId)
           appSecret: $(BffnEchoSkillBotDotNetV3AppSecret)
           project:
             directory: 'Bots/DotNet/Skills/CodeFirst/EchoSkillBot-v3'
-            name: 'EchoSkillBot-v3.csproj'
+            name: "EchoSkillBot-v3.csproj"
           dependenciesRegistry: "$($env:DependenciesRegistrySkillsV3)"
           dependenciesVersion: "$($env:DependenciesVersionSkillsV3)"
 
-        - name: bffnwaterfallhostbotdotnet
-          type: 'Host'
-          displayName: 'DotNet Waterfall Host Bot'
+        - name: "bffnwaterfallhostbotdotnet"
+          type: "Host"
+          displayName: "DotNet Waterfall Host Bot"
           appId: $(BffnWaterfallHostBotDotNetAppId)
           appSecret: $(BffnWaterfallHostBotDotNetAppSecret)
           project:
             directory: 'Bots/DotNet/Consumers/CodeFirst/WaterfallHostBot'
-            name: 'WaterfallHostBot.csproj'
-            netCoreVersion: '3.1.x'
+            name: "WaterfallHostBot.csproj"
+            netCoreVersion: "3.1.x"
           dependenciesRegistry: "$($env:DependenciesRegistryHosts)"
           dependenciesVersion: "$($env:DependenciesVersionHosts)"
 
-        - name: bffnwaterfallskillbotdotnet
-          type: 'Skill'
-          displayName: 'DotNet Waterfall Skill Bot'
+        - name: "bffnwaterfallskillbotdotnet"
+          type: "Skill"
+          displayName: "DotNet Waterfall Skill Bot"
           appId: $(BffnWaterfallSkillBotDotNetAppId)
           appSecret: $(BffnWaterfallSkillBotDotNetAppSecret)
           project: 
             directory: 'Bots/DotNet/Skills/CodeFirst/WaterfallSkillBot'
-            name: 'WaterfallSkillBot.csproj'
-            netCoreVersion: '3.1.x'
+            name: "WaterfallSkillBot.csproj"
+            netCoreVersion: "3.1.x"
           dependenciesRegistry: "$($env:DependenciesRegistrySkills)"
           dependenciesVersion: "$($env:DependenciesVersionSkills)"
 
@@ -205,25 +204,25 @@ stages:
       appInsight: "$(InternalAppInsightsName)"
       keyVault: "$(InternalKeyVaultName)"
       bots:
-        - name: bffnsimplehostbotcomposerdotnet
-          type: 'Host'
-          displayName: 'DotNet Simple Composer Host Bot'
+        - name: "bffnsimplehostbotcomposerdotnet"
+          type: "Host"
+          displayName: "DotNet Simple Composer Host Bot"
           appId: $(BffnSimpleHostBotComposerDotNetAppId)
           appSecret: $(BffnSimpleHostBotComposerDotNetAppSecret)
           project: 
             directory: 'Bots/DotNet/Consumers/Composer/SimpleHostBotComposer'
-            netCoreVersion: '3.1.x'
+            netCoreVersion: "3.1.x"
           dependenciesRegistry: "$($env:DependenciesRegistryHosts)"
           dependenciesVersion: "$($env:DependenciesVersionHosts)"
 
-        - name: bffnechoskillbotcomposerdotnet
-          type: 'Skill'
-          displayName: 'DotNet Echo Composer Skill Bot'
+        - name: "bffnechoskillbotcomposerdotnet"
+          type: "Skill"
+          displayName: "DotNet Echo Composer Skill Bot"
           appId: $(BffnEchoSkillBotComposerDotNetAppId)
           appSecret: $(BffnEchoSkillBotComposerDotNetAppSecret)
           project: 
             directory: 'Bots/DotNet/Skills/Composer/EchoSkillBotComposer'
-            netCoreVersion: '3.1.x'
+            netCoreVersion: "3.1.x"
           dependenciesRegistry: "$($env:DependenciesRegistrySkills)"
           dependenciesVersion: "$($env:DependenciesVersionSkills)"
 
@@ -240,9 +239,9 @@ stages:
       connectionName: $env:ConnectionName
       keyVault: "$(InternalKeyVaultName)"
       bots:
-        - name: bffnsimplehostbotjs
-          type: 'Host'
-          displayName: 'JS Simple Host Bot'
+        - name: "bffnsimplehostbotjs"
+          type: "Host"
+          displayName: "JS Simple Host Bot"
           appId: $(BffnSimpleHostBotJSAppId)
           appSecret: $(BffnSimpleHostBotJSAppSecret)
           project:
@@ -250,9 +249,9 @@ stages:
           dependenciesRegistry: "$($env:DependenciesRegistryHosts)"
           dependenciesVersion: "$($env:DependenciesVersionHosts)"
 
-        - name: bffnechoskillbotjs
-          type: 'Skill'
-          displayName: 'JS Echo Skill Bot'
+        - name: "bffnechoskillbotjs"
+          type: "Skill"
+          displayName: "JS Echo Skill Bot"
           appId: $(BffnEchoSkillBotJSAppId)
           appSecret: $(BffnEchoSkillBotJSAppSecret)
           project: 
@@ -260,9 +259,9 @@ stages:
           dependenciesRegistry: "$($env:DependenciesRegistrySkills)"
           dependenciesVersion: "$($env:DependenciesVersionSkills)"
 
-        - name: bffnechoskillbotjsv3
-          type: 'SkillV3'
-          displayName: 'JS Echo Skill Bot v3'
+        - name: "bffnechoskillbotjsv3"
+          type: "SkillV3"
+          displayName: "JS Echo Skill Bot v3"
           appId: $(BffnEchoSkillBotJSV3AppId)
           appSecret: $(BffnEchoSkillBotJSV3AppSecret)
           project:
@@ -270,9 +269,9 @@ stages:
           dependenciesRegistry: "$($env:DependenciesRegistrySkillsV3)"
           dependenciesVersion: "$($env:DependenciesVersionSkillsV3)"
 
-        - name: bffnwaterfallhostbotjs
-          type: 'Host'
-          displayName: 'JS Waterfall Host Bot'
+        - name: "bffnwaterfallhostbotjs"
+          type: "Host"
+          displayName: "JS Waterfall Host Bot"
           appId: $(BffnWaterfallHostBotJSAppId)
           appSecret: $(BffnWaterfallHostBotJSAppSecret)
           project:
@@ -280,9 +279,9 @@ stages:
           dependenciesRegistry: "$($env:DependenciesRegistryHosts)"
           dependenciesVersion: "$($env:DependenciesVersionHosts)"
 
-        - name: bffnwaterfallskillbotjs
-          type: 'Skill'
-          displayName: 'JS Waterfall Skill Bot'
+        - name: "bffnwaterfallskillbotjs"
+          type: "Skill"
+          displayName: "JS Waterfall Skill Bot"
           appId: $(BffnWaterfallSkillBotJSAppId)
           appSecret: $(BffnWaterfallSkillBotJSAppSecret)
           project: 
@@ -302,9 +301,9 @@ stages:
       connectionName: $env:CONNECTIONNAME
       keyVault: "$(InternalKeyVaultName)"
       bots:
-        - name: bffnsimplehostbotpython
-          type: 'Host'
-          displayName: 'Python Simple Host Bot'
+        - name: "bffnsimplehostbotpython"
+          type: "Host"
+          displayName: "Python Simple Host Bot"
           appId: $(BffnSimpleHostBotPythonAppId)
           appSecret: $(BffnSimpleHostBotPythonAppSecret)
           project:
@@ -312,9 +311,9 @@ stages:
           dependenciesRegistry: "$($env:DependenciesRegistryHosts)"
           dependenciesVersion: "$($env:DependenciesVersionHosts)"
 
-        - name: bffnechoskillbotpython
-          type: 'Skill'
-          displayName: 'Python Echo Skill Bot'
+        - name: "bffnechoskillbotpython"
+          type: "Skill"
+          displayName: "Python Echo Skill Bot"
           appId: $(BffnEchoSkillBotPythonAppId)
           appSecret: $(BffnEchoSkillBotPythonAppSecret)
           project: 
@@ -322,9 +321,9 @@ stages:
           dependenciesRegistry: "$($env:DependenciesRegistrySkills)"
           dependenciesVersion: "$($env:DependenciesVersionSkills)"
 
-        - name: bffnwaterfallhostbotpython
-          type: 'Host'
-          displayName: 'Python Waterfall Host Bot'
+        - name: "bffnwaterfallhostbotpython"
+          type: "Host"
+          displayName: "Python Waterfall Host Bot"
           appId: $(BffnWaterfallHostBotPythonAppId)
           appSecret: $(BffnWaterfallHostBotPythonAppSecret)
           project:
@@ -332,9 +331,9 @@ stages:
           dependenciesRegistry: "$($env:DependenciesRegistryHosts)"
           dependenciesVersion: "$($env:DependenciesVersionHosts)"
 
-        - name: bffnwaterfallskillbotpython
-          type: 'Skill'
-          displayName: 'Python Waterfall Skill Bot'
+        - name: "bffnwaterfallskillbotpython"
+          type: "Skill"
+          displayName: "Python Waterfall Skill Bot"
           appId: $(BffnWaterfallSkillBotPythonAppId)
           appSecret: $(BffnWaterfallSkillBotPythonAppSecret)
           project: 
@@ -343,12 +342,12 @@ stages:
           dependenciesVersion: "$($env:DependenciesVersionSkills)"
 
 # Publish variables
-  - stage: 'Publish_Variables'
-    displayName: 'Publish Variables'
+  - stage: "Publish_Variables"
+    displayName: "Publish Variables"
     dependsOn: []
     jobs:
-      - job: 'Publish_Variables'
-        displayName: 'Publish Variables'
+      - job: "Publish_Variables"
+        displayName: "Publish Variables"
         steps:
           - powershell: |
               $variables = @{
@@ -357,10 +356,10 @@ stages:
               Write-Host $variables
               New-Item -Path "$(System.DefaultWorkingDirectory)" -Name "variables" -ItemType "directory"
               $variables | ConvertTo-Json | Out-File "$(System.DefaultWorkingDirectory)/Variables/variables.json"
-            displayName: 'Create Variables file'
+            displayName: "Create Variables file"
 
           - task: PublishPipelineArtifact@1
-            displayName: 'Publish Variables as artifact'
+            displayName: "Publish Variables as artifact"
             inputs:
-              targetPath: $(System.DefaultWorkingDirectory)/variables
+              targetPath: "$(System.DefaultWorkingDirectory)/variables"
               artifactName: Variables

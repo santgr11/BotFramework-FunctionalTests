@@ -1,6 +1,6 @@
 parameters:
-  dependsOn: ''
-  resourceGroup: ''
+  dependsOn: ""
+  resourceGroup: ""
   bots: []
   botPricingTier: ""
   resourceSuffix: ""
@@ -12,21 +12,21 @@ parameters:
 
 stages:
 - ${{ each bot in parameters.bots }}:
-  - stage: 'Deploy_${{ bot.name }}'
+  - stage: "Deploy_${{ bot.name }}"
     ${{ if eq(bot.displayName, '') }}:
-      displayName: '${{ bot.name }}'
+      displayName: "${{ bot.name }}"
     ${{ if ne(bot.displayName, '') }}:
-      displayName: '${{ bot.displayName }}'
-    dependsOn: '${{ parameters.dependsOn }}'
+      displayName: "${{ bot.displayName }}"
+    dependsOn: "${{ parameters.dependsOn }}"
     jobs:
-      - job: 'Deploy'
-        displayName: 'Deploy steps'
+      - job: "Deploy"
+        displayName: "Deploy steps"
         steps:
           # Delete Bot Resources
           - template: ../common/deleteResources.yml
             parameters:
-              resourceGroup: '${{ parameters.resourceGroup }}'
-              resourceName: '${{ bot.name }}'
+              resourceGroup: "${{ parameters.resourceGroup }}"
+              resourceName: "${{ bot.name }}"
               resourceSuffix: "${{ parameters.resourceSuffix }}"
 
           # Gets Bot App Registration credentials from KeyVault or Pipeline Variables
@@ -34,7 +34,7 @@ stages:
             parameters:
               appId: ${{ bot.appId }}
               appSecret: ${{ bot.appSecret }}
-              botName: '${{ bot.name }}'
+              botName: "${{ bot.name }}"
               keyVault: "${{ parameters.keyVault }}"
 
           # Prepare .env file, deleting all the declared skills, so it uses only the settings define in Azure
@@ -60,15 +60,15 @@ stages:
             parameters:
               registry: "${{ bot.dependenciesRegistry }}"
               version: "${{ bot.dependenciesVersion }}"
-              botType: '${{ bot.type }}'
+              botType: "${{ bot.type }}"
 
           # Tag BotBuilder version
           - template: ../common/tagBotBuilderVersion.yml
             parameters:
               ${{ if eq(bot.displayName, '') }}:
-                botName: '${{ bot.name }}'
+                botName: "${{ bot.name }}"
               ${{ if ne(bot.displayName, '') }}:
-                botName: '${{ bot.displayName }}'
+                botName: "${{ bot.displayName }}"
               version: "$(DependenciesVersionNumber)"
 
           # Set BotBuilder source and version
@@ -141,8 +141,8 @@ stages:
             parameters:
               appId: $(AppId)
               appSecret:  $(AppSecret)
-              botName: '${{ bot.name }}'
-              botGroup: '${{ parameters.resourceGroup }}'
+              botName: "${{ bot.name }}"
+              botGroup: "${{ parameters.resourceGroup }}"
               botPricingTier: "${{ parameters.botPricingTier }}"
               resourceSuffix: "${{ parameters.resourceSuffix }}"
               appServicePlan: "${{ parameters.appServicePlan }}"
@@ -166,8 +166,8 @@ stages:
               parameters:
                 appId: $(AppId)
                 appSecret:  $(AppSecret)
-                botName: '${{ bot.name }}'
-                botGroup: '${{ parameters.resourceGroup }}'
+                botName: "${{ bot.name }}"
+                botGroup: "${{ parameters.resourceGroup }}"
                 connectionName: "${{ parameters.connectionName }}"
                 resourceSuffix: "${{ parameters.resourceSuffix }}"
 
@@ -175,6 +175,6 @@ stages:
           - ${{ if eq(bot.type, 'Host') }}:
             - template: ../common/createDirectLine.yml
               parameters:
-                botName: '${{ bot.name }}'
-                botGroup: '${{ parameters.resourceGroup }}'
+                botName: "${{ bot.name }}"
+                botGroup: "${{ parameters.resourceGroup }}"
                 resourceSuffix: "${{ parameters.resourceSuffix }}"

@@ -155,7 +155,7 @@ stages:
             displayName: 'Deploy Azure Web App : ${{ bot.name }}-$(Build.BuildId)'
             inputs:
               azureSubscription: $(AzureSubscription)
-              appName: '${{ bot.name }}-$(Build.BuildId)'
+              appName: '${{ bot.name }}{{ parameters.resourceSuffix }}-$(Build.BuildId)'
               resourceGroupName: '${{ parameters.resourceGroup }}'
               package: '$(System.DefaultWorkingDirectory)/build/${{ bot.name }}.zip'
               deploymentMethod: runFromPackage

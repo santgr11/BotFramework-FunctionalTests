@@ -76,7 +76,7 @@ variables:
   InternalAppServicePlanLinuxResourceGroup: $[coalesce(variables['AppServicePlanGroupLinux'], 'bffnshared-linux')]
   InternalAppServicePlanWindowsName: $[coalesce(variables['AppServicePlanName'], 'bffnbotsappservicewin$(InternalResourceSuffix)')]
   InternalAppServicePlanWindowsResourceGroup: $[coalesce(variables['AppServicePlanGroup'], 'bffnshared')]
-  InternalKeyVaultName: 'bffnbotkeyvault$(InternalResourceSuffix)'
+  InternalKeyVaultName: 'bffnbotkeyvault-ceci$(InternalResourceSuffix)'
   InternalResourceGroupName: $[coalesce(variables['ResourceGroup'], 'bffnbots')]
 
 

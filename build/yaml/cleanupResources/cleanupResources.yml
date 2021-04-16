@@ -14,7 +14,7 @@ variables:
   InternalKeyVaultName: "bffnbotkeyvault$($env:ResourceSuffix)"
   BotResourceGroup: "bffnbots$($env:ResourceSuffix)"
   InternalBotResourceGroupName: $[coalesce(variables['DeployResourceGroup'], variables['BotResourceGroup'])]
-  InternalSharedResourceGroupName: $[coalesce(variables['SharedResourceGroup'], "bffnshared")]
+  InternalSharedResourceGroupName: $[coalesce(variables['SharedResourceGroup'], 'bffnshared')]
   # AzureSubscription: define in Azure
   # DeployResourceGroup: (optional) define in Azure
   # ResourceSuffix: (optional) define in Azure
@@ -109,14 +109,14 @@ stages:
 - stage: "Delete_App_Insights"
   displayName: "Delete App Insights"
   dependsOn: []
-  jobs:"
+  jobs:
     - job: "Delete"
       displayName: "Delete steps"
       steps:
         - task: AzureCLI@2
           displayName: "Delete App Insights"
           inputs:
-            azureSubscription: "$(AzureSubscription)
+            azureSubscription: $(AzureSubscription)
             scriptType: pscore
             scriptLocation: inlineScript
             inlineScript: |

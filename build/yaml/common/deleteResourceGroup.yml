@@ -5,7 +5,7 @@ steps:
   - task: AzureCLI@2
     displayName: "Delete pre-existing Resource Group"
     inputs:
-      azureSubscription: $(AzureSubscription)""
+      azureSubscription: $(AzureSubscription)
       scriptType: pscore
       scriptLocation: inlineScript
       inlineScript: |

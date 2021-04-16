@@ -7,7 +7,7 @@ steps:
   - task: AzureCLI@2
     displayName: "Deploy"
     inputs:
-      azureSubscription: "$(AzureSubscription)"
+      azureSubscription: $(AzureSubscription)
       scriptType: pscore
       scriptLocation: inlineScript
       inlineScript: |

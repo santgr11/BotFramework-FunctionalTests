@@ -6,9 +6,9 @@ parameters:
 stages:
 - ${{ each bot in parameters.bots }}:
   - stage: "Deploy_${{ bot.name }}"
-    ${{ if eq(bot.displayName, "") }}:
+    ${{ if eq(bot.displayName, '') }}:
       displayName: "${{ bot.name }}"
-    ${{ if ne(bot.displayName, "") }}:
+    ${{ if ne(bot.displayName, '') }}:
       displayName: "${{ bot.displayName }}"
     dependsOn: "${{ parameters.dependsOn }}"
     jobs:
@@ -24,12 +24,12 @@ stages:
           # Gets Bot App Registration credentials from KeyVault or Pipeline Variables
           - template: ../common/getAppRegistration.yml
             parameters:
-              appId: "${{ bot.appId }}"
-              appSecret: "${{ bot.appSecret }}"
+              appId: ${{ bot.appId }}
+              appSecret: ${{ bot.appSecret }}
               botName: "${{ bot.name }}"
 
           # Prepare .env file, deleting all the declared skills, so it uses only the settings define in Azure
-          - ${{ if eq(bot.type, "Host") }}:
+          - ${{ if eq(bot.type, 'Host') }}:
             - powershell: |
                 $file = "${{ bot.project.directory }}/.env"
                 $content = Get-Content $file
@@ -44,13 +44,13 @@ stages:
           # Evaluate dependencies source and version
           - template: evaluateDependenciesVariables.yml
             parameters:
-              ${{ if eq(bot.type, "Host") }}:
+              ${{ if eq(bot.type, 'Host') }}:
                 registry: "$env:DependenciesRegistryHosts"
                 version: "$env:DependenciesVersionHosts"
-              ${{ if eq(bot.type, "Skill") }}:
+              ${{ if eq(bot.type, 'Skill') }}:
                 registry: "$env:DependenciesRegistrySkills"
                 version: "$env:DependenciesVersionSkills"
-              ${{ if eq(bot.type, "SkillV3") }}:
+              ${{ if eq(bot.type, 'SkillV3') }}:
                 registry: "$env:DependenciesRegistrySkillsV3"
                 version: "$env:DependenciesVersionSkillsV3"
               botType: "${{ bot.type }}"
@@ -58,9 +58,9 @@ stages:
           # Tag BotBuilder version
           - template: ../common/tagBotBuilderVersion.yml
             parameters:
-              ${{ if eq(bot.displayName, "") }}:
+              ${{ if eq(bot.displayName, '') }}:
                 botName: "${{ bot.name }}"
-              ${{ if ne(bot.displayName, "") }}:
+              ${{ if ne(bot.displayName, '') }}:
                 botName: "${{ bot.displayName }}"
               version: "$(DependenciesVersionNumber)"
 
@@ -77,9 +77,9 @@ stages:
           - task: AzureCLI@1
             displayName: "Prepare Bot"
             inputs:
-              azureSubscription: "$(AzureSubscription)"
+              azureSubscription: $(AzureSubscription)
               scriptLocation: inlineScript
-              inlineScript: "call az bot prepare-deploy --code-dir "${{ bot.project.directory }}" --lang Javascript"
+              inlineScript: 'call az bot prepare-deploy --code-dir "${{ bot.project.directory }}" --lang Javascript'
 
           # Zip bot
           - powershell: |
@@ -90,17 +90,17 @@ stages:
           # Create App Service and Bot Channel Registration
           - template: ../common/createAppService.yml
             parameters:
-              appId: "$(AppId)"
-              appSecret:  "$(AppSecret)"
+              appId: $(AppId)
+              appSecret:  $(AppSecret)
               botName: "${{ bot.name }}"
               botGroup: "${{ parameters.resourceGroup }}"
 
           # Configure OAuth
-          - ${{ if eq(bot.type, "Skill") }}:
+          - ${{ if eq(bot.type, 'Skill') }}:
             - template: ../common/configureOAuth.yml
               parameters:
-                appId: "$(AppId)"
-                appSecret:  "$(AppSecret)"
+                appId: $(AppId)
+                appSecret:  $(AppSecret)
                 botName: "${{ bot.name }}"
                 botGroup: "${{ parameters.resourceGroup }}"
 
@@ -112,7 +112,7 @@ stages:
               source: "$(System.DefaultWorkingDirectory)/${{ bot.name }}.zip"
 
           # Create DirectLine Channel Hosts
-          - ${{ if eq(bot.type, "Host") }}:
+          - ${{ if eq(bot.type, 'Host') }}:
             - template: ../common/createDirectLine.yml
               parameters:
                 botName: "${{ bot.name }}"

@@ -6,9 +6,9 @@ parameters:
 stages:
 - ${{ each bot in parameters.bots }}:
   - stage: "Deploy_${{ bot.name }}"
-    ${{ if eq(bot.displayName, "") }}:
+    ${{ if eq(bot.displayName, '') }}:
       displayName: "${{ bot.name }}"
-    ${{ if ne(bot.displayName, "") }}:
+    ${{ if ne(bot.displayName, '') }}:
       displayName: "${{ bot.displayName }}"
     dependsOn: "${{ parameters.dependsOn }}"
     jobs:
@@ -31,7 +31,7 @@ stages:
               botName: "${{ bot.name }}"
 
           # Prepare .env file, deleting all the declared skills, so it uses only the settings define in Azure
-          - ${{ if eq(bot.type, "Host") }}:
+          - ${{ if eq(bot.type, 'Host') }}:
               - task: PowerShell@2
                 displayName: "Prepare .env file"
                 inputs:
@@ -49,10 +49,10 @@ stages:
           # Evaluate dependencies source and version
           - template: evaluateDependenciesVariables.yml
             parameters:
-              ${{ if eq(bot.type, "Host") }}:
+              ${{ if eq(bot.type, 'Host') }}:
                 registry: "$env:DependenciesRegistryHosts"
                 version: "$env:DependenciesVersionHosts"
-              ${{ if eq(bot.type, "Skill") }}:
+              ${{ if eq(bot.type, 'Skill') }}:
                 registry: "$env:DependenciesRegistrySkills"
                 version: "$env:DependenciesVersionSkills"
               botType: "${{ bot.type }}"
@@ -61,9 +61,9 @@ stages:
           # Tag BotBuilder package version
           - template: ../common/tagBotBuilderVersion.yml
             parameters:
-              ${{ if eq(bot.displayName, "") }}:
+              ${{ if eq(bot.displayName, '') }}:
                 botName: "${{ bot.name }}"
-              ${{ if ne(bot.displayName, "") }}:
+              ${{ if ne(bot.displayName, '') }}:
                 botName: "${{ bot.displayName }}"
               version: "$(DependenciesVersionNumber)"
                     
@@ -76,11 +76,11 @@ stages:
               botGroup: "${{ parameters.resourceGroup }}"
 
           # Configure OAuth
-          - ${{ if eq(bot.type, "Skill") }}:
+          - ${{ if eq(bot.type, 'Skill') }}:
             - template: ../common/configureOAuth.yml
               parameters:
-                appId: "$(AppId)"
-                appSecret:  "$(AppSecret)"
+                appId: $(AppId)
+                appSecret:  $(AppSecret)
                 botName: "${{ bot.name }}"
                 botGroup: "${{ parameters.resourceGroup }}"
 
@@ -121,7 +121,7 @@ stages:
           - task: AzureWebApp@1
             displayName: "Deploy Azure Web App : ${{ bot.name }}-$(Build.BuildId)"
             inputs:
-              azureSubscription: "$(AzureSubscription)"
+              azureSubscription: $(AzureSubscription)
               appName: "${{ bot.name }}-$(Build.BuildId)"
               appType: webAppLinux
               resourceGroupName: "${{ parameters.resourceGroup }}"
@@ -129,7 +129,7 @@ stages:
               deploymentMethod: runFromPackage
 
           # Create DirectLine Channel Hosts
-          - ${{ if eq(bot.type, "Host") }}:
+          - ${{ if eq(bot.type, 'Host') }}:
             - template: ../common/createDirectLine.yml
               parameters:
                 botName: "${{ bot.name }}"

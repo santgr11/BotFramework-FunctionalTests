@@ -6,7 +6,7 @@ steps:
   - task: AzureCLI@2
     displayName: "Delete pre-existing bot resources"
     inputs:
-      azureSubscription: "$(AzureSubscription)"
+      azureSubscription: $(AzureSubscription)
       scriptType: pscore
       scriptLocation: inlineScript
       inlineScript: |

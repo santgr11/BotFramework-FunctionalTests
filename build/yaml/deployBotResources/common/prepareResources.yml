@@ -17,6 +17,6 @@ stages:
           - task: AzureCLI@1
             displayName: "Create Resource Group"
             inputs:
-              azureSubscription: "$(AzureSubscription)"
+              azureSubscription: $(AzureSubscription)
               scriptLocation: inlineScript
               inlineScript: az group create --location westus --name "${{ resourceGroup.name }}"

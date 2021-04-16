@@ -6,7 +6,7 @@ steps:
   - task: AzureCLI@2
     displayName: "Delete Bots App Registrations"
     inputs:
-      azureSubscription: "$(AzureSubscription)"
+      azureSubscription: $(AzureSubscription)
       addSpnToEnvironment: true
       scriptType: pscore
       scriptLocation: inlineScript

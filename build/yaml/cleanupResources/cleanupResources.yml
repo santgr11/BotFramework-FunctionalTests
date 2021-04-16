@@ -13,8 +13,8 @@ variables:
   InternalCosmosDBName: "bffnbotstatedb$($env:ResourceSuffix)"
   InternalKeyVaultName: "bffnbotkeyvault$($env:ResourceSuffix)"
   BotResourceGroup: "bffnbots$($env:ResourceSuffix)"
-  InternalBotResourceGroupName: $[coalesce(variables["DeployResourceGroup"], variables["BotResourceGroup"])]
-  InternalSharedResourceGroupName: $[coalesce(variables["SharedResourceGroup"], "bffnshared")]
+  InternalBotResourceGroupName: $[coalesce(variables['DeployResourceGroup'], variables['BotResourceGroup'])]
+  InternalSharedResourceGroupName: $[coalesce(variables['SharedResourceGroup'], "bffnshared")]
   # AzureSubscription: define in Azure
   # DeployResourceGroup: (optional) define in Azure
   # ResourceSuffix: (optional) define in Azure
@@ -58,7 +58,7 @@ stages:
         - task: AzureCLI@2
           displayName: "Delete App Service Plan (Windows)"
           inputs:
-            azureSubscription: "$(AzureSubscription)"
+            azureSubscription: $(AzureSubscription)
             scriptType: pscore
             scriptLocation: inlineScript
             inlineScript: |
@@ -93,7 +93,7 @@ stages:
         - task: AzureCLI@2
           displayName: "Delete App Service Plan (Linux)"
           inputs:
-            azureSubscription: "$(AzureSubscription)"
+            azureSubscription: $(AzureSubscription)
             scriptType: pscore
             scriptLocation: inlineScript
             inlineScript: |
@@ -145,7 +145,7 @@ stages:
         - task: AzureCLI@2
           displayName: "Delete CosmosDB"
           inputs:
-            azureSubscription: "$(AzureSubscription)"
+            azureSubscription: $(AzureSubscription)
             scriptType: pscore
             scriptLocation: inlineScript
             inlineScript: |
@@ -181,7 +181,7 @@ stages:
         - task: AzureCLI@2
           displayName: "Delete Key Vault"
           inputs:
-            azureSubscription: "$(AzureSubscription)"
+            azureSubscription: $(AzureSubscription)
             scriptType: pscore
             scriptLocation: inlineScript
             inlineScript: |

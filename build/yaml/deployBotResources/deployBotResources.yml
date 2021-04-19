@@ -103,7 +103,7 @@ stages:
       dependsOn: "Prepare_DotNetGroup"
       resourceGroup: "$(InternalResourceGroupName)-DotNet"
       botPricingTier: $env:BotPricingTier
-      resourceSuffix: $env:ResourceSuffix
+      resourceSuffix: $(InternalResourceSuffix)
       appServicePlan: "$(InternalAppServicePlanWindowsName)"
       appServicePlanRG: "$(InternalAppServicePlanWindowsResourceGroup)"
       appInsight: "$(InternalAppInsightsName)"
@@ -199,7 +199,7 @@ stages:
       dependsOn: "Prepare_DotNetGroup"
       resourceGroup: "$(InternalResourceGroupName)-DotNet"
       botPricingTier: $env:BotPricingTier
-      resourceSuffix: $env:ResourceSuffix
+      resourceSuffix: $(InternalResourceSuffix)
       appServicePlan: "$(InternalAppServicePlanWindowsName)"
       appServicePlanRG: "$(InternalAppServicePlanWindowsResourceGroup)"
       appInsight: "$(InternalAppInsightsName)"

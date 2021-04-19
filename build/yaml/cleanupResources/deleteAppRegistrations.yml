@@ -37,9 +37,9 @@ steps:
         }
 
         Write-Host "Looking for ${{ parameters.keyVault }}..."
-        $exists = az keyvault list --resource-group "${{ parameters.resourceGroup }}" --query "[?name == "${{ parameters.keyVault }}"]" | ConvertFrom-Json
+        $exists = az keyvault list --resource-group "${{ parameters.resourceGroup }}" --query "[?name == '${{ parameters.keyVault }}']" | ConvertFrom-Json
         if ($exists) {
-          $entries = az keyvault secret list --vault-name "${{ parameters.keyVault }}" --query "[?ends_with(name, "AppObjectId")]" | ConvertFrom-Json
+          $entries = az keyvault secret list --vault-name "${{ parameters.keyVault }}" --query "[?ends_with(name, 'AppObjectId')]" | ConvertFrom-Json
           $token = GetToken
 
           foreach ($entry in $entries) {

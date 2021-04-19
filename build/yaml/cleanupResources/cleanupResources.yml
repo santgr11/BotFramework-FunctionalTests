@@ -189,7 +189,7 @@ stages:
             scriptLocation: inlineScript
             inlineScript: |
               Write-Host "Looking for $(InternalKeyVaultName)..."
-              $exists = az keyvault list --resource-group "$(InternalSharedResourceGroupName)" --query "[?name == "$(InternalKeyVaultName)"]" | ConvertFrom-Json
+              $exists = az keyvault list --resource-group "$(InternalSharedResourceGroupName)" --query "[?name == '$(InternalKeyVaultName)']" | ConvertFrom-Json
               if ($exists) {
                 Write-Host "Deleting $(InternalKeyVaultName)..."
                 az keyvault delete --name "$(InternalKeyVaultName)" --resource-group "$(InternalSharedResourceGroupName)"

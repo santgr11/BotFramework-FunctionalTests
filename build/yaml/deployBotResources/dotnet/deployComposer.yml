@@ -111,8 +111,8 @@ stages:
           # Install dependencies in Microsoft.BotFramework.Composer.Core
           - template: installDependencies.yml
             parameters:
-              source: $(DependenciesSource)
-              version: $(DependenciesVersionNumber)
+              source: "$(DependenciesSource)"
+              version: "$(DependenciesVersionNumber)"
               project: 
                 directory: "${{ bot.project.directory }}/runtime/core/"
                 name: "Microsoft.BotFramework.Composer.Core.csproj"

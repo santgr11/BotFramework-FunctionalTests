@@ -20,7 +20,15 @@ steps:
       foreach ($package in "${{ parameters.packages }}".Split()) {
         if ($package -eq "Microsoft.Bot.Builder.Dialogs.Debugging"){
           $versionAux = $version
-          $version = $version.replace("daily", "daily.preview")
+          if (-not ([string]::IsNullOrEmpty($version))) {
+            if ($version -Match "rc") {
+              $version = "$version.preview"
+            } elseif ($version -Match "daily") {
+              $version = $version.replace("daily", "daily.preview")
+            } else {
+              $version = "$version-preview"
+            }
+          }
         }
 
         Invoke-Expression "dotnet add ""${{ parameters.project.directory }}/${{ parameters.project.name }}"" package $version $source $package"

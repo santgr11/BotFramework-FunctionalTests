@@ -52,8 +52,8 @@ stages:
           # Evaluate dependencies source and version
           - template: evaluateDependenciesVariables.yml
             parameters:
-              registry: "${{ bot.dependenciesRegistry }}"
-              version: "${{ bot.dependenciesVersion }}"
+              registry: "${{ bot.dependency.registry }}"
+              version: "${{ bot.dependency.version }}"
               botType: "${{ bot.type }}"
 
           # Install dependencies in Microsoft.BotFramework.Composer.WebApp

@@ -233,7 +233,7 @@ stages:
       dependsOn: "Prepare_JSGroup"
       resourceGroup: "$(InternalResourceGroupName)-JS"
       botPricingTier: $env:BotPricingTier
-      resourceSuffix: $env:ResourceSuffix
+      resourceSuffix: $(InternalResourceSuffix)
       appServicePlan: "$(InternalAppServicePlanWindowsName)"
       appServicePlanRG: "$(InternalAppServicePlanWindowsResourceGroup)"
       appInsight: "$(InternalAppInsightsName)"

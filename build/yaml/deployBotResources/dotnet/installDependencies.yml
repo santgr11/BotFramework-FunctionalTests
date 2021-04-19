@@ -28,7 +28,7 @@ steps:
             $version = "$version-preview"
           }
         }
-
+        write-host "DEBUG: Installing $package $version from $source"
         Invoke-Expression "dotnet add ""${{ parameters.project.directory }}/${{ parameters.project.name }}"" package $version $source $package"
         
         if (-not ([string]::IsNullOrEmpty("$versionAux"))) {

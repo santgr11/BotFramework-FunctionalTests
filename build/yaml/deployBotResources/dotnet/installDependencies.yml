@@ -20,14 +20,12 @@ steps:
       foreach ($package in "${{ parameters.packages }}".Split()) {
         if ($package -eq "Microsoft.Bot.Builder.Dialogs.Debugging") {
           $versionAux = $version
-          if (-not ([string]::IsNullOrEmpty($version))) {
-            if ($version -Match "rc") {
-              $version = "$version.preview"
-            } elseif ($version -Match "daily") {
-              $version = $version.replace("daily", "daily.preview")
-            } else {
-              $version = "$version-preview"
-            }
+          if ($version -Match "rc") {
+            $version = "$version.preview"
+          } elseif ($version -Match "daily") {
+            $version = $version.replace("daily", "daily.preview")
+          } else {
+            $version = "$version-preview"
           }
         }
 

@@ -101,18 +101,7 @@
         "hostNamesDisabled": false,
         "clientCertEnabled": false,
         "httpsOnly": false,
-        "redundancyMode": "None"
-      }
-    },
-    {
-      "type": "Microsoft.Web/sites/config",
-      "apiVersion": "2020-09-01",
-      "name": "[concat(parameters('botName'), '/web')]",
-      "location": "[parameters('botLocation')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('botName'))]"
-      ],
-      "properties": {
+        "redundancyMode": "None",
         "numberOfWorkers": 1,
         "defaultDocuments": [
           "Default.htm",

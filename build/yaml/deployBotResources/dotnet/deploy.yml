@@ -52,12 +52,12 @@ stages:
               displayName: 'Prepare App Settings'
 
           # Run NuGet restore SkillV3
-          # - ${{ if eq(bot.type, 'SkillV3') }}:
-          #   - task: NuGetCommand@2
-          #     displayName: 'NuGet restore'
-          #     inputs:
-          #       restoreSolution: '${{ bot.project.directory }}/${{ bot.project.name }}'
-          #       restoreDirectory: '$(SolutionDir)packages'
+          - ${{ if eq(bot.type, 'SkillV3') }}:
+            - task: NuGetCommand@2
+              displayName: 'NuGet restore'
+              inputs:
+                restoreSolution: '${{ bot.project.directory }}/${{ bot.project.name }}'
+                restoreDirectory: '$(SolutionDir)packages'
 
           # Evaluate dependencies source and version
           - template: evaluateDependenciesVariables.yml

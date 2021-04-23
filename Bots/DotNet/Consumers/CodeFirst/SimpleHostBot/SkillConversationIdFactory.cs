@@ -24,6 +24,7 @@ namespace Microsoft.BotFrameworkFunctionalTests.SimpleHostBot
         /// <param name="conversationReference">The reference to a particular point of the conversation.</param>
         /// <param name="cancellationToken">CancellationToken propagates notifications that operations should be cancelled.</param>
         /// <returns>The generated conversation id.</returns>
+        [System.Obsolete]
         public override Task<string> CreateSkillConversationIdAsync(ConversationReference conversationReference, CancellationToken cancellationToken)
         {
             var crJson = JsonConvert.SerializeObject(conversationReference);
@@ -38,6 +39,7 @@ namespace Microsoft.BotFrameworkFunctionalTests.SimpleHostBot
         /// <param name="skillConversationId">The id that identifies the skill conversation.</param>
         /// <param name="cancellationToken">CancellationToken propagates notifications that operations should be cancelled.</param>
         /// <returns>The generated conversation reference.</returns>
+        [System.Obsolete]
         public override Task<ConversationReference> GetConversationReferenceAsync(string skillConversationId, CancellationToken cancellationToken)
         {
             var conversationReference = JsonConvert.DeserializeObject<ConversationReference>(_conversationRefs[skillConversationId]);

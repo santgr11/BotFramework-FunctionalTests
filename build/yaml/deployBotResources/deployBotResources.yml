@@ -145,15 +145,15 @@ parameters:
     type: string
     default: $(BffnSimpleHostBotDotNet21AppSecret)
 
-  - name: 
-    displayName: 
-    type: string
-    default: $()
+  # - name: 
+  #   displayName: 
+  #   type: string
+  #   default: $()
 
-  - name: 
-    displayName: 
-    type: string
-    default: $()
+  # - name: 
+  #   displayName: 
+  #   type: string
+  #   default: $()
 
 variables:
   BuildConfiguration: "Debug"
@@ -163,11 +163,6 @@ variables:
   #   description: App Id for BffnSimpleHostBotDotNet21 bot.
   #   type: string
   #   optional: true
-
-Muchas variables para mostrar como parametros
-Genera confusion en donde deben declararse
-La mayoria de las variables no se modifican entre runs
-Los parametros se setean para cada run, las variables se setean una sola vez y se usan hasta que se desee cambiarla
 
   # BffnSimpleHostBotDotNet21AppId: (optional) App Id for BffnSimpleHostBotDotNet21 bot.
   # BffnSimpleHostBotDotNet21AppSecret: (optional) App Secret for BffnSimpleHostBotDotNet21 bot.

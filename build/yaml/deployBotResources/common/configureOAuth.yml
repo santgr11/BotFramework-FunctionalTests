@@ -1,14 +1,14 @@
 parameters:
   - name: appId
-    displayName: Bot App Id
+    displayName: Bot's App Registration Id
     type: string
 
   - name: appSecret
-    displayName: Bot App Secret
+    displayName: Bot's App Registration Secret
     type: string
 
   - name: azureSubscription
-    displayName: Azure Subscription
+    displayName: Azure Service Connection
     type: string
 
   - name: botName
@@ -16,15 +16,15 @@ parameters:
     type: string
 
   - name: botGroup
-    displayName: Bot Group
+    displayName: Bot's Resource Group
     type: string
 
   - name: connectionName
-    displayName: Connection Name
+    displayName: OAuth Connection Name
     type: string
 
   - name: resourceSuffix
-    displayName: Resource Suffix
+    displayName: Azure resources' name suffix
     type: string
 
 steps:

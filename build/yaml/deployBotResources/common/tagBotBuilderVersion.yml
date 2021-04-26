@@ -4,7 +4,7 @@ parameters:
     type: string
 
   - name: version
-    displayName: Version Number
+    displayName: Version number
     type: string
 
 steps:

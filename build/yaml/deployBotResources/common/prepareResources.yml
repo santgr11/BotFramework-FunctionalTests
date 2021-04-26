@@ -1,6 +1,6 @@
 parameters:
   - name: azureSubscription
-    displayName: Azure Subscription
+    displayName: Azure Service Connection
     type: string
 
   - name: resourceGroups

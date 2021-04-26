@@ -1,6 +1,6 @@
 parameters:
   - name: appId
-    displayName: Bot App Id
+    displayName: Bot's App Registration Id
     type: string
 
   - name: appSecret
@@ -8,7 +8,7 @@ parameters:
     type: string
 
   - name: azureSubscription
-    displayName: Azure Subscription
+    displayName: Azure Service Connection
     type: string
 
   - name: botName
@@ -16,7 +16,7 @@ parameters:
     type: string
 
   - name: keyVault
-    displayName: Key Vault
+    displayName: KeyVault name
     type: string
 
 steps:

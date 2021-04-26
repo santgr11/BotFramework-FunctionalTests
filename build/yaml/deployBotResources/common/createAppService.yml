@@ -1,18 +1,18 @@
 parameters:
   - name: appId
-    displayName: Bot App Id
+    displayName: Bot's App Registration Id
     type: string
-  
+
   - name: appInsight
-    displayName: Application Insight
+    displayName: Azure Application Insight name
     type: string
 
   - name: appSecret
-    displayName: Bot App Secret
+    displayName: Bot's App Registration Secret
     type: string
 
   - name: appServicePlan
-    displayName: App Service Plan
+    displayName: App Service Plan name
     type: string
 
   - name: appServicePlanRG
@@ -20,11 +20,11 @@ parameters:
     type: string
 
   - name: azureSubscription
-    displayName: Azure Subscription
+    displayName: Azure Service Connection
     type: string
 
   - name: botGroup
-    displayName: Bot Group
+    displayName: Bot's Resource Group
     type: string
 
   - name: botName
@@ -34,16 +34,13 @@ parameters:
   - name: botPricingTier
     displayName: Bot Pricing Tier
     type: string
-    values:
-    - S1
-    - F0
 
   - name: templateFile
     displayName: Tempate File Location
     type: string
 
   - name: resourceSuffix
-    displayName: Resource Suffix
+    displayName: Azure resources' name suffix
     type: string
 
 steps:

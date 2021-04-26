@@ -6,6 +6,7 @@ parameters:
   - name: appInsight
     displayName: Azure Application Insight name
     type: string
+    default: ""
 
   - name: appSecret
     displayName: Bot's App Registration Secret

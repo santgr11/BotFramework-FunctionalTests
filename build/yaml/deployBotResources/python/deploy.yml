@@ -90,7 +90,7 @@ stages:
           - template: evaluateDependenciesVariables.yml
             parameters:
               botType: "${{ bot.type }}"
-              project: "${{ bot.project.directory }}"
+              source: "${{ bot.project.directory }}"
               registry: "${{ bot.dependency.registry }}"
               version: "${{ bot.dependency.version }}"
 

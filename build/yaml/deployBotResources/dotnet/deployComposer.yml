@@ -95,7 +95,7 @@ stages:
               project: 
                 directory: "${{ bot.project.directory }}/runtime/azurewebapp/"
                 name: "Microsoft.BotFramework.Composer.WebApp.csproj"
-              source: "$(DependenciesSource)"
+              registry: "$(DependenciesSource)"
               version: "$(DependenciesVersionNumber)"
               packages:
                 Microsoft.Bot.Builder

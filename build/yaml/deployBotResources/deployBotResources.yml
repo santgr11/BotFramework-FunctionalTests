@@ -49,7 +49,7 @@ parameters:
   - name: dependenciesVersionDotNetSkillsV3
     displayName: DotNet Skills V3 Version
     type: string
-    default: ""
+    default: "LATEST"
 
   - name: dependenciesRegistryJSHosts
     displayName: JS Hosts Registry

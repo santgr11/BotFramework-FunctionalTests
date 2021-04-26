@@ -117,7 +117,7 @@ stages:
               project: 
                 directory: "${{ bot.project.directory }}/runtime/azurefunctions/"
                 name: "Microsoft.BotFramework.Composer.Functions.csproj"
-              source: "$(DependenciesSource)"
+              registry: "$(DependenciesSource)"
               version: "$(DependenciesVersionNumber)"
               packages:
                 Microsoft.Bot.Builder
@@ -139,7 +139,7 @@ stages:
               project:
                 directory: "${{ bot.project.directory }}/runtime/customaction/"
                 name: "Microsoft.BotFramework.Composer.CustomAction.csproj"
-              source: "$(DependenciesSource)"
+              registry: "$(DependenciesSource)"
               version: "$(DependenciesVersionNumber)"
               packages:
                 Microsoft.Bot.Builder.Dialogs.Adaptive
@@ -150,7 +150,7 @@ stages:
               project: 
                 directory: "${{ bot.project.directory }}/runtime/core/"
                 name: "Microsoft.BotFramework.Composer.Core.csproj"
-              source: "$(DependenciesSource)"
+              registry: "$(DependenciesSource)"
               version: "$(DependenciesVersionNumber)"
               packages:
                 Microsoft.Bot.Builder

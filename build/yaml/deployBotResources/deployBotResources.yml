@@ -76,7 +76,7 @@ parameters:
     displayName: JS Hosts Version
     type: string
 
-  - name: dependenciesRegistryJSSkills
+  - name: dependenciesVersionJSSkills
     displayName: JS Skills Version
     type: string
 

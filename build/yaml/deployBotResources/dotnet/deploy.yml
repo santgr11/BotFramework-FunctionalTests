@@ -116,7 +116,7 @@ stages:
             - template: installDependencies.yml
               parameters:
                 project: "${{ bot.project }}"
-                source: "$(DependenciesSource)"
+                registry: "$(DependenciesSource)"
                 version: "$(DependenciesVersionNumber)"
                 packages:
                   Microsoft.Bot.Builder.Dialogs
@@ -146,7 +146,7 @@ stages:
             # Install dependencies
             - template: installDependenciesV3.yml
               parameters:
-                source: "$(DependenciesSource)"
+                registry: "$(DependenciesSource)"
                 version: "$(DependenciesVersionNumber)"
                 project: "${{ bot.project }}"
                 packages:

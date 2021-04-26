@@ -85,7 +85,7 @@ parameters:
     type: string
 
   - name: dependenciesRegistryPythonHosts
-    displayname: Python Hosts Registry
+    displayName: Python Hosts Registry
     type: string
     default: Artifacts
     values:

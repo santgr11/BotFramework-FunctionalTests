@@ -39,14 +39,17 @@ parameters:
   - name: dependenciesVersionDotNetHosts
     displayName: DotNet Hosts Version
     type: string
+    default: ""
 
   - name: dependenciesVersionDotNetSkills
     displayName: DotNet Skills Version
     type: string
+    default: ""
 
   - name: dependenciesVersionDotNetSkillsV3
     displayName: DotNet Skills V3 Version
     type: string
+    default: ""
 
   - name: dependenciesRegistryJSHosts
     displayName: JS Hosts Registry
@@ -75,14 +78,17 @@ parameters:
   - name: dependenciesVersionJSHosts
     displayName: JS Hosts Version
     type: string
+    default: ""
 
   - name: dependenciesVersionJSSkills
     displayName: JS Skills Version
     type: string
+    default: ""
 
   - name: dependenciesVersionJSSkillsV3
     displayName: JS Skills V3 Version
     type: string
+    default: ""
 
   - name: dependenciesRegistryPythonHosts
     displayName: Python Hosts Registry
@@ -105,10 +111,12 @@ parameters:
   - name: dependenciesVersionPythonHosts
     displayName: Python Hosts Version
     type: string
+    default: ""
 
   - name: dependenciesVersionPythonSkills
     displayName: Python Skills Version
     type: string
+    default: ""
 
 variables:
   BuildConfiguration: "Debug"

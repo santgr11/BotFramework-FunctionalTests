@@ -9,36 +9,166 @@ pr: none
 pool:
   vmImage: "windows-2019"
 
+parameters:
+  ## Azure Resources
+  - name: azureSubscription
+    displayName: Azure Service Connection
+    type: string
+    default: $(AZURESUBSCRIPTION)
+
+  - name: appServicePlanGroup
+    displayName: App Service Plan Group
+    type: string
+    default: $(APPSERVICEPLANGROUP)
+
+  - name: appServicePlanGroupLinux
+    displayName: App Service Plan Group Linux
+    type: string
+    default: $(APPSERVICEPLANGROUPLINUX)
+
+  - name: appServicePlanName
+    displayName: App Service Plan Name
+    type: string
+    default: $(APPSERVICEPLANNAME)
+
+  - name: appServicePlanNameLinux
+    displayName: App Service Plan Name Linux
+    type: string
+    default: $(APPSERVICEPLANNAMELINUX)
+
+  - name: botPricingTier
+    displayName: 
+    type: string
+    default: $(BOTPRICINGTIER)
+    values:
+    - S1
+    - F0
+
+  - name: resourceGroup
+    displayName: Resource Group
+    type: string
+    default: $(RESOURCEGROUP)
+
+  - name: resourceSuffix
+    displayName: Resource Suffix
+    type: string
+    default: $(RESOURCESUFFIX)
+
+  ## Bot Configuration
+  - name: bffnEchoSkillBotComposerDotNetAppId
+    displayName: Echo Skill Bot Composer DotNet App Id
+    type: string
+    default: $(bffnEchoSkillBotComposerDotNetAppId)
+
+  - name: bffnEchoSkillBotComposerDotNetAppSecret
+    displayName: Echo Skill Bot Composer DotNet App Secret
+    type: string
+    default: $(BffnEchoSkillBotComposerDotNetAppSecret)
+
+  - name: bffnEchoSkillBotDotNet21AppId
+    displayName: Echo Skill Bot DotNet 21 App Id
+    type: string
+    default: $(BffnEchoSkillBotDotNet21AppId)
+
+  - name: bffnEchoSkillBotDotNet21AppSecret
+    displayName: Echo Skill Bot DotNet 21 App Secret
+    type: string
+    default: $(BffnEchoSkillBotDotNet21AppSecret)
+
+  - name: bffnEchoSkillBotDotNetAppId
+    displayName: Echo Skill Bot DotNet App Id
+    type: string
+    default: $(BffnEchoSkillBotDotNetAppId)
+
+  - name: BffnEchoSkillBotDotNetAppSecret
+    displayName: Echo Skill Bot DotNet App Secret
+    type: string
+    default: $(BffnEchoSkillBotDotNetAppSecret)
+
+  - name: bffnEchoSkillBotDotNetV3AppId
+    displayName: Echo Skill Bot DotNet V3 App Id
+    type: string
+    default: $(BffnEchoSkillBotDotNetV3AppId)
+
+  - name: bffnEchoSkillBotDotNetV3AppSecret
+    displayName: Echo Skill Bot DotNet V3 App Secret
+    type: string
+    default: $(BffnEchoSkillBotDotNetV3AppSecret)
+
+  - name: BffnEchoSkillBotJSAppId
+    displayName: Echo Skill Bot JS App Id
+    type: string
+    default: $(BffnEchoSkillBotJSAppId)
+
+  - name: bffnEchoSkillBotJSAppSecret
+    displayName: 
+    type: string
+    default: $(BffnEchoSkillBotJSAppSecret)
+
+  - name: bffnEchoSkillBotJSV3AppId
+    displayName: Echo Skill Bot JS V3 App Id
+    type: string
+    default: $(BffnEchoSkillBotJSV3AppId)
+
+  - name: bffnEchoSkillBotJSV3AppSecret
+    displayName: Echo Skill Bot JS V3 App Secret
+    type: string
+    default: $(BffnEchoSkillBotJSV3AppSecret)
+
+  - name: bffnEchoSkillBotPythonAppId
+    displayName: Echo Skill Bot Python App Id
+    type: string
+    default: $(BffnEchoSkillBotPythonAppId)
+
+  - name: bffnEchoSkillBotPythonAppSecret
+    displayName: Echo Skill Bot Python App Secret
+    type: string
+    default: $(BffnEchoSkillBotPythonAppSecret)
+
+  - name: bffnSimpleHostBotComposerDotNetAppId
+    displayName: Simple Host Bot Composer DotNet App Id
+    type: string
+    default: $(BffnSimpleHostBotComposerDotNetAppId)
+
+  - name: BffnSimpleHostBotComposerDotNetAppSecret
+    displayName: 
+    type: string
+    default: $(BffnSimpleHostBotComposerDotNetAppSecret)
+
+  - name: bffnSimpleHostBotDotNet21AppId
+    displayName: Simple Host Bot DotNet 21 App Id
+    type: string
+    default: $(BffnSimpleHostBotDotNet21AppId)
+
+  - name: bffnSimpleHostBotDotNet21AppSecret
+    displayName: Simple Host Bot DotNet 21 App Secret
+    type: string
+    default: $(BffnSimpleHostBotDotNet21AppSecret)
+
+  - name: 
+    displayName: 
+    type: string
+    default: $()
+
+  - name: 
+    displayName: 
+    type: string
+    default: $()
+
 variables:
   BuildConfiguration: "Debug"
   BuildPlatform: "AnyCPU"
-  ## Azure Resources (Define these variables in Azure)
-  # AzureSubscription: Service Connection Name to Manage Azure resources.
-  # AppServicePlanGroup: (optional) Name of the Resource Group where the Windows App Service Plan is located.
-  # AppServicePlanGroupLinux: (optional) Name of the Resource Group where the Linux App Service Plan is located.
-  # AppServicePlanName: (optional) Name of the Windows App Service Plan.
-  # AppServicePlanNameLinux: (optional) Name of the Linux App Service Plan.
-  # BotPricingTier: (optional) Pricing Tier for the bots, default F0.
-  # ResourceGroup: (optional) Name of the Resource Group where the bots will be deployed.
-  # ResourceSuffix: (optional) Suffix to add to the resources' name to avoid collitions.
 
-  ## Bots Configuration (Define these variables in Azure)
-  # BffnEchoSkillBotComposerDotNetAppId: (optional) App Id for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotComposerDotNetAppSecret: (optional) App Secret for BffnEchoSkillBotComposerDotNet bot.
-  # BffnEchoSkillBotDotNet21AppId: (optional) App Id for BffnEchoSkillBotDotNet21 bot.
-  # BffnEchoSkillBotDotNet21AppSecret: (optional) App Secret for BffnEchoSkillBotDotNet21 bot.
-  # BffnEchoSkillBotDotNetAppId: (optional) App Id for BffnEchoSkillBotDotNet bot.
-  # BffnEchoSkillBotDotNetAppSecret: (optional) App Secret for BffnEchoSkillBotDotNet bot.
-  # BffnEchoSkillBotDotNetV3AppId: (optional) App Id for BffnEchoSkillBotDotNetV3 bot.
-  # BffnEchoSkillBotDotNetV3AppSecret: (optional) App Secret for BffnEchoSkillBotDotNetV3 bot.
-  # BffnEchoSkillBotJSAppId: (optional) App Id for BffnEchoSkillBotJS bot.
-  # BffnEchoSkillBotJSAppSecret: (optional) App Secret for BffnEchoSkillBotJS bot.
-  # BffnEchoSkillBotJSV3AppId: (optional) App Id for BffnEchoSkillBotJSV3 bot.
-  # BffnEchoSkillBotJSV3AppSecret: (optional) App Secret for BffnEchoSkillBotJSV3 bot.
-  # BffnEchoSkillBotPythonAppId: (optional) App Id for BffnEchoSkillBotPython bot.
-  # BffnEchoSkillBotPythonAppSecret: (optional) App Secret for BffnEchoSkillBotPython bot.
-  # BffnSimpleHostBotComposerDotNetAppId: (optional) App Id for BffnSimpleHostBotComposerDotNet bot.
-  # BffnSimpleHostBotComposerDotNetAppSecret: (optional) App Secret for BffnSimpleHostBotComposerDotNet bot.
+  # - name: BffnSimpleHostBotDotNet21AppId
+  #   description: App Id for BffnSimpleHostBotDotNet21 bot.
+  #   type: string
+  #   optional: true
+
+Muchas variables para mostrar como parametros
+Genera confusion en donde deben declararse
+La mayoria de las variables no se modifican entre runs
+Los parametros se setean para cada run, las variables se setean una sola vez y se usan hasta que se desee cambiarla
+
   # BffnSimpleHostBotDotNet21AppId: (optional) App Id for BffnSimpleHostBotDotNet21 bot.
   # BffnSimpleHostBotDotNet21AppSecret: (optional) App Secret for BffnSimpleHostBotDotNet21 bot.
   # BffnSimpleHostBotDotNetAppId: (optional) App Id for BffnSimpleHostBotDotNet bot.

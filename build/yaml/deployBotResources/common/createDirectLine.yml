@@ -1,8 +1,19 @@
 parameters:
-  azureSubscription: ""
-  botGroup: ""
-  botName: ""
-  resourceSuffix: ""
+  - name: azureSubscription
+    displayName: Azure Subscription
+    type: string
+
+  - name: botGroup
+    displayName: Bot Group
+    type: string
+
+  - name: botName
+    displayName: Bot Name
+    type: string
+
+  - name: resourceSuffix
+    displayName: Resource Suffix
+    type: string
 
 steps:
 - task: AzureCLI@2

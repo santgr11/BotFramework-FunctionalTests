@@ -1,15 +1,50 @@
 parameters:
-  appId: ""
-  appInsight: ""
-  appSecret: ""
-  appServicePlan: ""
-  appServicePlanRG: ""
-  azureSubscription: ""
-  botGroup: ""
-  botName: ""
-  botPricingTier: ""
-  templateFile: ""
-  resourceSuffix: ""
+  - name: appId
+    displayName: Bot App Id
+    type: string
+  
+  - name: appInsight
+    displayName: Application Insight
+    type: string
+
+  - name: appSecret
+    displayName: Bot App Secret
+    type: string
+
+  - name: appServicePlan
+    displayName: App Service Plan
+    type: string
+
+  - name: appServicePlanRG
+    displayName: App Service Plan Resource Group
+    type: string
+
+  - name: azureSubscription
+    displayName: Azure Subscription
+    type: string
+
+  - name: botGroup
+    displayName: Bot Group
+    type: string
+
+  - name: botName
+    displayName: Bot Name
+    type: string
+
+  - name: botPricingTier
+    displayName: Bot Pricing Tier
+    type: string
+    values:
+    - S1
+    - F0
+
+  - name: templateFile
+    displayName: Tempate File Location
+    type: string
+
+  - name: resourceSuffix
+    displayName: Resource Suffix
+    type: string
 
 steps:
   - task: AzureCLI@2

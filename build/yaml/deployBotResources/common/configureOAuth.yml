@@ -1,11 +1,31 @@
 parameters:
-  appId: ""
-  appSecret: ""
-  azureSubscription: ""
-  botName: ""
-  botGroup: ""
-  connectionName: ""
-  resourceSuffix: ""
+  - name: appId
+    displayName: Bot App Id
+    type: string
+
+  - name: appSecret
+    displayName: Bot App Secret
+    type: string
+
+  - name: azureSubscription
+    displayName: Azure Subscription
+    type: string
+
+  - name: botName
+    displayName: Bot Name
+    type: string
+
+  - name: botGroup
+    displayName: Bot Group
+    type: string
+
+  - name: connectionName
+    displayName: Connection Name
+    type: string
+
+  - name: resourceSuffix
+    displayName: Resource Suffix
+    type: string
 
 steps:
   - task: AzureCLI@2

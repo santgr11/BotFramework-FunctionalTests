@@ -107,7 +107,7 @@ stages:
           - template: ../common/createAppService.yml
             parameters:
               appId: $(AppId)
-              appSecret:  $(AppSecret)
+              appSecret: $(AppSecret)
               appServicePlan: "${{ parameters.appServicePlan }}"
               appServicePlanRG: "${{ parameters.appServicePlanRG }}"
               azureSubscription: "${{ parameters.azureSubscription }}"
@@ -122,7 +122,7 @@ stages:
             - template: ../common/configureOAuth.yml
               parameters:
                 appId: $(AppId)
-                appSecret:  $(AppSecret)
+                appSecret: $(AppSecret)
                 azureSubscription: "${{ parameters.azureSubscription }}"
                 botGroup: "${{ parameters.resourceGroup }}"
                 botName: "${{ bot.name }}"

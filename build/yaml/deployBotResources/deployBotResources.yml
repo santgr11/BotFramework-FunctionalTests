@@ -10,6 +10,11 @@ pool:
   vmImage: "windows-2019"
 
 parameters:
+  - name: dependenciesVersionDotNetHosts
+    displayName: DotNet Hosts Version
+    type: string
+    default: "LATEST"
+
   - name: dependenciesRegistryDotNetHosts
     displayName: DotNet Hosts Registry
     type: string
@@ -18,6 +23,11 @@ parameters:
     - Artifacts
     - MyGet
     - NuGet
+
+  - name: dependenciesVersionDotNetSkills
+    displayName: DotNet Skills Version
+    type: string
+    default: "LATEST"
 
   - name: dependenciesRegistryDotNetSkills
     displayName: DotNet Skills Registry
@@ -28,6 +38,11 @@ parameters:
     - MyGet
     - NuGet
 
+  - name: dependenciesVersionDotNetSkillsV3
+    displayName: DotNet Skills V3 Version
+    type: string
+    default: "LATEST"
+
   - name: dependenciesRegistryDotNetSkillsV3
     displayName: DotNet Skills V3 Registry
     type: string
@@ -36,18 +51,8 @@ parameters:
     - MyGet
     - NuGet
 
-  - name: dependenciesVersionDotNetHosts
-    displayName: DotNet Hosts Version
-    type: string
-    default: "LATEST"
-
-  - name: dependenciesVersionDotNetSkills
-    displayName: DotNet Skills Version
-    type: string
-    default: "LATEST"
-
-  - name: dependenciesVersionDotNetSkillsV3
-    displayName: DotNet Skills V3 Version
+  - name: dependenciesVersionJSHosts
+    displayName: JS Hosts Version
     type: string
     default: "LATEST"
 
@@ -59,6 +64,11 @@ parameters:
     - MyGet
     - Npm
 
+  - name: dependenciesVersionJSSkills
+    displayName: JS Skills Version
+    type: string
+    default: "LATEST"
+
   - name: dependenciesRegistryJSSkills
     displayName: JS Skills Registry
     type: string
@@ -66,6 +76,11 @@ parameters:
     values:
     - MyGet
     - Npm
+
+  - name: dependenciesVersionJSSkillsV3
+    displayName: JS Skills V3 Version
+    type: string
+    default: "LATEST"
 
   - name: dependenciesRegistryJSSkillsV3
     displayName: JS Skills V3 Registry
@@ -75,18 +90,8 @@ parameters:
     - MyGet
     - Npm
 
-  - name: dependenciesVersionJSHosts
-    displayName: JS Hosts Version
-    type: string
-    default: "LATEST"
-
-  - name: dependenciesVersionJSSkills
-    displayName: JS Skills Version
-    type: string
-    default: "LATEST"
-
-  - name: dependenciesVersionJSSkillsV3
-    displayName: JS Skills V3 Version
+  - name: dependenciesVersionPythonHosts
+    displayName: Python Hosts Version
     type: string
     default: "LATEST"
 
@@ -99,6 +104,11 @@ parameters:
     - Pypi
     - Test.Pypi
 
+  - name: dependenciesVersionPythonSkills
+    displayName: Python Skills Version
+    type: string
+    default: "LATEST"
+
   - name: dependenciesRegistryPythonSkills
     displayName: Python Skills Registry
     type: string
@@ -107,16 +117,6 @@ parameters:
     - Artifacts
     - Pypi
     - Test.Pypi
-
-  - name: dependenciesVersionPythonHosts
-    displayName: Python Hosts Version
-    type: string
-    default: "LATEST"
-
-  - name: dependenciesVersionPythonSkills
-    displayName: Python Skills Version
-    type: string
-    default: "LATEST"
 
 variables:
   BuildConfiguration: "Debug"

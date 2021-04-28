@@ -13,8 +13,8 @@ const WATERFALL_SKILL_BOT = 'WaterfallSkillBot';
  */
 class TokenExchangeSkillHandler extends SkillHandler {
   constructor (adapter, bot, conversationIdFactory, skillsConfig, skillClient,
-    credentialProvider, authConfig, channelProvider = null, logger = null) {
-    super(adapter, bot, SkillConversationIdFactory, credentialProvider, authConfig, channelProvider);
+    credentialProvider, authConfig, logger = null) {
+    super(adapter, bot, SkillConversationIdFactory, credentialProvider, authConfig);
     this.adapter = adapter;
     this.tokenExchangeProvider = adapter;
 
@@ -62,7 +62,7 @@ class TokenExchangeSkillHandler extends SkillHandler {
       if (targetSkill) {
         const oauthCard = oauthCardAttachment.content;
 
-        if (oauthCard.tokenExchangeResource.uri) {
+        if (oauthCard?.tokenExchangeResource?.uri) {
           const context = new TurnContext(this.adapter, activity);
           context.turnState.push('BotIdentity', claimsIdentity);
 

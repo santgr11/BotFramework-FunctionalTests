@@ -31,15 +31,15 @@ steps:
               $source = $sourceArtifacts
               $extraSource = $sourcePypi
             }
-            "Pypi" { 
+            "Pypi" {
               $source = $sourcePypi
-              $extraSource = $sourceArtifacts
+              $extraSource = ""
             }
-            "Test.Pypi" { 
+            "Test.Pypi" {
               $source = $sourceTestPypi
               $extraSource = $sourcePypi
             }
-            default { 
+            default {
               $source = "${{ parameters.registry }}"
               $extraSource = $sourcePypi
             }

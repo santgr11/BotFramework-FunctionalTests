@@ -44,22 +44,25 @@ steps:
         Write-Host "Source: $source"
         
         # Get Version Number
+        $tags = ""
         switch -regex ("${{ parameters.version }}") {
-          $tags = ""
-          "^($null||LATEST)$" {
-            $tags = "-PreRelease"
-          }
-
-          if ("${{ parameters.botType }}" -in "Host", "Skill") {
+          "^($null||LATEST||STABLE)$" {
+            if("${{ parameters.version }}" -notin "STABLE"){
+              $tags = "-PreRelease"
+            }
+            if ("${{ parameters.botType }}" -in "Host", "Skill") {
               $PackageList = nuget list Microsoft.Bot.Builder.Integration.AspNet.Core -Source "$source" "$tags"
               $versionNumber = $PackageList.Split(" ")[-1]
             } elseif ("${{ parameters.botType }}" -in "SkillV3") {
               $PackageList = nuget list Microsoft.Bot.Builder.History -Source "$source"
               $versionNumber = $PackageList.Split(" ")[-1]
             }
-
+          }
           default { $versionNumber = "${{ parameters.version }}" }
         }
+
+
+
         Write-Host "Version Number: $versionNumber"
         
         # Set environment variables

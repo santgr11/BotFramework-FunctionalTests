@@ -14,45 +14,45 @@ parameters:
 steps:
   - powershell: |
       # Get Source
-      $sourceDotNetv3MyGet = "https://botbuilder.myget.org/F/botbuilder-v3-dotnet-daily/api/v3/index.json" 
-      $sourceDotNetArtifacts = "https://pkgs.dev.azure.com/ConversationalAI/BotFramework/_packaging/SDK/nuget/v3/index.json" 
+      $sourceDotNetv3MyGet = "https://botbuilder.myget.org/F/botbuilder-v3-dotnet-daily/api/v3/index.json"
+      $sourceDotNetArtifacts = "https://pkgs.dev.azure.com/ConversationalAI/BotFramework/_packaging/SDK/nuget/v3/index.json"
       $sourceDotNetMyGet = "https://botbuilder.myget.org/F/botbuilder-v4-dotnet-daily/api/v3/index.json"
+      $sourceDotNetNuGet = "https://api.nuget.org/v3/index.json"
+
       switch -regex ("${{ parameters.registry }}") {
         "^($null|)$" {
           switch ("${{ parameters.botType }}") {
-            "SkillV3" { $source = $sourceDotNetv3MyGet } 
+            "SkillV3" { $source = $sourceDotNetv3MyGet }
             default { $source = $sourceDotNetArtifacts }
           }
         }
         "Artifacts" { $source = $sourceDotNetArtifacts }
         "MyGet" { 
           switch ("${{ parameters.botType }}") {
-            "SkillV3" { $source = $sourceDotNetv3MyGet } 
+            "SkillV3" { $source = $sourceDotNetv3MyGet }
             default { $source = $sourceDotNetMyGet }
           }
         }
-        "NuGet" { $source = "" }
+        "NuGet" { $source = $sourceDotNetNuGet }
         default { $source = "${{ parameters.registry }}" }
       }
       Write-Host "Source: $source"
       
       # Get Version Number
       switch -regex ("${{ parameters.version }}") {
+        $tags = ""
         "^($null||LATEST)$" {
-          if ("${{ parameters.registry }}".ToUpper() -in "NUGET") {
-            [Console]::ForegroundColor = "red"
-            [Console]::Error.WriteLine("Preview versions of BotBuilder are not available for this source.")
-            [Console]::ResetColor()
-            exit 1 # Force exit
-          }
-          if ("${{ parameters.botType }}" -in "Host", "Skill") {
-            $PackageList = nuget list Microsoft.Bot.Builder.Integration.AspNet.Core -Source "$source" -PreRelease
+          $tags = "-PreRelease"
+        }
+
+        if ("${{ parameters.botType }}" -in "Host", "Skill") {
+            $PackageList = nuget list Microsoft.Bot.Builder.Integration.AspNet.Core -Source "$source" "$tags"
             $versionNumber = $PackageList.Split(" ")[-1]
           } elseif ("${{ parameters.botType }}" -in "SkillV3") {
-            $versionNumber = ""
+            $PackageList = nuget list Microsoft.Bot.Builder.History -Source "$source"
+            $versionNumber = $PackageList.Split(" ")[-1]
           }
-        }
-        STABLE { $versionNumber = "" }
+
         default { $versionNumber = "${{ parameters.version }}" }
       }
       Write-Host "Version Number: $versionNumber"

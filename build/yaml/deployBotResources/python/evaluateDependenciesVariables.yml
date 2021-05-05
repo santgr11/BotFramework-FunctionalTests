@@ -63,7 +63,12 @@ steps:
           # Add the $source source at the beginning of requirements
           $file = "${{ parameters.source }}/requirements.txt"
           $content = @(Get-Content $file)
-          $line = "$preFlag --index-url $source --extra-index-url $extraSource".Trim()
+
+          if (-not ([string]::IsNullOrEmpty("$extraSource"))) {
+            $extraSourceTag = "--extra-index-url $extraSource"
+          }
+
+          $line = "$preFlag --index-url $source $extraSourceTag".Trim()
           Set-Content -Path $file -Value $line
           Add-Content -Path $file -Value $content
 

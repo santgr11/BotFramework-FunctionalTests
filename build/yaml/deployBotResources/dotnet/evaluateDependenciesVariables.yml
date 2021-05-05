@@ -54,7 +54,7 @@ steps:
               $PackageList = nuget list Microsoft.Bot.Builder.Integration.AspNet.Core -Source "$source" "$tags"
               $versionNumber = $PackageList.Split(" ")[-1]
             } elseif ("${{ parameters.botType }}" -in "SkillV3") {
-              $PackageList = nuget list Microsoft.Bot.Builder.History -Source "$source"
+              $PackageList = nuget list "Microsoft.Bot.Builder.History" -Source "$source" "$tags" | Select-String -Pattern "^Microsoft.Bot.Builder.History"
               $versionNumber = $PackageList.Split(" ")[-1]
             }
           }

@@ -51,7 +51,7 @@ steps:
               $tags = "-PreRelease"
             }
             if ("${{ parameters.botType }}" -in "Host", "Skill") {
-              $PackageList = nuget list Microsoft.Bot.Builder.Integration.AspNet.Core -Source "$source" "$tags"
+              $PackageList = nuget list "Microsoft.Bot.Builder" -Source "$source" "$tags" | Select-String -Pattern "^Microsoft.Bot.Builder "
               $versionNumber = $PackageList.Split(" ")[-1]
             } elseif ("${{ parameters.botType }}" -in "SkillV3") {
               $PackageList = nuget list "Microsoft.Bot.Builder.History" -Source "$source" "$tags" | Select-String -Pattern "^Microsoft.Bot.Builder.History"

@@ -38,8 +38,12 @@ steps:
         # Get Version Number
         switch -regex ("${{ parameters.version }}") {
           "^($null||LATEST)$" {
-            if ($source -eq $sourceJSv3MyGet) {
-              $versionNumber = npm show botbuilder@latest version | Out-String
+            if ("${{ parameters.botType }}" -in "SkillV3") {
+              if ($source -eq $sourceJSv3MyGet) {
+                $versionNumber = npm show botbuilder@latest version | Out-String
+              } else {
+                $versionNumber = (npm view botbuilder versions | Where-Object {$_ -match "  '3."})[-1].Trim().Replace("'", "").Replace(",", "")
+              }
             } else {
               $versionNumber = npm show botbuilder@next version | Out-String
             }

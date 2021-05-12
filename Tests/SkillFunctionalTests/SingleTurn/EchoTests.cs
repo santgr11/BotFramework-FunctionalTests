@@ -37,25 +37,22 @@ namespace SkillFunctionalTests.SingleTurn
 
             var hostBots = new List<HostBot>
             {
-                // HostBot.SimpleHostBotComposerDotNet,
-                // HostBot.SimpleHostBotDotNet,
-                // HostBot.SimpleHostBotDotNet21,
-
+                HostBot.SimpleHostBotComposerDotNet,
+                HostBot.SimpleHostBotDotNet,
+                HostBot.SimpleHostBotDotNet21,
                 HostBot.SimpleHostBotJS,
-                // HostBot.SimpleHostBotPython,
+                HostBot.SimpleHostBotPython,
             };
 
             var targetSkills = new List<string>
             {
-                //SkillBotNames.EchoSkillBotComposerDotNet,
+                SkillBotNames.EchoSkillBotComposerDotNet,
                 SkillBotNames.EchoSkillBotDotNet,
-
-                // SkillBotNames.EchoSkillBotDotNet21,
-                // SkillBotNames.EchoSkillBotDotNetV3,
+                SkillBotNames.EchoSkillBotDotNet21,
+                SkillBotNames.EchoSkillBotDotNetV3,
                 SkillBotNames.EchoSkillBotJS,
-
-                // SkillBotNames.EchoSkillBotJSV3,
-                // SkillBotNames.EchoSkillBotPython
+                SkillBotNames.EchoSkillBotJSV3,
+                SkillBotNames.EchoSkillBotPython
             };
 
             var scripts = new List<string> { "EchoMultiSkill.json" };
